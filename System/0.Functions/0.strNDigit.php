@@ -92,7 +92,7 @@ function сЗаменаСлэшУЕ($_сВход)
 	$сВход=str_replace('\u043e31\u043e8200\u043e28\u043e', '/' ,$сВход);
 	return $сВход;
 	}
-function сЖанрТранскрипцияЯзыки($сВход) //inspired by Ferri Corsten and Armin van Buuren
+function сЖанрТранскрипцияЯзыки($сВход) //inspired by Ferry Corsten and Armin van Buuren
 	{
 	//$сВход
 	$сВозврат	=$сВход;
@@ -220,7 +220,10 @@ function сКонцДоСимвола($_сСтр, $_сОт)
 	$сСтр	=сРеверс($сСтр);
 	return 	$сСтр;
 	}
-
+function фДубль($_оСтанция)
+	{
+	
+	}
 function фCreateListen_lnSock($_сСтр)
 	{
 	echo $_сСтр."\n";
@@ -347,7 +350,7 @@ function фУникальный($мОбработанныеСвойства, $_�
 	}*/
 
 //[..]Event Global
-function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase feat Armin van Buuren */
+function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase inspired Armin van Buuren */
 	{
 	/*
 	$ч1Длинна	=strlen($_сФраза);
@@ -648,7 +651,7 @@ function _Report($str)
 	{
 	//echo$str;
 	$strResult=date('Y-m-d_H:i:s').'<warning style="color:red;">'.$str.'</warning>';
-	file_put_contents('/home/HiFiIntelligentClub.Ru/temp/N0_report.txt' , $strResult);
+	file_put_contents('/home/HiFiIntelligentClub.Ru/tmp/N0_report.txt' , $strResult);
 	}
 function strNDigit($_intN, $_str, $strPos="fromBegin", $_strNULLSymbol='_') //suffix/prefix
 	{
@@ -755,20 +758,19 @@ function сПреобразовать($_сСтрока, $_сНаправлени
 		}
 	$мПравилаПреобразования	=
 			array(
-				"о20о"=> "<" ,//see HEX!
-				"о21о"=> ">" ,//see HEX!
-				"о22о"=> "\"",//see HEX!
-				"о23о"=> "'" ,//see HEX!
-				"о24о"=> "?" ,//see HEX!
-				"о25о"=> "&" ,//see HEX!
-				"о26о"=> "=" ,//see HEX!
-				"о27о"=> " " ,//see HEX!
-				"о28о"=> "/" ,//see HEX!
-				"о29о"=> "\\",//see HEX!
-				"о30о"=> ";",//see HEX!
-				"о31о"=> "%",//see HEX!
-				"о31о"=> ":",//see HEX!
-				"о32о"=> " ",//see HEX!
+				"о20о"=> "<" ,
+				"о21о"=> ">" ,
+				"о22о"=> "\"",
+				"о23о"=> "'" ,
+				"о24о"=> "?" ,
+				"о25о"=> "&" ,
+				"о26о"=> "=" ,
+				"о27о"=> " " ,
+				"о28о"=> "/" ,
+				"о29о"=> "\\",
+				"о30о"=> ";",
+				"о31о"=> "%",
+				"о31о"=> ":",
 			);
 	foreach($мПравилаПреобразования as $сПреобразованноВКоманду=>$сПодлежитПреобразованиюВКоманду)
 		{
