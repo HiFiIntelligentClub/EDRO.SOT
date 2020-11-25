@@ -220,9 +220,27 @@ function сКонцДоСимвола($_сСтр, $_сОт)
 	$сСтр	=сРеверс($сСтр);
 	return 	$сСтр;
 	}
-function фДубль($_оСтанция)
-	{
-	
+function фДубль($_м_оСтанция, $_оСтанция) // ifDoubles - will compare all genres of station and station name. 
+	{//If equal - will be listed as different bitrate of the parent station. Default is higher bitrate.
+	// Если название и жанры у станций одинаковы, значит станции одинаковы и будут отображаться, 
+	//как разные битрейты станции с таким-же названием.
+	$ф=FALSE;
+	foreach($_м_оСтанция as $оСтанция)
+		{
+		if(($оСтанция->genre==$_оСтанция->genre)&&($оСтанция->server_name==$_оСтанция->server_name))
+			{
+			$ф=TRUE;
+			echo "Найден дубль!"."\n";
+			echo $_оСтанция->genre."\n";
+			echo $_оСтанция->server_name."\n";
+			continue;
+			}
+		else
+			{
+			$ф=FALSE;
+			}
+		}
+	return $ф;
 	}
 function фCreateListen_lnSock($_сСтр)
 	{
