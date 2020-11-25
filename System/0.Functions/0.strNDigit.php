@@ -92,8 +92,8 @@ function сЗаменаСлэшУЕ($_сВход)
 	$сВход=str_replace('\u043e31\u043e8200\u043e28\u043e', '/' ,$сВход);
 	return $сВход;
 	}
-function сЖанрТранскрипцияЯзыки($сВход) //inspired by Ferry Corsten and Armin van Buuren
-	{
+function мЖанр_мЯзык_мТранскрипция($сВход) //inspired by Ferry Corsten and Armin van Buuren
+	{// Function is in progress. Will be connected to ЕДРО:ПОЛИМЕР, to became complete solution.
 	//$сВход
 	$сВозврат	=$сВход;
 	$мСтильТрансЯз=
