@@ -20,7 +20,13 @@ $arrParams		=$arrEvent['arrParams'];
 //print_r($arrParams);
 //exit;
 //echo '123';
-
+//if(bIzEvent('/', $strEventSetter))
+//	{
+//	echo '123';
+	//header('Content-Type: text/plain');
+	//echo readfile('/home/HiFiIntelligentClub.Ru/robots.txt');
+//	exit(0);
+//	}
 if(bIzEvent('/robots.txt', $strEventSetter))
 	{
 	header('Content-Type: text/plain');
@@ -35,7 +41,7 @@ elseif(bIzEvent('/favicon.ico', $strEventSetter))
 	}
 elseif(bIzEvent('/Hfic_Samin.jpg', $strEventSetter))
 	{
-	header('Content-Type: image/jpeg');
+	//header('Content-Type: image/jpeg');
 	echo readfile('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
 	exit(0);
 	}
@@ -44,14 +50,24 @@ elseif(bIzEvent('/getStation', $strEventSetter))
 	//print_r($arrParams);
 	header('Content-Type: application/json');
 	$strEnc			=сКодировать($arrParams['strPlayingStationId'], $_сДействие='д');
+	echo json_encode($strEnc.'?strUserEvent=HiFiIntelligentClub msg:Have_a_good_day.');
+	exit;
+	}
+elseif(bIzEvent('/getTest', $strEventSetter))
+	{
+	//print_r($arrParams);
+	//header('Content-Type: application/json');
+	//echo '123';
+	//echo $arrParams['strPlayingStationId'];
+	echo $strEnc			=сКодировать($arrParams['strPlayingStationId'], $_сДействие='д');
 	echo json_encode($strEnc);
 	exit;
 	}
-elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
+/*elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
 	{
 	//echo'123';
 	//print_r($arrParams);
-	
+	exit(0);
 	header('Content-Description: File Transfer');
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename="HiFiIntelligentClub.tar.gz"');
@@ -61,7 +77,7 @@ elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
 	//header('');
 	readfile('/home/HiFiIntelligentClub.Ru/HiFiIntelligentClub.tar.gz');
 	exit(0);
-	}
+	}*/
 elseif(bIzEvent('/fireUpStation', $strEventSetter))
 	{
 	//print_r($arrParams);
