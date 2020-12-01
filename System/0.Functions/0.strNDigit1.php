@@ -34,7 +34,7 @@ class HIC
 		$strResult	=date('Y-m-d_H:i:s').$str."\n";
 		file_put_contents('/home/HiFiIntelligentClub.Ru/tmp/N0_report.txt' , $strResult, FILE_APPEND);
 		}
-	function arrAllEventIncomeParametrsDefault()
+	public static function arrAllEventIncomeParametrsDefault()
 		{
 		$arrAllIncome	=
 		array(
@@ -150,7 +150,7 @@ class CMD
 			}
 		return $сСтрока;
 		}
-	function rmLb($_str)
+	public static function rmLb($_str)
 		{
 		$str=$_str;
 		unset($_str);
@@ -1283,7 +1283,7 @@ class FLOAT
 	}
 class PARAM
 	{
-	function strParType($_strParName)
+	public static function strParType($_strParName)
 		{
 		$strParName	=$_strParName;
 			   unset($_strParName);
@@ -1317,7 +1317,7 @@ class PARAM
 	}
 class DIGIT
 	{
-	function strNDigit($_intN, $_str, $strPos="fromBegin", $_strNULLSymbol='_') //suffix/prefix
+	public static function strNDigit($_intN, $_str, $strPos="fromBegin", $_strNULLSymbol='_') //suffix/prefix
 		{
 		$intN		=$_intN;
 			   unset($_intN);
@@ -1350,7 +1350,7 @@ class DIGIT
 			}
 		return $str;
 		}
-	/*DIGIT*/function strNDigitVisible($_intN, $_str, $_strShowFrom='fromEnd')  //fromEnd/FromBegin
+	public static function strNDigitVisible($_intN, $_str, $_strShowFrom='fromEnd')  //fromEnd/FromBegin
 		{
 		$intN		=$_intN;
 			   unset($_intN);
@@ -1369,7 +1369,7 @@ class DIGIT
 			}
 		return $str;
 		}
-	/*DIGIT*/function strNDigitMainTrace($_float)
+	public static function strNDigitMainTrace($_float)
 		{
 		$float=$_float;
 		 unset($_float);
@@ -1391,7 +1391,7 @@ class DIGIT
 		$str=$strAlertPrefix.$strNDigit;
 		return $str;
 		}
-	/*DIGIT*/function strNDigitMicroTrace($_int)
+	public static function strNDigitMicroTrace($_int)
 		{
 		$int=$_int;
 	       unset($_int);
@@ -1405,7 +1405,7 @@ class DIGIT
 			$strAlertPrefix='_?:';
 			}
 		else
-    			{
+			{
 			$strAlertPrefix='__:';
 			}
 		$str=$strAlertPrefix.$strNDigit;
