@@ -19,14 +19,7 @@ $arrParams		=$arrEvent['arrParams'];
 //echo $strEventSetter;
 //print_r($arrParams);
 //exit;
-//echo '123';
-//if(bIzEvent('/', $strEventSetter))
-//	{
-//	echo '123';
-	//header('Content-Type: text/plain');
-	//echo readfile('/home/HiFiIntelligentClub.Ru/robots.txt');
-//	exit(0);
-//	}
+
 if(bIzEvent('/robots.txt', $strEventSetter))
 	{
 	header('Content-Type: text/plain');
@@ -41,7 +34,7 @@ elseif(bIzEvent('/favicon.ico', $strEventSetter))
 	}
 elseif(bIzEvent('/Hfic_Samin.jpg', $strEventSetter))
 	{
-	//header('Content-Type: image/jpeg');
+	header('Content-Type: image/jpeg');
 	echo readfile('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
 	exit(0);
 	}
@@ -63,7 +56,7 @@ elseif(bIzEvent('/getTest', $strEventSetter))
 	echo json_encode($strEnc);
 	exit;
 	}
-/*elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
+elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
 	{
 	//echo'123';
 	//print_r($arrParams);
@@ -77,7 +70,7 @@ elseif(bIzEvent('/getTest', $strEventSetter))
 	//header('');
 	readfile('/home/HiFiIntelligentClub.Ru/HiFiIntelligentClub.tar.gz');
 	exit(0);
-	}*/
+	}
 elseif(bIzEvent('/fireUpStation', $strEventSetter))
 	{
 	//print_r($arrParams);
