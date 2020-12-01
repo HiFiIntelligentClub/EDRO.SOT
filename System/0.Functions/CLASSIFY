@@ -1,0 +1,68 @@
+DROP THE DUST
+//© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru 2020
+//strNDigit Level 0 //[Vv]Event Global
+CLASSES:
+1.HIC //Главные параметры и функции смистемы HiFiIntelligentClub
+2.CMD //Работа с входящей коммандой
+3.GENRE //Работа со стилями и жанрами
+4.PHRASE //Работа с фразой
+5.CONNECTION //Работа с соединением
+6.MANY //Работа с множеством
+7.О2О //Работа с О2О
+8.FLOAT //Работа с плавающей запятой
+9.DIGIT //Цифровой экран
+10.ALLINPUT //(Все входящие данные)
+11.URL //Строка браузера URL
+12.RCE //Функции Благословенного RCE.Framework
+
+HIC function _Report($str)
+CMD function сКлючь()
+HIC function arrAllEventIncomeParametrsDefault()
+CMD function сЗаменаСлэшУЕ($_сВход)
+GENRE function мЖанр_мЯзык_мТранскрипция($сВход) //inspired by Ferry Corsten and Armin van Buuren
+PHRASE function сНачДоСимвола($_сВход, $с_Символ='?') // Слово
+PHRASE function сНачОтСимвола($_сВход, $с_Символ='?') // Слово
+PHRASE function сНачОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1BeginOffset=1)
+PHRASE function сРеверс($_сСтр)
+PHRASE function сКонцОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1BeginOffset=1)
+CMD function мУрлРазобратьПоток($_сСтр) 	//Разобрать стрим. Сергею Корякину и его коллеге в Ролексе Вадим Раскумандрину
+PHRASE function сКонцДоСимвола($_сСтр, $_сОт)
+SOCK function фCreateListen_lnSock($_сСтр)
+GENRE function фЖанрОтСлушателя($мВозможныеЖанры, $_сЖанрОтСлушателя)
+MANY function фДубль($_м_оСтанция, $_оСтанция) // ifDoubles - will compare all genres of station and station name. 
+MANY function фУникальный($мОбработанныеСвойства, $_сТекущееСвойство)
+GENRE function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase inspired Armin van Buuren */
+PHRASE function сДляСравнения($с_Вход)
+GENRE  function сДляСравнения($с_Вход)
+PHRASE function мСобратьФразы($_сВход, $_сБолМал='Нетрог') //'Бол'/'Мал'/'Нетрог'/'МалДиректор'
+О2О function мСобратьO2o($_сВход) // Слово
+PHRASE function сДоСимвола($_сВход, $с_Символ='?') // Слово
+PHRASE function сОтСимвола($_сВход, $с_Символ='?') // Слово
+PHRASE function чРосХэш($_сВход) // 
+FLOAT function intRoundUp($_float)
+DIGIT function strNDigit($_intN, $_str, $strPos="fromBegin", $_strNULLSymbol='_') //suffix/prefix
+DIGIT function strNDigitVisible($_intN, $_str, $_strShowFrom='fromEnd')  //fromEnd/FromBegin
+DIGIT function strNDigitMainTrace($_float)
+DIGIT function strNDigitMicroTrace($_int)
+PHRASE function сПреобразовать($_сСтрока, $_сНаправление="вСтроку") //:вСтроку/вКоманду
+PHRASE function сКодировать($_сСтрокаДляКодирования, $_сДействие='к', $_сКлючь="HiFiIntelligentClub") //E or  /d
+PHRASE function strEncode2($_str)
+PHRASE function strEncode($_strString, $_strKey, $_strAct='e') //E or  /d
+PHRASE function rmLb($_str)
+PHRASE function bIzEvent($_strEvent, $_strRequest)
+CMD function arrEventLink($_arrParams, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
+CMD function strQuery($_strEvent, $_strRequest)
+ALLINPUT /*!*/function strSafeUsers($_strRequest)
+/*function _ExitOnUndefunedAction($_strIncomeName)
+CMD function arrGetEventSetter()
+CMD function arrEventParams2Array($_strQuery)
+CMD function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
+CMD function arrPrepare($_strQuery, $_arrDataTypes=array())
+CMD function arrPrepare2($_strQuery, $_arrDataTypes=array())
+URL function strGetDomainName()
+URL function strGetServerName()
+HIC function strGetDefaultLanguage()
+RCE function strParType($_strParName)
+CMD function strArrayRec2JS($_arrParams, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
+CMD function strArray2JS($_arrParams, $_strArrName='')
+О2О function _DropTheSessionDust()
