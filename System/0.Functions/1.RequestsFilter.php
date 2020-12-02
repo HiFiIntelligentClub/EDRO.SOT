@@ -42,8 +42,24 @@ elseif(bIzEvent('/getStation', $strEventSetter))
 	{
 	//print_r($arrParams);
 	header('Content-Type: application/json');
-	$strEnc			=сКодировать($arrParams['strPlayingStationId'], $_сДействие='д');
-	echo json_encode($strEnc.'?strUserEvent=HiFiIntelligentClub msg:Have_a_good_day.');
+	$strDec				=сКодировать($arrParams['strPlayingStationId'], $_сДействие='д');
+	$strBasePath			='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub3';
+	$сЕсли				='Plus'; //Detect
+	$сДействие			='search';
+	$мРеальность['сИграет']		=сПреобразовать($strDec, 'вКоманду');
+	$мРеальность['сУстройство']	='';
+	$мРеальность['сОпС']		='';
+	$мРеальность['сКуки']		='';
+	$мРеальность['сБраузер']	='';
+	$мРеальность['сВремя']		='';
+	$мРеальность['ч0Время']		='';
+	
+	$сОбъект['сРасполож']		='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub3/Stations/prime/'.$мРеальность['сИграет'];
+	$сОбъект['ч0Время']		=time();
+	$ЕДРО['сПуть']			=$strBasePath.'/'.$сЕсли.'/'.$сДействие.'/'.$мРеальность['сИграет'].'/'.$мРеальность['сУстройство'].'/'.$мРеальность['сОпС'].'/'.$мРеальность['сКуки'].'/'.$мРеальность['сВремя'].'_'.$мРеальность['ч0Время'];
+	$ЕДРО['сЗапись']		='/'.$сОбъект['ч0Время'].'.plmr';
+
+	echo json_encode($strDec.'?strUserEvent=HiFiIntelligentClub msg:Have_a_good_day.');
 	exit;
 	}
 elseif(bIzEvent('/getTest', $strEventSetter))
