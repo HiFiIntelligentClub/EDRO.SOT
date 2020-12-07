@@ -1,4 +1,5 @@
 <?php
+
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
 //strNDigit
 //
@@ -6,34 +7,18 @@
 //
 //Level 0
 //[Vv]Event Global
-
-// CLASSES:
-// 1./*HIC*/ 		//Главные параметры и функции смистемы HiFiIntelligentClub
-// 2./*CMD*/ 		//Работа с входящей коммандой
-// 3./*GENRE*/ 		//Работа со стилями и жанрами
-// 4./*PHRASE*/ 	//Работа с фразой
-// 5./*CONNECTION*/ 	//Работа с соединением
-// 6./*MANY*/ 		//Работа с множеством
-// 7./*О2О*/ 		//Работа с О2О
-// 8./*FLOAT*/ 		//Работа с плавающей запятой
-// 9./*DIGIT*/ 		//Цифровой экран
-// 10/*.ALLINPUT*/ 	//(Все входящие данные)
-// 11/*.URL*/ 		//Строка браузера URL
-// 12/*.RCE*/ 		//Функции Благословенного RCE.Framework
-// 13./*STATION*/	//Параметры станции
-
-/*HIC*/function _Report($str) 
+function _Report($str)
 	{
 	//echo$str;
 	//$strResult=date('Y-m-d_H:i:s').'<warning style="color:red;">'.$str.'</warning>'."\n";
 	$strResult	=date('Y-m-d_H:i:s').$str."\n";
 	file_put_contents('/home/HiFiIntelligentClub.Ru/tmp/N0_report.txt' , $strResult, FILE_APPEND);
 	}
-/*CMD*/function сКлючь() 
+function сКлючь()
 	{
 	return '4aPrIsAForaPr';
 	}
-/*CMD*/function arrAllEventIncomeParametrsDefault()
+function arrAllEventIncomeParametrsDefault()
 	{
 	$arrAllIncome	=
 	array(
@@ -50,7 +35,9 @@
 				'/ServerOnline',
 				'/listeners',
 				'/robots.txt',
-				'/HiFiIntelligentClub.tar.gz'
+				'/HiFiIntelligentClub.tar.gz',
+				'/HficAssminogZzzuzzZ.mp3',
+				'/HficAssminogZzzuzzZ2.mp3'
 				),
 			'default'	=>'/',
 			'maxLength'	=>28,
@@ -60,7 +47,7 @@
 			'strName'	=>
 			array(
 				'default'	=>'',
-			'maxLength'	=>100,
+				'maxLength'	=>100,
 				),//
 			'strStyle'	=>
 			array(
@@ -107,15 +94,24 @@
 		);
 	return $arrAllIncome;
 	}
-/*STATION*/function сЗаменаСлэшУЕ($_сВход) 
+function сЗаменаСлэшУЕ($_сВход)
 	{
-	$сВход=str_replace('\u043e31\u043e\u043e28\u043e\u043e28\u043e','://', $_сВход);
-									 unset($_сВход);
-	$сВход=str_replace('\u043e31\u043e', ':' ,$сВход);
-	$сВход=str_replace('\u043e31\u043e8200\u043e28\u043e', '/' ,$сВход);
-	return $сВход;
+	//$сВход=str_replace('\u043e31\u043e\u043e28\u043e\u043e28\u043e','://', $_сВход); //Долбанная билиберда!
+	//								 unset($_сВход);
+	//$сВход=str_replace('\u043e31\u043e', ':' ,$сВход);
+	//$сВход=str_replace('\u043e31\u043e8200\u043e28\u043e', '/' ,$сВход);
+	return $_сВход;
 	}
-/*GENRE*/function мЖанр_мЯзык_мТранскрипция($сВход) //inspired by Ferry Corsten and Armin van Buuren 
+function сЗаменаСлэшУ($_сВход)
+	{
+	//$сВозвр		=$_сВход;
+	//if(strpos(json_encode($_сВход), '\u')!==FALSE)//Долбанная билиберда! Удалить!
+	//	{
+	//	$сВозвр		=mb_convert_encoding($_сВход, 'windows-1252', 'UTF-8');
+	//	}
+	return $_сВход;
+	}
+function мЖанр_мЯзык_мТранскрипция($сВход) //inspired by Ferry Corsten and Armin van Buuren
 	{// Function is in progress. Will be connected to ЕДРО:ПОЛИМЕР, to became complete solution.
 	//$сВход
 	$сВозврат	=$сВход;
@@ -134,7 +130,7 @@
 		}
 	return $сВозврат;
 	}
-/*PHRASE*/function сНачДоСимвола($_сВход, $с_Символ='?') // Слово 
+function сНачДоСимвола($_сВход, $с_Символ='?') // Слово
 	{
 	$сСлово		='';
 	if(empty($_сВход))
@@ -162,7 +158,7 @@
 
 	return $сСлово;
 	}
-/*PHRASE*/function сНачОтСимвола($_сВход, $с_Символ='?') // Слово 
+function сНачОтСимвола($_сВход, $с_Символ='?') // Слово
 	{
 	$сСлово		='';
 	$фСимволНайден	=false;
@@ -188,7 +184,7 @@
 	return $сСлово;
 	}
 
-/*PHRASE*/function сНачОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1BeginOffset=1) 
+function сНачОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1BeginOffset=1)
 	{
 	$сСтр			=$_сСтр;
 	$сОт			=$_сОт;
@@ -206,7 +202,7 @@
 		}
 	return $сОтДо;
 	}
-/*PHRASE*/function сРеверс($_сСтр) 
+function сРеверс($_сСтр)
 	{
 	$сРеверс	='';
 	$сСтр		=(string)$_сСтр;
@@ -220,7 +216,7 @@
 		}
 	return $сРеверс;
 	}
-/*PHRASE*/function сКонцОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1BeginOffset=1) 
+function сКонцОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1BeginOffset=1)
 	{
 	$сСтр	=сРеверс($_сСтр);
 	$сСтр	=сНачОтДоСимвола($сСтр, $_сОт, $_сДо, $_nu1BeginOffset);
@@ -228,7 +224,7 @@
 	return 	$сСтр;
 	}
 
-/*URL*/function мУрлРазобратьПоток($_сСтр) 	//Разобрать стрим. Сергею Корякину и его коллеге в Ролексе Вадим Раскумандрину
+function мУрлРазобратьПоток($_сСтр) 	//Разобрать стрим. Сергею Корякину и его коллеге в Ролексе Вадим Раскумандрину
 	{				//и Люсьене Гусевой из Лапси привет.:)
 					//Алексу Соловьёву тоже привет и всем девчёнкам колясочницам. Если я ещё раз у вас появлюсь,
 					//скорее всего потому, что решил жениться на одной из вас. :)
@@ -250,7 +246,7 @@
 	}
 
 
-/*PHRASE*/function сКонцДоСимвола($_сСтр, $_сОт)
+function сКонцДоСимвола($_сСтр, $_сОт)
 	{
 	$сСтр	=сРеверс($_сСтр);
 	$сСтр	=сНачДоСимвола($сСтр, $_сОт);
@@ -258,7 +254,7 @@
 	return 	$сСтр;
 	}
 
-/*CONNECTION*/function фCreateListen_lnSock($_сСтр)
+function фCreateListen_lnSock($_сСтр)
 	{
 	echo $_сСтр."\n";
 	$ф			= FALSE;
@@ -327,7 +323,7 @@
 	}
 
 
-/*INPUT*/function фЖанрОтСлушателя($мВозможныеЖанры, $_сЖанрОтСлушателя)
+function фЖанрОтСлушателя($мВозможныеЖанры, $_сЖанрОтСлушателя)
 	{
 	$ф=TRUE;
 	if(empty($мВозможныеЖанры))
@@ -356,7 +352,7 @@
 		}
 	return $ф;
 	}
-/*MANY*/function фДубль($_м_оСтанция, $_оСтанция) // ifDoubles - will compare all genres of station and station name. 
+function фДубль($_м_оСтанция, $_оСтанция) // ifDoubles - will compare all genres of station and station name. 
 	{//If equal - will be listed as different bitrate of the parent station. Default is higher bitrate.
 	// Если название и жанры у станций одинаковы, значит станции одинаковы и будут отображаться, 
 	//как разные битрейты станции с таким-же названием.
@@ -376,7 +372,7 @@
 		}
 	return $ф;
 	}
-/*MANY*/function фУникальный($мОбработанныеСвойства, $_сТекущееСвойство)
+function фУникальный($мОбработанныеСвойства, $_сТекущееСвойство)
 	{
 	$ф=TRUE;
 	if(empty($мОбработанныеСвойства))
@@ -394,7 +390,7 @@
 		//print_r($сОбработанноеСвойство);
 		//echo'2';
 		//print_r($сТекущееСвойство);
-		if(trim($сОбработанноеСвойство[0])==trim($сТекущееСвойство[0]))
+		if(trim($сОбработанноеСвойство)==trim($сТекущееСвойство))
 			{
 			//echo'$сОбработанноеСвойство:';
 			//echo$сОбработанноеСвойство."\n";
@@ -417,7 +413,24 @@
 	}*/
 
 //[..]Event Global
-/*GENRE*/function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase inspired Armin van Buuren */
+function strJson($arr)
+	{
+	$str	='';
+	if(is_array($arr))
+		{
+		$str	='{';
+		foreach($arr as $strName=>$strValue)
+			{
+			$strName	=str_replace('"','',$strName);
+			$strValue	=str_replace('"','',$strValue);
+			$str	.='"'.$strName.'":"'.$strValue.'",';
+			}
+		$str	=substr($str,0,-1);
+		$str	.='}';
+		}
+	return $str;
+	}
+function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase inspired Armin van Buuren */
 	{
 	/*
 	$ч1Длинна	=strlen($_сФраза);
@@ -461,7 +474,7 @@
 	return $м;
 	*/
 	}
-/*PHRASE*/function сКодировка($с_Вход)
+function сКодировка($с_Вход)
 	{
 	$чВыход	=FALSE;
 	$ч1Длинна	=strlen($с_Вход);
@@ -473,7 +486,7 @@
 		}
 	return $сКодировка;
 	}
-/*INPUT*/function нольЧИлиС($_сИмя, $_сДанные)
+function нольЧИлиС($_сИмя, $_сДанные)
 	{
 	switch(strParType($_сИмя))
 		{
@@ -501,7 +514,7 @@
 		}
 	return $сВыход;
 	}
-/*PHRASE*/function сДляСравнения($с_Вход)
+function сДляСравнения($с_Вход)
 	{
 //радостно слушающих музыку, по всему миру.
 		//Что бы не случилось. Хорошая Музыка выручит душу из любых передряг, 
@@ -523,7 +536,7 @@
 		//My figure prefere the first one.  Hfic.Samin. 2020
 	return strtolower($с_Вход);
 	}
-/*PHRASE*/function мСобратьФразы($_сВход, $_сБолМал='Нетрог') //'Бол'/'Мал'/'Нетрог'/'МалДиректор'
+function мСобратьФразы($_сВход, $_сБолМал='Нетрог') //'Бол'/'Мал'/'Нетрог'/'МалДиректор'
 	{
 	$мСлово		=array();
 	$мФраза		=array();
@@ -586,7 +599,7 @@
 	//Make it good. We too.
 	return $мФраза;
 	}
-/*О2О*/function мСобратьO2o($_сВход) // Слово
+function мСобратьO2o($_сВход) // Слово
 	{
 	$мСлово		=array();
 	$сСлово		='';
@@ -619,7 +632,7 @@
 		}
 	return $мСлово;
 	}
-/*PHRASE*/function сДоСимвола($_сВход, $с_Символ='?') // Слово
+function сДоСимвола($_сВход, $с_Символ='?') // Слово
 	{
 	$сСлово		='';
 	if(empty($_сВход))
@@ -647,7 +660,7 @@
 
 	return $сСлово;
 	}
-/*PHRASE*/function сОтСимвола($_сВход, $с_Символ='?') // Слово
+function сОтСимвола($_сВход, $с_Символ='?') // Слово
 	{
 	$сСлово		='';
 	$фСимволНайден	=false;
@@ -670,7 +683,7 @@
 
 	return $сСлово;
 	}
-/*PHRASE*/function чРосХэш($_сВход) // 
+function чРосХэш($_сВход) // 
 	{//© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru 2020
 	$мСлово		=array();
 	$сСлово		='';
@@ -695,7 +708,7 @@
 		}
 	return $чХэш;
 	}
-/*FLOAT*/function intRoundUp($_float)
+function intRoundUp($_float)
 	{
 	$float	=$_float;
 	   unset($_float);
@@ -715,7 +728,7 @@
 	return $intRoundedUp;
 	}
 
-/*DIGIT*/function strNDigit($_intN, $_str, $strPos="fromBegin", $_strNULLSymbol='_') //suffix/prefix
+function strNDigit($_intN, $_str, $strPos="fromBegin", $_strNULLSymbol='_') //suffix/prefix
 	{
 	$intN		=$_intN;
 		   unset($_intN);
@@ -748,7 +761,7 @@
 		}
 	return $str;
 	}
-/*DIGIT*/function strNDigitVisible($_intN, $_str, $_strShowFrom='fromEnd')  //fromEnd/FromBegin
+function strNDigitVisible($_intN, $_str, $_strShowFrom='fromEnd')  //fromEnd/FromBegin
 	{
 	$intN		=$_intN;
 		   unset($_intN);
@@ -767,7 +780,7 @@
 		}
 	return $str;
 	}
-/*DIGIT*/function strNDigitMainTrace($_float)
+function strNDigitMainTrace($_float)
 	{
 	$float=$_float;
 	 unset($_float);
@@ -789,7 +802,7 @@
 	$str=$strAlertPrefix.$strNDigit;
 	return $str;
 	}
-/*DIGIT*/function strNDigitMicroTrace($_int)
+function strNDigitMicroTrace($_int)
 	{
 	$int=$_int;
        unset($_int);
@@ -809,7 +822,7 @@
 	$str=$strAlertPrefix.$strNDigit;
 	return $str;
 	}
-/*CMD*/function сПреобразовать($_сСтрока, $_сНаправление="вСтроку") //:вСтроку/вКоманду
+function сПреобразовать($_сСтрока, $_сНаправление="вСтроку") //:вСтроку/вКоманду
 	{
 	$сСтрока		=$_сСтрока;
 
@@ -832,7 +845,35 @@
 				"о29о"=> "\\",
 				"о30о"=> ";",
 				"о31о"=> "%",
-				"о31о"=> ":",
+				"о32о"=> ":",
+				"о33о"=> "[",  //To integrate
+				"о34о"=> "]",  //
+				"о35о"=> "(",  //To integrate
+				"о36о"=> ")",  //
+				"о37о"=> "?",  //To integrate
+				"о38о"=> "!",  //
+				"о39о"=> "*",  //
+				"о40о"=> ",",  //
+				"о41о"=> "|",  //
+				"о42о"=> "-",  //
+				"о43о"=> ".",  //
+				"о44о"=> "`",  //
+				"о45о"=> "~",  //
+				"о46о"=> "$",  //
+				"о47о"=> "#",  //
+				"о48о"=> "@",  //
+				"о49о"=> "+",  //
+				"о51о"=> "^",  //
+				"о52о"=> "%",  //
+				"о53о"=> "%",  //
+				"о54о"=> "№",  //
+				"о55о"=> "´",
+				"о56о"=> "-",
+				"о57о"=> "~",
+				"о58о"=> ".",
+				"о59о"=> "’",
+				"о60о"=> "«",
+				"о61о"=> "»",
 			);
 	foreach($мПравилаПреобразования as $сПреобразованноВКоманду=>$сПодлежитПреобразованиюВКоманду)
 		{
@@ -849,7 +890,7 @@
 		}
 	return $сСтрока;
 	}
-/*CMD*/function сКодировать($_сСтрокаДляКодирования, $_сДействие='к', $_сКлючь="HiFiIntelligentClub") //E or  /d
+function сКодировать($_сСтрокаДляКодирования, $_сДействие='к', $_сКлючь="HiFiIntelligentClub") //E or  /d
 	{
 	unset($_сКлючь); //Depricated 28.august.2020 Hfic.Samin
 	$сДляКодирования	=(string)$_сСтрокаДляКодирования;
@@ -895,14 +936,14 @@
 	return $сПослеКодирования;
 	}
 
-/*CMD*/function strEncode2($_str)
+function strEncode2($_str)
 	{//Testing with JSON with pleasure. Is not used often, but I using it sometimes,
 	//instead of Ruslan Mihailovich Pegov (strLength/3, 3 bytes, [UTF-16?]) rule.
 	$str=base64_encode($_str);
 	$str=str_replace('=','ravno_', $str);
 	return $str;
 	}
-/*CMD*/function strEncode($_strString, $_strKey, $_strAct='e') //E or  /d
+function strEncode($_strString, $_strKey, $_strAct='e') //E or  /d
 	{ //Depricated 28.august 2020 Hfic Samin
 
 	$strString	=(string)$_strString;
@@ -951,7 +992,7 @@
 //
 //	Js Formatter
 //
-/*CMD*/function rmLb($_str)
+function rmLb($_str)
 	{
 	$str=$_str;
 	unset($_str);
@@ -960,7 +1001,7 @@
 //
 //
 //
-/*CMD*/function bIzEvent($_strEvent, $_strRequest)
+function bIzEvent($_strEvent, $_strRequest)
 	{
 	$strEvent		=substr($_strEvent,1);
 	                          unset($_strEvent);
@@ -981,7 +1022,7 @@
 		}
 	return $bIzMutch;
 	}
-/*CMD*/function arrEventLink($_arrParams, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
+function arrEventLink($_arrParams, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
 	{
 	$str;
 	
@@ -1041,7 +1082,7 @@
 //
 //	Управляющий сигнал
 //
-/*CMD*/function strQuery($_strEvent, $_strRequest)
+function strQuery($_strEvent, $_strRequest)
 	{
 	$strEvent=$_strEvent;
 	    unset($_strEvent);
@@ -1052,7 +1093,7 @@
 	return substr($strQurey,1);
 	}
 
-/*INPUT*//*!*/function strSafeUsers($_strRequest)
+/*!*/function strSafeUsers($_strRequest)
 /*!*//*+1+*/	{
 /*!*//*+2+*/	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
 /*!*//*+3+*/	}
@@ -1082,7 +1123,7 @@
 		exit;
 		}
 	}*/
-/*CMD*/function arrGetEventSetter()
+function arrGetEventSetter()
 /*!0!*/{
 /*!1!*/$arrEvent			=array();
 /*!2!*/$arrEvent['strAction']		='';
@@ -1112,7 +1153,7 @@
 
 /*14!*/return $arrEvent;
 /*15!*/}
-/*CMD*/function arrEventParams2Array($_strQuery)
+function arrEventParams2Array($_strQuery)
 	{
 	$arrResult	=array();
 	$strQuery	=$_strQuery;
@@ -1143,7 +1184,7 @@
 	return $arrResult;
 	}
 
-/*CMD*/function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
+function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
 
 	$arrResult	=array();
@@ -1248,7 +1289,7 @@
 		}
 	return $arrResult;
 	}
-/*CMD*/function arrPrepare($_strQuery, $_arrDataTypes=array())
+function arrPrepare($_strQuery, $_arrDataTypes=array())
 	{
 	$arrQuery=array();
 	$strQuery=$_strQuery;
@@ -1268,7 +1309,7 @@
 		}
 	return $arrQuery;
 	}
-/*CMD*/function arrPrepare2($_strQuery, $_arrDataTypes=array())
+function arrPrepare2($_strQuery, $_arrDataTypes=array())
 	{
 	$arrQuery=array();
 	$strQuery=$_strQuery;
@@ -1282,17 +1323,17 @@
 		}
 	return $arrQuery;
 	}
-/*URL*/function strGetDomainName()
+function strGetDomainName()
 	{
 	$strLang=preg_replace('/(.+)\.([a-zA-Z]{2,7})$/', '$2', $_SERVER['SERVER_NAME']);
 	return $strLang;
 	}
-/*URL*/function strGetServerName()
+function strGetServerName()
 	{
 	$strName=preg_replace('/(http?://)(.+)\.([a-zA-Z]{2,3})$/', '$2', $_SERVER['SERVER_NAME']);
 	return $strName;
 	}
-/*CMD*/function strGetDefaultLanguage()
+function strGetDefaultLanguage()
 	{
 	$strZone	=strGetDomainName();
 	if($strZone=='ru')
@@ -1314,7 +1355,7 @@
 	return strtoupper($strDefaultLang);
 	}
 
-/*PARAMETR*/function strParType($_strParName)
+function strParType($_strParName)
 	{
 	$strParName	=$_strParName;
 		   unset($_strParName);
@@ -1345,7 +1386,7 @@
 		}
 	return $strParType;
 	}
-/*CMD*/function strArrayRec2JS($_arrParams, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
+function strArrayRec2JS($_arrParams, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
 	{
 	$strLayerName	=$_strLayerName;
 		   unset($_strLayerName);
@@ -1387,7 +1428,7 @@
 	$strArray	=substr($strArray, 0, -1);
 	return $strArray;
 	}
-/*CMD*/function strArray2JS($_arrParams, $_strArrName='')
+function strArray2JS($_arrParams, $_strArrName='')
 	{
 	//$bIzFormat	=false;
 	$bIzFormat	=true;
@@ -1402,7 +1443,7 @@
 	$str	=str_replace(','.$strFormatLR.'}', $strFormatLR.'}', $str);
 	return $str;
 	}
-/*CMD*/function _DropTheSessionDust()
+function _DropTheSessionDust()
 	{
 	$strPlayingStationId	='';
 	if(isset($_SESSION)&&isset($_SESSION['strListener'])&&(!empty($_SESSION['strListener'])))
