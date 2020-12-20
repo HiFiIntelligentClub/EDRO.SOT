@@ -241,6 +241,11 @@ $strDynascreenStyle='
 	.layer_5_Overlay,	layer_52	{z-index:52;}
 	.layer_5_Debug,		layer_53	{z-index:53;}
 	.layer_5_Nav,		layer_54	{z-index:54;}
+
+	.layer_6_LoginReg,	layer_60	{z-index:60;}
+	.layer_6,		layer_61	{z-index:61;}
+	.layer_6_1,		layer_62	{z-index:62;}
+	.layer_6_2,		layer_63	{z-index:63;}
 	/*//EDRO layers*/
 
 	/*//EDRO touch*/
@@ -552,7 +557,7 @@ $strDynascreenStyle='
 	.blink-slow
 		{
 		animation-name		: Blink-slow;
-		animation-duration	: 1s;
+		animation-duration	: 4s;
 		/*animation-timing-function: easy;*/
 		animation-delay		: 0s;
 		animation-iteration-count: infinite;
@@ -591,7 +596,7 @@ $strDynascreenStyle='
 		0% {
 		    opacity:0;
 		    }
-		33% {
+		10% {
 		    opacity:1;
 		    }
 		
