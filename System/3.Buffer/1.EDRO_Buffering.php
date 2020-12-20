@@ -33,7 +33,7 @@ class EDRO_Buffering
 			//EDRO components
 			'O2oЗаписьИтого'					=>'/home/EDRO/4.Objects/Write/Cloud/Disk/Element/O2oЗаписьИтого.php',
 			'ПрочитатьСлушателя'					=>'/home/EDRO/4.Objects/Read/Cloud/Disk/ПрочитатьСлушателей.php',
-			'ЗапомнитьСлушателя'					=>'/home/EDRO/4.Objects/Write/Cloud/Disk/Element/ЗапомнитьСлушателя.php',
+			'СоздатьСеанс'						=>'/home/EDRO/4.Objects/Write/Cloud/Disk/Element/СоздатьСеанс.php',
 			'[O] EDRO.Objects'					=>'/home/EDRO/4.Objects/Objects.php',
 			'[R] EDRO.Reality'					=>'/home/EDRO/3.Reality/Reality.php',
 			'[D] EDRO.Design'					=>'/home/EDRO/2.Design/Design.php',
@@ -51,14 +51,16 @@ class EDRO_Buffering
 			//WiReach - Assembles parttakers in to a complete project.  
 		//	'WiReach_DjWorking'				=>'/home/EDRO/4.Objects/Read/Net/WiReach_DjWorking.php',
 		//	'WiReach_HFIC_ParttakersSignatures'		=>'/home/EDRO/4.Objects/Write/Display/Element/WiReach_HFIC_ParttakersSignatures.php',
-			
+			'Listener'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Listener/Listener.php',
 			'Listeners'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/Listeners.php',
 			
-			'Listener'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Listener/Listener.php',
+
 			// 'Overlay'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Overlay/Overlay.php',
-			'VectorKIIM_elementWaiting4Event_statisticalMembrane'	=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Membrane/VectorKIIM_elementWaiting4Event_statisticalMembrane.php',
+			// 'VectorKIIM_elementWaiting4Event_statisticalMembrane'	=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Membrane/VectorKIIM_elementWaiting4Event_statisticalMembrane.php',
 			'Shader'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Shader/Shader.php',
 			'Image'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Image/Image.php',
+			'StatiticIndicator'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StatisticIndicator.php',
+			'StationBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationBlock.php',
 			'StationSearchBlock'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SearchBlocks/StationSearchBlock.php',
 			// 'Genre'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Genre/Genre.php',
 			'Tag'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Tag/Tag.php',
@@ -66,13 +68,13 @@ class EDRO_Buffering
 			'FormInput'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Form/FormInput.php',
 			// 'Bitrate'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/Bitrate.php',
 			// 'BitrateTag'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/BitrateTag.php',
-			'AudioType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/AudioType/AudioType.php',
+			'AudioType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/AudioType/AudioType.php',
 			'CreatorType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/CreatorType/CreatorType.php',
 			'StationLink'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationLink.php',
 			'StationQualityUPLink'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationQualityUPLink.php',
-			'Header'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Header/Header.php',
-			'PlayerEventIndicator'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Player/PlayerEventIndicator.php',
-			'Player'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Player/Player.php',
+			'StationPlayerHeader'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/Header/Header.php',
+			'StationPlayerEventIndicator'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/Player/PlayerEventIndicator.php',
+			'StationPlayer'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/Player/Player.php',
 			'SystemEventIndicatorStream'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/SystemEventIndicatorStream.php',
 			'IndicatorRole'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/IndicatorRole.php',
 			'IndicatorNetwork'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/IndicatorNetwork.php',
@@ -86,24 +88,26 @@ class EDRO_Buffering
 
 			'DynaScreen'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaScreen/DynaScreen.php',
 			'DynaBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaBlock/DynaBlock.php',
-			'StationBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationBlock.php',
-			'Sensor'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Sensor/Sensor.php',
-			'SensorList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/SensorList.php',
+			
+			
+//			'Sensor'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Sensor/Sensor.php',
+//			'SensorList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/SensorList.php',
 			'FileUploadForm'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Form/FileUploadForm.php',
 
 			// 'FileSetupRead'						=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FileSetupRead.php',
-			'JSON'							=>'/home/EDRO/4.Objects/Read/Cloud/Disk/MyXML.php',
+			'MyXML'							=>'/home/EDRO/4.Objects/Read/Cloud/Disk/MyXML.php',
+			'JSON'							=>'/home/EDRO/4.Objects/Read/Cloud/Disk/MyJSON.php',
 			'FileRead'						=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FileRead.php',
 
-			'FilePathsValidate'					=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FilePathsValidate.php',
+			// 'FilePathsValidate'					=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FilePathsValidate.php',
 
-			'FileTypeApply'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/FileTypeApply.php',
-			'FileTemplateApply'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/FileTemplateApply.php',
+			// 'FileTypeApply'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/FileTypeApply.php',
+			// 'FileTemplateApply'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/FileTemplateApply.php',
 
 			// 'FileInfoRead'						=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FileInfoRead.php',
 			// 'FileListRead'						=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FileListRead.php',
 
-			'File'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/File.php',
+			// 'File'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/File.php',
 
 			// 'FileList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/FileList.php',
 			'StationList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/StationList.php',
