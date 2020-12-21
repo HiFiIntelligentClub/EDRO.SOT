@@ -63,7 +63,7 @@ class EDRO_Buffering
 			// 'GenreTag'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Genre/GenreTag.php',
 			'FormInput'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Form/FormInput.php',
 			'Login'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Login/Login.php',
-			'Register'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Register/Register.php',
+			'Registration'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Registration/Registration.php',
 			// 'Bitrate'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/Bitrate.php',
 			// 'BitrateTag'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/BitrateTag.php',
 			'AudioType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/AudioType/AudioType.php',
