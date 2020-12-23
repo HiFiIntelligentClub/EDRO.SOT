@@ -20,79 +20,137 @@ function сКлючь()
 	}
 function arrAllEventIncomeParametrsDefault()
 	{
-	$arrAllIncome	=
+	$arrAllIncome	=  //[arrAction]['ArrAllowed']['strAction']
 	array(
 		'arrAction'=>
 		array(
 			'arrAllowed'=>
 			array(
-				'/',
-				'/search',
-				'/Hfic_Samin.jpg',
-				'/favicon.ico',
-				'/getStation',
-				'/getTest',
-				'/ServerOnline',
-				'/listeners',
-				'/robots.txt',
-				'/HiFiIntelligentClub.tar.gz',
-				'/HficAssminogZzzuzzZ.mp3',
-				'/HficAssminogZzzuzzZ2.mp3'
+				'/'=>
+					array(
+					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
+					),
+				'/search'=>
+					array(
+					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
+					),
+				'/Hfic_Samin.jpg'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/favicon.ico'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/getStation'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/getTest'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/ServerOnline'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/listeners'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/RedirectFromError'=>
+					array(
+					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
+					),
+				'/robots.txt'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/HiFiIntelligentClub.tar.gz'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/HficAssminogZzzuzzZ.mp3'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/HficAssminogZzzuzzZ2.mp3'=>
+					array(
+					'strTemplate'	=>'',
+					)
 				),
-			'default'	=>'/',
-			'maxLength'	=>28,
+			'strrDefault'	=>'/',
+			'int0MaxLength'	=>28,
 			),
 		'arrParams'=>
 		array(
 			'strName'	=>
 			array(
-				'default'	=>'',
-				'maxLength'	=>100,
+				'strDefault'	=>'',
+				'int0MaxLength'	=>100,
 				),//
 			'strStyle'	=>
 			array(
-				'default'	=>'',
-				'maxLength'	=>65,
+				'strDefault'	=>'',
+				'int0MaxLength'	=>65,
 				),//
 			'intBitrate'	=>
 			array(
-				'default'	=>'',
-				'maxLength'	=>4,
+				'strDefault'	=>'',
+				'int0MaxLength'	=>4,
 				),
 			'strCodec'	=>
 			array(
-				'default'	=>'',
-				'maxLength'	=>16,
+				'strDefault'	=>'',
+				'int0MaxLength'	=>16,
 				),
 			'int0Page'	=>
 			array(
-				'default'	=>0,
-				'maxLength'	=>6,
+				'strDefault'	=>0,
+				'int0MaxLength'	=>6,
 				),
 			'int1OnPage'	=>
 			array(
-				'default'	=>1,
-				'maxLength'	=>3,
-				'maxValue'	=>40,
+				'strDefault'	=>1,
+				'int0MaxLength'	=>3,
+				'int0MaxValue'	=>40,
 				),
 			'int0PlayingStationNum'=>
 			array(
-				'default'	=>0,
-				'maxLength'	=>10,
+				'strDefault'	=>0,
+				'int0MaxLength'	=>10,
 				),
 			'strPlayingStationStyle'=>
 			array(
-				'default'	=>'',
-				'maxLength'	=>65,
+				'strDefault'	=>'',
+				'int0MaxLength'	=>65,
 				),
 			'strPlayingStationId'=>
 			array(
-				'default'	=>'',
-				'maxLength'	=>150,
+				'strDefault'	=>'',
+				'int0MaxLength'	=>150,
 				)
 			)
 		);
 	return $arrAllIncome;
+	}
+function strMyJson($arr)
+	{
+	$str	='';
+	//print_r($arr);
+	if(is_array($arr))
+		{
+		$str	='{';
+		foreach($arr as $strName=>$strValue)
+			{
+			$strName	=str_replace('"','',$strName);
+			$strValue	=str_replace('"','',$strValue);
+			$str	.='"'.$strName.'":"'.$strValue.'",';
+			}
+		$str	=substr($str,0,-1);
+		$str	.='}';
+		}
+	return $str;
 	}
 function сЗаменаСлэшУЕ($_сВход)
 	{
@@ -252,6 +310,66 @@ function сКонцДоСимвола($_сСтр, $_сОт)
 	$сСтр	=сНачДоСимвола($сСтр, $_сОт);
 	$сСтр	=сРеверс($сСтр);
 	return 	$сСтр;
+	}
+function strGetDomainLang()
+	{
+	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')===FALSE)
+		{
+		$strLang='RU';
+		}
+	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.com')===FALSE)
+		{
+		$strLang='EN';
+		}
+	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), '192.168.1.198')===FALSE)
+		{
+		$strLang='EN';
+		}
+	else	
+		{
+		$strLang='EN';
+		_Report('strGetDomainName():$_SERVER[SERVER_NAME] do not have RU or COM suffix and dont 192.168.1.198');
+		}
+	return $strLang;
+	}
+function strGetDefaultLanguage()
+	{
+	$strZone	=strGetDomainLang();
+	if($strZone=='ru')
+		{
+		$strDefaultLang='ru';
+		}
+	elseif($strZone=='onion')
+		{
+		$strDefaultLang='en';
+		}
+	elseif($strZone=='com')
+		{
+		$strDefaultLang='en';
+		}
+	else
+		{
+		$strDefaultLang='en';
+		}
+	return strtoupper($strDefaultLang);
+	}
+function strGetServerName()
+	{
+	$_сВход		=$_SERVER['SERVER_NAME'];
+	if($_сВход=='')
+		{
+		_Report('strGetServerName()$_SERVER[SERVER_NAME]==empty');
+		}
+	if(strpos($_сВход,'http')===FALSE)
+		{
+		_Report('strGetServerName() server do not have http prefix');
+		}
+	if(strpos($_сВход,'.')===FALSE)
+		{
+		_Report('strGetServerName() server do not have . prefix');
+		}
+	$strName	=сКонцОтДоСимвола($_сВход, '.', '/');
+	return $strName;
 	}
 
 function фCreateListen_lnSock($_сСтр)
@@ -566,6 +684,20 @@ function мФразы_ИзвлечьИзвестную($_сВход)
 	$мФраза['мФразы']	=array();
 	$мИзвестные	=
 	array(
+		'Club House',
+		'Classics 60s',
+		'Classic Country',
+		'Classical Guitar',
+		'Hard Rock Classic',
+		'Rock Classic',
+		'Hard Rock',
+		'Classic Cello',
+		'Classic Hits',
+		'Classic Rock',
+		'Classic Punk',
+		'Classic Metal',
+		'Classic Christian',
+		'Easy Listening',
 		'Dance classics',
 		'Rap/Hip Hop',
 		'Reggae and Dancehall',
@@ -573,9 +705,12 @@ function мФразы_ИзвлечьИзвестную($_сВход)
 		'Talk and Show',
 		'Trap and House', 
 		'Classic hits from the 70s',
-		'Classic Hits','Soul and Jazz', 
-		'Jungle and Bass','Rock and Roll' ,
-		'Rhythm and Blues', 'Worship and Praise' ,
+		'Classic Hits',
+		'Soul and Jazz', 
+		'Jungle and Bass',
+		'Rock and Roll' ,
+		'Rhythm and Blues', 
+		'Worship and Praise' ,
 		'Enlightement and truth', 
 		'B and R', 
 		'Drum & Bass',
@@ -585,7 +720,10 @@ function мФразы_ИзвлечьИзвестную($_сВход)
 		'Top 100', 
 		'O S T', 
 		'Progressive trance', 
-		'Progressive house'
+		'Progressive house',
+		'Музыка для души',
+		'Все и не только о чтении',
+		'Лучшая музыка и всех направлений'
 		);
 	foreach($мИзвестные as $сИзвестная)
 		{
@@ -618,7 +756,7 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 	$_сВход		=cФразы_ИсправитьНаписание($_сВход);
 	$мВход		=мФразы_ИзвлечьИзвестную($_сВход);
 	$сВход		=$мВход['сЧист'];
-					   unset($_сВход);
+	unset($_сВход);
 	$сВход		=$сВход.' ';
 	$мФраза		=$мВход['мФразы'];
 		   unset($мВход);
@@ -634,7 +772,7 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 			$сСлово		=substr($сСлово,0,-1);
 			if(фУникальный($мСлово, $сСлово)!==TRUE)
 				{
-				_Report('Дубль: '.$_сВход.' -> '.$сСлово);
+				_Report('Дубль: '.$сВход.' -> '.$сСлово);
 				}
 			else
 				{
@@ -1203,33 +1341,21 @@ function strQuery($_strEvent, $_strRequest)
 		}
 	}*/
 function arrGetEventSetter()
-/*!0!*/{
-/*!1!*/$arrEvent			=array();
-/*!2!*/$arrEvent['strAction']		='';
-/*!3!*/$arrEvent['arrParams']		=array();
+/*!0!*/	{
+/*!1!*/	$arrEvent			=array();
+/*!2!*/	$arrEvent['strAction']		='';
+/*!3!*/	$arrEvent['arrParams']		=array();
 /*!4!*/
-
-/*!5!*/$strRequest			=strGetRequest();
-
-/*!6!*/$arrEvent['strAction']		=сДоСимвола($strRequest, '?');
-
-
-/*!8!*/		/*!!!!*/	/*!!!!*/
-/*!9+*/	//_ExitOnUndefunedAction($arrEvent['strAction']); //For small low cost setup*/
-/*!10*/		/*!!!!*/	/*!!!!*/
-
-/*!11*/$strEventParams			=substr(сОтСимвола($strRequest, '?'),1);
-
-/*!12*/$arrEvent['arrParams']		=arrEventParams2Array($strEventParams);
-
-/*13+*/$arrEvent			=arrRestrictAndReportActionAndParametrs($arrEvent); //For URLID 1mln+ mode
+/*!5!*/	$strRequest			=strGetRequest();
+/*13+*/	$arrEvent			=arrRestrictAndReportActionAndParametrs(
+						array(
+							'strAction'	=>сДоСимвола($strRequest, '?'),
+							'arrParams'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
+						)
+					);
 //	echo '<pre>';
 //	print_r($arrEvent);
 //	echo '</pre>';
-//
-/*	echo'<script>'.$arrEvent['arrParams'].'</script>';
-	echo'<script>objEvent._UpdateURLDyn()</script>';*/
-
 /*14!*/return $arrEvent;
 /*15!*/}
 function arrEventParams2Array($_strQuery)
@@ -1247,11 +1373,11 @@ function arrEventParams2Array($_strQuery)
 		$strParamName			=$arrBeforeValidate[0];
 		$strParamValue			=$arrBeforeValidate[1];
 		$arrResult[$strParamName]	=urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
-		if(strpos($arrResult[$strParamName],'27'))
-			{
-			echo $arrResult[$strParamName];
-			exit;
-			}
+		//if(strpos($arrResult[$strParamName],'27'))
+		//	{
+		//	echo $arrResult[$strParamName];
+		//	exit;
+		//	}
 		//$arrResult[$strParamName]	=urldecode($strParamValue);
 		//$intLength			=$this->arrEvents[$strEvent][$strParamName]['intLength'];
 		//$strValidate			=$this->arrEvents[$strEvent][$strParamName]['strValidate'];
@@ -1266,9 +1392,9 @@ function arrEventParams2Array($_strQuery)
 function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
 
-	$arrResult	=array();
-	$arrDefault	=arrAllEventIncomeParametrsDefault();
-;
+	$arrResult['strAction']	='';
+	$arrResult['arrParams']	=array();
+	$arrDefault		=arrAllEventIncomeParametrsDefault();
 
 	if(is_array($_arrIncome))
 		{
@@ -1284,85 +1410,55 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 	$strReplaceValue		=$_strReplaceValue;
 				   unset($_strReplaceValue);
 	//print_r($arrDefault['arrAction']);
-	//print_r($arrIncome);
-
-/*    */$strAction	='arrAction';
-/*    */if(isset($arrIncome['strAction'])&&!empty($arrIncome['strAction'])&&isset($arrDefault[$strAction])&&!empty($arrDefault[$strAction])&&is_array($arrDefault[$strAction])&&in_array($arrIncome['strAction'], $arrDefault[$strAction]['arrAllowed']))
-/* E  */	{
-/* V  */	if(isset($arrDefault[$strAction]['maxLength']))
-/* E  */		{
-/* N  */		if(strlen($arrIncome['strAction'])>$arrDefault[$strAction]['maxLength'])
-/* T  */			{
-/*    */			 _Report($arrIncome['strAction'].'length>'.$arrDefault[$strAction]['maxLength']);
-				$arrResult['strAction']	=substr($arrIncome['strAction'],0, $arrDefault[$strAction]['maxLength']);
-/* I  */	
-/* N  */			}
-/* C  */		else
-/* O  */			{
-/* M  */			$arrResult['strAction']	=$arrIncome['strAction'];
-/* E  */			}
-/*    */		}
-/* A  */	else
-/* C  */		{
-/* T  */		_Report('else isset($arrDefault[$strAction][\'maxLength\'])');
-/* I  */		}
-/* O  */	}
-/* N  */else
-/*    */	{
-/*    */		_Report($strAction.' is not in allowed list');
-/*    */	//exit;
-/*    */	}
-	//echo '<pre>';
-	//print_r($arrResult);
-	//echo '</pre>';
-
-	unset($strAction);
-	      $strAction	='arrParams';
-	if(isset($arrDefault[$strAction])&&!empty($arrDefault[$strAction])&&is_array($arrDefault[$strAction]))
+	$bIzInAllowedActions	=FALSE;
+	foreach($arrDefault['arrAction']['arrAllowed'] as $strAllowedActionName=>$arrActionTemplateParams)
 		{
-		foreach($arrDefault[$strAction] as $strDefaultName=>$arrDefaultParams)
+		if(strtolower($arrIncome['strAction'])==strtolower($strAllowedActionName))
 			{
-			$arrResult[$strAction][$strDefaultName]	=$arrDefaultParams['default'];
-			if(isset($arrDefaultParams['maxValue']))
+			$bIzInAllowedActions	=TRUE;
+			$arrResult['strAction']	=$strAllowedActionName;
+			}
+		}
+	if($bIzInAllowedActions===FALSE)
+		{
+		$arrResult['strAction']	=$arrDefault['arrAction']['strDefault'];
+		_Report($arrResult['strAction'].' is not in allowed list');
+		$strLang		=strGetDomainLang();
+		header('Location: http://192.168.1.198/'.$arrDefault['arrAction']['strDefault'].';');
+		}
+	foreach($arrDefault['arrParams'] as $strDefaultName=>$arrDefaultParams)
+		{
+		$arrResult['arrParams'][$strDefaultName]	=$arrDefaultParams['strDefault'];
+		if(isset($arrDefaultParams['int0MaxValue']))
+			{
+			if($arrDefaultParams['int0MaxValue']<=$arrResult['arrParams'][$strDefaultName])
 				{
-				//echo $arrDefaultParams['maxValue'];
-				if($arrDefaultParams['maxValue']<=$arrResult[$strAction][$strDefaultName])
-					{
-					$arrResult[$strAction][$strDefaultName]=$arrDefaultParams['maxValue'];
-					}
+				$arrResult['arrParams'][$strDefaultName]	=$arrDefaultParams['int0MaxValue'];
 				}
-			foreach($arrIncome[$strAction] as $strIncomeName=>$strIncomeValue)
+			}
+		foreach($arrIncome['arrParams'] as $strIncomeName=>$strIncomeValue)
+			{
+			if($strDefaultName==$strIncomeName)
 				{
-				if($strDefaultName==$strIncomeName)
+				if(strlen($arrIncome['arrParams'][$strIncomeName])>$arrDefault['arrParams'][$strDefaultName]['int0MaxLength'])
 					{
-					if(strlen($arrIncome[$strAction][$strIncomeName])>$arrDefault[$strAction][$strDefaultName]['maxLength'])
-						{
-						 _Report($arrIncome[$strAction][$strIncomeName].'length>'.$arrDefault[$strAction][$strDefaultName]['maxLength']);
-						$arrIncome[$strAction][$strIncomeName]	=substr($arrIncome[$strAction][$strIncomeName],0, $arrDefault[$strAction][$strDefaultName]['maxLength']);
-				
-						}
-
-						//echo $strDefaultName.' '.$strIncomeName.' '.$strIncomeValue;
-					//echo '<pre>';
-					//	print_r($arrDefault[$strAction][$strDefaultName]);
-					//echo '</pre>';
-					//echo $arrDefault[$strAction][$strDefaultName]['maxValue'];
-					if(isset($arrDefault[$strAction][$strDefaultName]['maxValue']))
-						{
-						//echo '12111111111111111111111111111111111111113';	
-						//echo $strIncomeValue.' '.$arrDefault[$strAction][$strDefaultName]['maxValue'];
-						if(($strIncomeValue<=$arrDefault[$strAction][$strDefaultName]['maxValue']))
-							{
-							//$strIncomeValue	=$arrDefault[$strAction][$strDefaultName]['maxValue'];
-							}
-						else
-							{
-							$strIncomeValue	=$arrDefault[$strAction][$strDefaultName]['maxValue'];
-							_Report($strIncomeValue.' >'.$arrDefault[$strAction][$strDefaultName]['maxValue']);
-							}
-						}
-					$arrResult[$strAction][$strIncomeName]	=$strIncomeValue;
+					 _Report($arrIncome['arrParams'][$strIncomeName].'length>'.$arrDefault['arrParams'][$strDefaultName]['int0MaxLength']);
+					$arrIncome['arrParams'][$strIncomeName]		=substr($arrIncome['arrParams'][$strIncomeName],0, $arrDefault['arrParams'][$strDefaultName]['int0MaxLength']);
 					}
+				if(isset($arrDefault['arrParams'][$strDefaultName]['int0MaxValue']))
+					{
+					if($strIncomeValue>=$arrDefault['arrParams'][$strDefaultName]['int0MaxValue'])
+						{
+						_Report('$strIncomeValue>=$arrDefault[arrParams][$strDefaultName][int0MaxValue] $strIncomeValue: '.$strIncomeValue.'>='.$arrDefault['arrParams'][$strDefaultName]['int0MaxValue']);
+						$strIncomeValue		=$arrDefault['arrParams'][$strDefaultName]['int0MaxValue'];
+						}
+					else
+						{
+						//$strIncomeValue		=$arrDefault['arrParams'][$strDefaultName]['maxValue'];
+						//_Report($strIncomeValue.' >'.$arrDefault['arrParams'][$strDefaultName]['maxValue']);
+						}
+					}	
+				$arrResult['arrParams'][$strIncomeName]		=$strIncomeValue;
 				}
 			}
 		}
@@ -1402,37 +1498,7 @@ function arrPrepare2($_strQuery, $_arrDataTypes=array())
 		}
 	return $arrQuery;
 	}
-function strGetDomainName()
-	{
-	$strLang=preg_replace('/(.+)\.([a-zA-Z]{2,7})$/', '$2', $_SERVER['SERVER_NAME']);
-	return $strLang;
-	}
-function strGetServerName()
-	{
-	$strName=preg_replace('/(http?://)(.+)\.([a-zA-Z]{2,3})$/', '$2', $_SERVER['SERVER_NAME']);
-	return $strName;
-	}
-function strGetDefaultLanguage()
-	{
-	$strZone	=strGetDomainName();
-	if($strZone=='ru')
-		{
-		$strDefaultLang='ru';
-		}
-	elseif($strZone=='onion')
-		{
-		$strDefaultLang='en';
-		}
-	elseif($strZone=='com')
-		{
-		$strDefaultLang='en';
-		}
-	else
-		{
-		$strDefaultLang='en';
-		}
-	return strtoupper($strDefaultLang);
-	}
+
 
 function strParType($_strParName)
 	{
