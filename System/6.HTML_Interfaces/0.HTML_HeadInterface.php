@@ -1,22 +1,13 @@
-<!doctype html>
 <?php
-$strLangSignal=strGetDomainName();
-if(strtoupper($strLangSignal)=="COM")
-	{
-	$strLangSignal	='en';
-	}
-if(strtoupper($strLangSignal)=="RU")
-	{
-	$strLangSignal	='ru';
-	}
-else
-	{
-	$strLangSignal	='en';
-	}
+/*echo '<pre>';
+print_r($objEDRO->arrReality);
+echo '</pre>';*/
+//exit;
 ?>
+<!doctype html>
 <html
-	lang="<?=$strLangSignal?>"
-	xml:lang="<?=$strLangSignal?>"
+	lang="<?=$objEDRO->arrReality['strLangSignal']?>"
+	xml:lang="<?=$objEDRO->arrReality['strLangSignal']?>"
 	class="HiFiIntelligentClub"
 	style="
 		position:fixed;
@@ -32,7 +23,7 @@ else
 		<meta name="apple-mobile-web-app-capable"	content="yes"/>
 		<meta name="apple-mobile-web-app-title"		content="HiFiIntelligentClub">
 
-		<meta http-equiv="expires"			content="Wed, 25 november 2020 19:56:06 GMT"/>
+		<meta http-equiv="expires"			content="Thu, 24 december 2020 19:56:06 GMT"/>
 		<meta http-equiv="Content-type"			content="text/html; charset=utf-8"/>
 
 		<meta name="milliseconds"			content=".1282">
@@ -44,26 +35,26 @@ else
 		<meta name="contact-webmaster-vk"		content="https://vk.com/Hfic.Samin">
 		<meta name="contact-webmaster-facebook"		content="https://facebook.com/Hfic.Samin">
 		<meta name="project-sources"			content="https://github.com/tubmulur">
-
+		<script>
+			var strSignalLang="<?=$objEDRO->arrReality['strLangSignal']?>";
+			var strSignalRole="<?=$objEDRO->arrReality['strRoleSignal']?>";
+		</script>
 		<?php
-		echo $strDynascreenStyle
-		?>
-
-		<?php 
-			echo						    EDRO::strObjectDeclare();
-			echo						    EDRO::strObjectInit();
-			echo						   Event::strObjectDeclare();
-			echo 						 Objects::strAudioDeclare();
-			echo 						 Objects::strCopyrightDeclare();
-			echo					          Design::strObjectDeclare();
-			echo						 Reality::strObjectDeclare();
-			echo						 Objects::strObjectDeclare();
-			//echo			      SystemEventIndicatorStream::strObjectDeclare();
-			echo						  Player::strObjectDeclare();
-			echo					      DynaScreen::strObjectDeclare();
-			echo				DynaScreenEventIndicator::strObjectDeclare();
-			echo				      StationSearchBlock::strObjectDeclare();
-			echo VectorKIIM_elementWaiting4Event_statisticalMembrane::strObjectDeclare();
+		echo 							$strDynascreenStyle;
+		echo						    EDRO::strObjectDeclare();
+		echo						    EDRO::strObjectInit();
+		echo						   Event::strObjectDeclare();
+		echo 						 Objects::strAudioDeclare();
+		echo 						 Objects::strCopyrightDeclare();
+		echo					          Design::strObjectDeclare();
+		echo						 Reality::strObjectDeclare();
+		echo						 Objects::strObjectDeclare();
+		//echo					  HiFiNavigation::strObjectDeclare();
+		//echo			      SystemEventIndicatorStream::strObjectDeclare();
+		echo						  Player::strObjectDeclare();
+		echo					      DynaScreen::strObjectDeclare();
+		echo				DynaScreenEventIndicator::strObjectDeclare();
+		echo				      StationSearchBlock::strObjectDeclare();
 		?>
 	</head>
 	<body
@@ -77,11 +68,11 @@ else
 			margin			:0;
 			padding			:0;
 			"
+		class	="<?=$objEDRO->arrReality['strLangSignal']?>"
 		>
 		<?php
 		echo $strKIIMWindowHTML;
 		echo SystemEventIndicatorStream::strHTML();
 		echo Event::strObjectInit();
 		echo Reality::strObjectInit();
-		echo VectorKIIM_elementWaiting4Event_statisticalMembrane::strObjectInit();
 		?>

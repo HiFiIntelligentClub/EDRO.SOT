@@ -1,5 +1,5 @@
 	<?php
-	if($objEDRO->arrEvent['bIsDynamic'])
+	if($objEDRO->arrEvent['bIzDynamic'])
 		{
 		}
 	else
@@ -10,7 +10,7 @@
 		'_strMessage'		=>'All job is done!',
 		'_strVectorPoint'	=>'Start->Finish',
 		));
+		echo	'</body>';
+		echo'</html>';
 		}
 	?>
-	</body>
-</html>
