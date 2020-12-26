@@ -95,7 +95,7 @@ function arrAllEventIncomeParametrsDefault()
 					'strTemplate'	=>'',
 					)
 				),
-			'strrDefault'	=>'/',
+			'strDefault'	=>'/',
 			'int0MaxLength'	=>28,
 			),
 		'arrReality'=>
@@ -157,6 +157,7 @@ function arrAllEventIncomeParametrsDefault()
 				'int0MaxLength'	=>150,
 				)
 			)
+		
 		);
 	return $arrO;
 	}
@@ -1442,7 +1443,10 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 		$arrResult['strEvent']	=$arrDefault['arrEvent']['strDefault'];
 		_Report($arrResult['strEvent'].' is not in allowed list');
 		$strLang		=strGetDomainLang();
-		header('Location: http://192.168.1.198/'.$arrDefault['arrEvent']['strDefault'].';');
+		//echo 'Location: http://192.168.1.198'.$arrDefault['arrEvent']['strDefault'];
+		//exit;
+		header('Location: http://192.168.1.198'.$arrDefault['arrEvent']['strDefault']);
+		
 		}
 	foreach($arrDefault['arrReality'] as $strDefaultName=>$arrDefaultParams)
 		{
