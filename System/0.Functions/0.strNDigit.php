@@ -7,18 +7,18 @@
 //			    E 2        2        2 E
 //strNDigit		        D D D  D  D D D
 //			    E   D 3    3    3 D   E
-//			        D   R  R  R   D
+//			        D   R--R--R   D
 //			    E   D   R 444 R   D   E
 //			  1 E 2 D 3 R 4O4 R 3 D 2 E 1
 //			    E   D   R 444 R   D   E
-//Level 0		        D   R  R  R   D
-//			    E   D 3    3    3 D   E
-//			        D  D D D D D  D
-//			    E 2        2        2 E
-//			    E  E E E E E E E E E  E
-//			  1            !            1
-//
-//
+//Level 0		        D   R--R--R   D
+//			    E   D 3 |  3  | 3 D   E
+//			        D D |D D D| D D
+//			    E 2     |  2  |     2 E
+//			    E E E E |E E E| E E E E
+//			  1         |  !  |         1
+//Reality___________________________|_____|______________
+/////////////////////////////////////////////////////////
 //
 //
 //
@@ -106,6 +106,16 @@ function arrAllEventIncomeParametrsDefault()
 				'int0MaxLength'	=>100,
 				),//
 			'strStyle'	=>
+			array(
+				'strDefault'	=>'',
+				'int0MaxLength'	=>65,
+				),//
+			'strGenre'	=>
+			array(
+				'strDefault'	=>'',
+				'int0MaxLength'	=>65,
+				),//
+			'strHiFiType'	=>
 			array(
 				'strDefault'	=>'',
 				'int0MaxLength'	=>65,
@@ -204,6 +214,57 @@ function мЖанр_мЯзык_мТранскрипция($сВход) //inspire
 		}
 	return $сВозврат;
 	}
+function сДоСимвола($_сВход, $с_Символ='?') // Слово
+	{
+	$сСлово		='';
+	if(empty($_сВход))
+		{
+		$сСлово='';
+		return $сСлово;
+		}
+
+	$ч1Длинна	=strlen($_сВход);
+	$ч0Длинна	=($ч1Длинна-1);
+
+	for($ч0Шаг=0;$ч0Шаг<$ч1Длинна;$ч0Шаг++)
+		{
+		$сСлово.=$_сВход[$ч0Шаг];
+
+		if($ч0Шаг!=0&&($_сВход[$ч0Шаг]==$с_Символ))
+			{
+			$сСлово		=substr($сСлово,0,-1);
+			return $сСлово;
+			}
+		else
+			{
+			}
+		}
+
+	return $сСлово;
+	}
+function сОтСимвола($_сВход, $с_Символ='?') // Слово
+	{
+	$сСлово		='';
+	$фСимволНайден	=false;
+	if(empty($_сВход)){$сСлово='';return $сСлово;}
+
+	$ч1Длинна	=strlen($_сВход);
+	$ч0Длинна	=($ч1Длинна-1);
+
+	for($ч0Шаг=0;$ч0Шаг<$ч1Длинна;$ч0Шаг++)
+		{
+		if($_сВход[$ч0Шаг]==$с_Символ)
+			{
+			$фСимволНайден	=true;
+			}
+		if($фСимволНайден)
+			{
+			$сСлово		.=$_сВход[$ч0Шаг];
+			}
+		}
+
+	return $сСлово;
+	}
 function сНачДоСимвола($_сВход, $с_Символ='?') // Слово
 	{
 	$сСлово		='';
@@ -297,7 +358,13 @@ function сКонцОтДоСимвола($_сСтр, $_сОт, $_сДо, $_nu1B
 	$сСтр	=сРеверс($сСтр);
 	return 	$сСтр;
 	}
-
+function сКонцДоСимвола($_сСтр, $_сОт)
+	{
+	$сСтр	=сРеверс($_сСтр);
+	$сСтр	=сНачДоСимвола($сСтр, $_сОт);
+	$сСтр	=сРеверс($сСтр);
+	return 	$сСтр;
+	}
 function мУрлРазобратьПоток($_сСтр) 	//Разобрать стрим. Сергею Корякину и его коллеге в Ролексе Вадим Раскумандрину
 	{				//и Люсьене Гусевой из Лапси привет.:)
 					//Алексу Соловьёву тоже привет и всем девчёнкам колясочницам. Если я ещё раз у вас появлюсь,
@@ -322,13 +389,7 @@ function мУрлРазобратьПоток($_сСтр) 	//Разобрать 
 	}
 
 
-function сКонцДоСимвола($_сСтр, $_сОт)
-	{
-	$сСтр	=сРеверс($_сСтр);
-	$сСтр	=сНачДоСимвола($сСтр, $_сОт);
-	$сСтр	=сРеверс($сСтр);
-	return 	$сСтр;
-	}
+
 function strGetDomainLang()
 	{
 	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')===FALSE)
@@ -862,57 +923,7 @@ function мСобратьO2o($_сВход) // Слово
 		}
 	return $мСлово;
 	}
-function сДоСимвола($_сВход, $с_Символ='?') // Слово
-	{
-	$сСлово		='';
-	if(empty($_сВход))
-		{
-		$сСлово='';
-		return $сСлово;
-		}
 
-	$ч1Длинна	=strlen($_сВход);
-	$ч0Длинна	=($ч1Длинна-1);
-
-	for($ч0Шаг=0;$ч0Шаг<$ч1Длинна;$ч0Шаг++)
-		{
-		$сСлово.=$_сВход[$ч0Шаг];
-
-		if($ч0Шаг!=0&&($_сВход[$ч0Шаг]==$с_Символ))
-			{
-			$сСлово		=substr($сСлово,0,-1);
-			return $сСлово;
-			}
-		else
-			{
-			}
-		}
-
-	return $сСлово;
-	}
-function сОтСимвола($_сВход, $с_Символ='?') // Слово
-	{
-	$сСлово		='';
-	$фСимволНайден	=false;
-	if(empty($_сВход)){$сСлово='';return $сСлово;}
-
-	$ч1Длинна	=strlen($_сВход);
-	$ч0Длинна	=($ч1Длинна-1);
-
-	for($ч0Шаг=0;$ч0Шаг<$ч1Длинна;$ч0Шаг++)
-		{
-		if($_сВход[$ч0Шаг]==$с_Символ)
-			{
-			$фСимволНайден	=true;
-			}
-		if($фСимволНайден)
-			{
-			$сСлово		.=$_сВход[$ч0Шаг];
-			}
-		}
-
-	return $сСлово;
-	}
 function чРосХэш($_сВход) // 
 	{//© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru 2020
 	$мСлово		=array();
@@ -1513,7 +1524,7 @@ function strParType($_strParName)
 		   unset($_strParName);
 	$strParType	=substr($strParName,0, 3);
 	switch($strParType)
-		{
+		{ //EN
 		case 'str': //String
 			$strParType='str';
 		break;
@@ -1535,12 +1546,63 @@ function strParType($_strParName)
 		case 'tmt': //Type my type
 			$strParType='tmt';
 		break;
+		//RU
+		case 'с': //String
+			$strParType='str';
+		break;
+		case 'ч0': //Integer
+			$strParType='int';
+		break;
+		case 'ч1': //Integer
+			$strParType='int';
+		break;
+		case 'д': //FLoat
+			$strParType='flo';
+		break;
+		case 'м': //Array
+			$strParType='arr';
+		break;
+		case 'ф': //Boolean
+			$strParType='bIz';
+		break;
+		case 'о': //Object
+			$strParType='obj';
+		break;
+		case 'тмт': //Type my type
+			$strParType='tmt';
+		break;
+		//FR 
+		/*case 'с': //String
+			$strParType='str';
+		break;
+		case 'ч0': //Integer
+			$strParType='int';
+		break;
+		case 'ч1': //Integer
+			$strParType='int';
+		break;
+		case 'д': //FLoat
+			$strParType='flo';
+		break;
+		case 'м': //Array
+			$strParType='arr';
+		break;
+		case 'ф': //Boolean
+			$strParType='bIz';
+		break;
+		case 'о': //Object
+			$strParType='obj';
+		break;
+		case 'тмт': //Type my type
+			$strParType='tmt';
+		break;*/
 		}
 	return $strParType;
 	}
 function strArrayRec2JS($_arrReality, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
 	{
-
+	$bIzFormat	=false;
+	$strFormatLR	='<br/>';
 	$strLayerName	=$_strLayerName;
 		   unset($_strLayerName);
 	$arrReality	=$_arrReality;
@@ -1549,18 +1611,19 @@ function strArrayRec2JS($_arrReality, $_strLayerName='', $bIzFormat=false, $strF
 	$strArray	='';
 	if(!empty($strLayerName))
 		{
-		$arrProcParams	=$arrReality[$strLayerName];
+		$arrReality	=$arrReality[$strLayerName];
 		}
 	else
 		{
-		$arrProcParams	=$arrReality;
+		//$arrReality	=$arrReality;
 		}
-	foreach($arrProcParams as $strName=>$tmtData)
+	foreach($arrReality as $strName=>$tmtData)
 		{
 		$tmtData	=нольЧИлиС($strName, $tmtData);
 		$strType	=strParType($strName);
 		if($strType=='arr')
 			{
+			//print_r($arrReality);
 			$strArray	.=$strName.'=';
 			$strArray	.='{';
 			$strArray	.=$bIzFormat?$strFormatLR:'';

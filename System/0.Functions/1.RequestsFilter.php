@@ -8,9 +8,9 @@ _DropTheSessionDust();
 
 
 $arrEvent		=arrGetEventSetter();
-echo '<pre>';
-print_r($arrEvent);
-echo '</pre>';
+//echo '<pre>';
+//print_r($arrEvent);
+//echo '</pre>';
 //print_r($arrEvent);
 //echo '123';
 //exit;
