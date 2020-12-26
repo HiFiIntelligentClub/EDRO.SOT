@@ -1,11 +1,27 @@
 <?php
 
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
-//strNDigit
+
+//			  1            1            1
+//			    E E E E E  E  E E E E E
+//			    E 2        2        2 E
+//strNDigit		        D D D  D  D D D
+//			    E   D 3    3    3 D   E
+//			        D   R  R  R   D
+//			    E   D   R 444 R   D   E
+//			  1 E 2 D 3 R 4O4 R 3 D 2 E 1
+//			    E   D   R 444 R   D   E
+//Level 0		        D   R  R  R   D
+//			    E   D 3    3    3 D   E
+//			        D  D D D D D  D
+//			    E 2        2        2 E
+//			    E  E E E E E E E E E  E
+//			  1            !            1
 //
 //
 //
-//Level 0
+//
+//
 //[Vv]Event Global
 function _Report($str)
 	{
@@ -20,13 +36,13 @@ function сКлючь()
 	}
 function arrAllEventIncomeParametrsDefault()
 	{
-	$arrAllIncome	=  //[arrAction]['ArrAllowed']['strAction']
+	$arrO	=  //[arrAction]['arrDesign']['strEvent']
 	array(
-		'arrAction'=>
+		'arrEvent'=>
 		array(
-			'arrAllowed'=>
+			'arrDesign'=>
 			array(
-				'/'=>
+				'/'=>	//Defined
 					array(
 					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
 					),
@@ -82,7 +98,7 @@ function arrAllEventIncomeParametrsDefault()
 			'strrDefault'	=>'/',
 			'int0MaxLength'	=>28,
 			),
-		'arrParams'=>
+		'arrReality'=>
 		array(
 			'strName'	=>
 			array(
@@ -132,7 +148,7 @@ function arrAllEventIncomeParametrsDefault()
 				)
 			)
 		);
-	return $arrAllIncome;
+	return $arrO;
 	}
 function strMyJson($arr)
 	{
@@ -1239,14 +1255,14 @@ function bIzEvent($_strEvent, $_strRequest)
 		}
 	return $bIzMutch;
 	}
-function arrEventLink($_arrParams, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
+function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
 	{
 	$str;
 	
-	if(is_array($_arrParams))
+	if(is_array($_arrReality))
 		{
-		$arrLinks	=$_arrParams;
-			   unset($_arrParams);
+		$arrLinks	=$_arrReality;
+			   unset($_arrReality);
 		}
 	else
 		{
@@ -1256,7 +1272,7 @@ function arrEventLink($_arrParams, $_strGroove, $_strGrooveData='', $_bIzClearNa
 	$strGrooveDataCmd	=сПреобразовать($_strGrooveData, "вКоманду");
 					  unset($_strGrooveData);
 	$strEventLink		='';
-	$strEventParams		='objEvent.arrParams={';
+	$strEventParams		='objEvent.arrReality={';
 	$strSearchParams	='';
 
 	foreach($arrLinks as $strName=>$strData)
@@ -1327,7 +1343,7 @@ function strQuery($_strEvent, $_strRequest)
 	$bHasAction	=false;
 	$arrDefaultIncomeParams	=arrAllEventIncomeParametrsDefault();
 
-	foreach($arrDefaultIncomeParams['arrAction'] as $strExistName)
+	foreach($arrDefaultIncomeParams['arrEvent'] as $strExistName)
 		{
 		if($strIncomeName==$strExistName)
 			{
@@ -1343,14 +1359,14 @@ function strQuery($_strEvent, $_strRequest)
 function arrGetEventSetter()
 /*!0!*/	{
 /*!1!*/	$arrEvent			=array();
-/*!2!*/	$arrEvent['strAction']		='';
-/*!3!*/	$arrEvent['arrParams']		=array();
+/*!2!*/	$arrEvent['strEvent']		='';
+/*!3!*/	$arrEvent['arrReality']		=array();
 /*!4!*/
 /*!5!*/	$strRequest			=strGetRequest();
 /*13+*/	$arrEvent			=arrRestrictAndReportActionAndParametrs(
 						array(
-							'strAction'	=>сДоСимвола($strRequest, '?'),
-							'arrParams'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
+							'strEvent'	=>сДоСимвола($strRequest, '?'),
+							'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
 						)
 					);
 //	echo '<pre>';
@@ -1373,17 +1389,6 @@ function arrEventParams2Array($_strQuery)
 		$strParamName			=$arrBeforeValidate[0];
 		$strParamValue			=$arrBeforeValidate[1];
 		$arrResult[$strParamName]	=urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
-		//if(strpos($arrResult[$strParamName],'27'))
-		//	{
-		//	echo $arrResult[$strParamName];
-		//	exit;
-		//	}
-		//$arrResult[$strParamName]	=urldecode($strParamValue);
-		//$intLength			=$this->arrEvents[$strEvent][$strParamName]['intLength'];
-		//$strValidate			=$this->arrEvents[$strEvent][$strParamName]['strValidate'];
-		//$strParamValue		=substr($strParamValue,0, $intLength);
-		//$strParamValue		=preg_replace($strValidate,'',$strParamValue);
-		//$arrResult[$strParamName]	=$strParamValue;
 		}
 
 	return $arrResult;
@@ -1392,9 +1397,9 @@ function arrEventParams2Array($_strQuery)
 function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
 
-	$arrResult['strAction']	='';
-	$arrResult['arrParams']	=array();
-	$arrDefault		=arrAllEventIncomeParametrsDefault();
+	$arrResult['strEvent']		='';
+	$arrResult['arrReality']	=array();
+	$arrDefault			=arrAllEventIncomeParametrsDefault();
 
 	if(is_array($_arrIncome))
 		{
@@ -1409,56 +1414,56 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				   unset($_strReplaceName);
 	$strReplaceValue		=$_strReplaceValue;
 				   unset($_strReplaceValue);
-	//print_r($arrDefault['arrAction']);
+	//print_r($arrDefault['arrEvent']);
 	$bIzInAllowedActions	=FALSE;
-	foreach($arrDefault['arrAction']['arrAllowed'] as $strAllowedActionName=>$arrActionTemplateParams)
+	foreach($arrDefault['arrEvent']['arrDesign'] as $strAllowedActionName=>$arrEventTemplateParams)
 		{
-		if(strtolower($arrIncome['strAction'])==strtolower($strAllowedActionName))
+		if(strtolower($arrIncome['strEvent'])==strtolower($strAllowedActionName))
 			{
 			$bIzInAllowedActions	=TRUE;
-			$arrResult['strAction']	=$strAllowedActionName;
+			$arrResult['strEvent']	=$strAllowedActionName;
 			}
 		}
 	if($bIzInAllowedActions===FALSE)
 		{
-		$arrResult['strAction']	=$arrDefault['arrAction']['strDefault'];
-		_Report($arrResult['strAction'].' is not in allowed list');
+		$arrResult['strEvent']	=$arrDefault['arrEvent']['strDefault'];
+		_Report($arrResult['strEvent'].' is not in allowed list');
 		$strLang		=strGetDomainLang();
-		header('Location: http://192.168.1.198/'.$arrDefault['arrAction']['strDefault'].';');
+		header('Location: http://192.168.1.198/'.$arrDefault['arrEvent']['strDefault'].';');
 		}
-	foreach($arrDefault['arrParams'] as $strDefaultName=>$arrDefaultParams)
+	foreach($arrDefault['arrReality'] as $strDefaultName=>$arrDefaultParams)
 		{
-		$arrResult['arrParams'][$strDefaultName]	=$arrDefaultParams['strDefault'];
+		$arrResult['arrReality'][$strDefaultName]	=$arrDefaultParams['strDefault'];
 		if(isset($arrDefaultParams['int0MaxValue']))
 			{
-			if($arrDefaultParams['int0MaxValue']<=$arrResult['arrParams'][$strDefaultName])
+			if($arrDefaultParams['int0MaxValue']<=$arrResult['arrReality'][$strDefaultName])
 				{
-				$arrResult['arrParams'][$strDefaultName]	=$arrDefaultParams['int0MaxValue'];
+				$arrResult['arrReality'][$strDefaultName]	=$arrDefaultParams['int0MaxValue'];
 				}
 			}
-		foreach($arrIncome['arrParams'] as $strIncomeName=>$strIncomeValue)
+		foreach($arrIncome['arrReality'] as $strIncomeName=>$strIncomeValue)
 			{
 			if($strDefaultName==$strIncomeName)
 				{
-				if(strlen($arrIncome['arrParams'][$strIncomeName])>$arrDefault['arrParams'][$strDefaultName]['int0MaxLength'])
+				if(strlen($arrIncome['arrReality'][$strIncomeName])>$arrDefault['arrReality'][$strDefaultName]['int0MaxLength'])
 					{
-					 _Report($arrIncome['arrParams'][$strIncomeName].'length>'.$arrDefault['arrParams'][$strDefaultName]['int0MaxLength']);
-					$arrIncome['arrParams'][$strIncomeName]		=substr($arrIncome['arrParams'][$strIncomeName],0, $arrDefault['arrParams'][$strDefaultName]['int0MaxLength']);
+					 _Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrDefault['arrReality'][$strDefaultName]['int0MaxLength']);
+					$arrIncome['arrReality'][$strIncomeName]		=substr($arrIncome['arrReality'][$strIncomeName],0, $arrDefault['arrReality'][$strDefaultName]['int0MaxLength']);
 					}
-				if(isset($arrDefault['arrParams'][$strDefaultName]['int0MaxValue']))
+				if(isset($arrDefault['arrReality'][$strDefaultName]['int0MaxValue']))
 					{
-					if($strIncomeValue>=$arrDefault['arrParams'][$strDefaultName]['int0MaxValue'])
+					if($strIncomeValue>=$arrDefault['arrReality'][$strDefaultName]['int0MaxValue'])
 						{
-						_Report('$strIncomeValue>=$arrDefault[arrParams][$strDefaultName][int0MaxValue] $strIncomeValue: '.$strIncomeValue.'>='.$arrDefault['arrParams'][$strDefaultName]['int0MaxValue']);
-						$strIncomeValue		=$arrDefault['arrParams'][$strDefaultName]['int0MaxValue'];
+						_Report('$strIncomeValue>=$arrDefault[arrReality][$strDefaultName][int0MaxValue] $strIncomeValue: '.$strIncomeValue.'>='.$arrDefault['arrReality'][$strDefaultName]['int0MaxValue']);
+						$strIncomeValue		=$arrDefault['arrReality'][$strDefaultName]['int0MaxValue'];
 						}
 					else
 						{
-						//$strIncomeValue		=$arrDefault['arrParams'][$strDefaultName]['maxValue'];
-						//_Report($strIncomeValue.' >'.$arrDefault['arrParams'][$strDefaultName]['maxValue']);
+						//$strIncomeValue		=$arrDefault['arrReality'][$strDefaultName]['maxValue'];
+						//_Report($strIncomeValue.' >'.$arrDefault['arrReality'][$strDefaultName]['maxValue']);
 						}
 					}	
-				$arrResult['arrParams'][$strIncomeName]		=$strIncomeValue;
+				$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
 				}
 			}
 		}
@@ -1531,21 +1536,22 @@ function strParType($_strParName)
 		}
 	return $strParType;
 	}
-function strArrayRec2JS($_arrParams, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
+function strArrayRec2JS($_arrReality, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
 	{
+
 	$strLayerName	=$_strLayerName;
 		   unset($_strLayerName);
-	$arrParams	=$_arrParams;
-		   unset($_arrParams);
+	$arrReality	=$_arrReality;
+		   unset($_arrReality);
 	$strType	='str';
 	$strArray	='';
 	if(!empty($strLayerName))
 		{
-		$arrProcParams	=$arrParams[$strLayerName];
+		$arrProcParams	=$arrReality[$strLayerName];
 		}
 	else
 		{
-		$arrProcParams	=$arrParams;
+		$arrProcParams	=$arrReality;
 		}
 	foreach($arrProcParams as $strName=>$tmtData)
 		{
@@ -1556,7 +1562,7 @@ function strArrayRec2JS($_arrParams, $_strLayerName='', $bIzFormat=false, $strFo
 			$strArray	.=$strName.'=';
 			$strArray	.='{';
 			$strArray	.=$bIzFormat?$strFormatLR:'';
-			$strArray	.=strArrayRec2JS($arrParams, $strName, $bIzFormat, $strFormatLR);
+			$strArray	.=strArrayRec2JS($arrReality, $strName, $bIzFormat, $strFormatLR);
 			$strArray	.='}';
 			$strArray	.=$bIzFormat?$strFormatLR:'';
 			}
@@ -1573,7 +1579,7 @@ function strArrayRec2JS($_arrParams, $_strLayerName='', $bIzFormat=false, $strFo
 	$strArray	=substr($strArray, 0, -1);
 	return $strArray;
 	}
-function strArray2JS($_arrParams, $_strArrName='')
+function strArray2JS($_arrReality, $_strArrName='')
 	{
 	//$bIzFormat	=false;
 	$bIzFormat	=true;
@@ -1582,7 +1588,7 @@ function strArray2JS($_arrParams, $_strArrName='')
 		   unset($_strArrName);
 
 	$str	.=$bIzFormat?$strFormatLR:'';
-	$str	.=strArrayRec2JS($_arrParams, '', $bIzFormat, $strFormatLR);
+	$str	.=strArrayRec2JS($_arrReality, '', $bIzFormat, $strFormatLR);
 	$str	.=$bIzFormat?$strFormatLR:'';
 
 	$str	=str_replace(','.$strFormatLR.'}', $strFormatLR.'}', $str);

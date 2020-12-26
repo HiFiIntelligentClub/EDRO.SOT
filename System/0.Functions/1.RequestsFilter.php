@@ -8,16 +8,19 @@ _DropTheSessionDust();
 
 
 $arrEvent		=arrGetEventSetter();
+echo '<pre>';
+print_r($arrEvent);
+echo '</pre>';
 //print_r($arrEvent);
 //echo '123';
 //exit;
 //echo '123';
 //exit;
-$strEventSetter		=$arrEvent['strAction'];
-$arrParams		=$arrEvent['arrParams'];
+$strEventSetter		=$arrEvent['strEvent'];
+$arrReality		=$arrEvent['arrReality'];
 
 //echo $strEventSetter;
-//print_r($arrParams);
+//print_r($arrReality);
 //exit;
 
 if(bIzEvent('/robots.txt', $strEventSetter))
@@ -29,7 +32,7 @@ if(bIzEvent('/robots.txt', $strEventSetter))
 elseif(bIzEvent('/RedirectFromError', $strEventSetter))
 	{
 	//echo'123';
-	_Report('/RedirectFromError strAction:'.$_GET['strAction']);
+	//
 	//header('Content-Type: image/png');
 	//echo readfile('/home/HiFiIntelligentClub.Ru/favicon.png');
 	//exit(0);
@@ -48,10 +51,10 @@ elseif(bIzEvent('/Hfic_Samin.jpg', $strEventSetter))
 	}
 elseif(bIzEvent('/getStation', $strEventSetter))
 	{
-	//print_r($arrParams);
+	//print_r($arrReality);
 	header('Content-Type: application/json');
-	//$strEnc			=сПреобразовать($arrParams['strPlayingStationId'], 	"вСтроку");
-	$strDec			=сКодировать($arrParams['strPlayingStationId'], 'д');
+	//$strEnc			=сПреобразовать($arrReality['strPlayingStationId'], 	"вСтроку");
+	$strDec			=сКодировать($arrReality['strPlayingStationId'], 'д');
 	////////1.IN.E getStation
 	// PLAY 2.TO.D DB.Event
 	// HiFi 3.IN.R Ls.Enviroment[Browser, Used device]
@@ -69,19 +72,19 @@ elseif(bIzEvent('/getStation', $strEventSetter))
 	}
 elseif(bIzEvent('/getTest', $strEventSetter))
 	{
-	//print_r($arrParams);
+	//print_r($arrReality);
 	//header('Content-Type: application/json');
 	//echo '123';
-	//echo $arrParams['strPlayingStationId'];
+	//echo $arrReality['strPlayingStationId'];
 	$strEnc				=сПреобразовать($strListenUrl, 	"вСтроку");
-	//echo $strEnc			=сКодировать($arrParams['strPlayingStationId'], $_сДействие='д');
+	//echo $strEnc			=сКодировать($arrReality['strPlayingStationId'], $_сДействие='д');
 	echo json_encode($strEnc);
 	exit;
 	}
 /*elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
 	{
 	//echo'123';
-	//print_r($arrParams);
+	//print_r($arrReality);
 	exit(0);
 	header('Content-Description: File Transfer');
 	header('Content-Type: application/octet-stream');
@@ -96,7 +99,7 @@ elseif(bIzEvent('/getTest', $strEventSetter))
 elseif(bIzEvent('/HficAssminogZzzuzzZ.mp3', $strEventSetter))
 	{
 	//echo'123';
-	//print_r($arrParams);
+	//print_r($arrReality);
 	header('Content-Description: File Transfer');
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename="/HficAssminogZzzuzzZ.mp3"');
@@ -110,7 +113,7 @@ elseif(bIzEvent('/HficAssminogZzzuzzZ.mp3', $strEventSetter))
 elseif(bIzEvent('/HficAssminogZzzuzzZ2.mp3', $strEventSetter))
 	{
 	//echo'123';
-	//print_r($arrParams);
+	//print_r($arrReality);
 	header('Content-Description: File Transfer');
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename="/HficAssminogZzzuzzZ2.mp3"');
@@ -123,8 +126,8 @@ elseif(bIzEvent('/HficAssminogZzzuzzZ2.mp3', $strEventSetter))
 	}
 elseif(bIzEvent('/fireUpStation', $strEventSetter))
 	{
-	//print_r($arrParams);
-	$strEnc			=сКодировать($arrParams['strPlayingStationId'], $_сДействие='д');
+	//print_r($arrReality);
+	$strEnc			=сКодировать($arrReality['strPlayingStationId'], $_сДействие='д');
 	echo json_encode($strEnc);
 	exit(0);
 	}
