@@ -1238,27 +1238,6 @@ function rmLb($_str)
 //
 //
 //
-/*function bIzEvent($_strEvent, $_strRequest)
-	{
-	$strEvent		=substr($_strEvent,1);
-	                          unset($_strEvent);
-	$strEventExpression	=str_replace('/','\/', $strEvent);
-	$strRequest		=$_strRequest;
-	                   unset($_strRequest);
-	
-	//echo $strEvent; echo'<br/>';
-	//echo '/^(\/'.$strEvent.')(\?.*)|$/';
-	//echo '<br/>';
-	//echo$strEvent=str_replace('/','\/',$strEvent);
-        	//   unset($_strEvent);
-	$bIzMutch=false;
-	$strEventExtracted=preg_replace('/^(\/'.$strEventExpression.')(\?.*)|$/','$1', $strRequest);
-	if($strEventExtracted=='/'.$strEvent)
-		{
-		$bIzMutch=true;
-		}
-	return $bIzMutch;
-	}*/
 function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
 	{
 	$str;
