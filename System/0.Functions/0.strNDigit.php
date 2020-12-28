@@ -18,10 +18,10 @@
 //			    E E E E |E E E| E E E E
 //			  1         |  !  |         1
 //Reality___________________________|_____|______________
-/////////////////////////////////////////////////////////
-//
-//
-//
+/////////////////////////////////////////////////////////|
+//		ЕДРО:ПОЛИМЕР	S EDRO dx		||
+//							||
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 //[Vv]Event Global
 function _Report($str)
 	{
@@ -42,13 +42,9 @@ function arrAllEventIncomeParametrsDefault()
 		array(
 			'arrDesign'=>
 			array(
-				'/'=>	//Defined
+				'/robots.txt'=>
 					array(
-					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
-					),
-				'/search'=>
-					array(
-					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
+					'strTemplate'	=>'',
 					),
 				'/Hfic_Samin.jpg'=>
 					array(
@@ -58,7 +54,23 @@ function arrAllEventIncomeParametrsDefault()
 					array(
 					'strTemplate'	=>'',
 					),
+				'/'=>	//Defined
+					array(
+					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
+					),
+				'/search'=>
+					array(
+					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
+					),
 				'/getStation'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/getListeners'=>
+					array(
+					'strTemplate'	=>'',
+					),
+				'/getNews'=>
 					array(
 					'strTemplate'	=>'',
 					),
@@ -70,18 +82,12 @@ function arrAllEventIncomeParametrsDefault()
 					array(
 					'strTemplate'	=>'',
 					),
-				'/listeners'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/RedirectFromError'=>
+
+				'/RedirectFromError'	=>
 					array(
 					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
 					),
-				'/robots.txt'=>
-					array(
-					'strTemplate'	=>'',
-					),
+				
 				'/HiFiIntelligentClub.tar.gz'=>
 					array(
 					'strTemplate'	=>'',
@@ -615,24 +621,7 @@ function фУникальный($мОбработанныеСвойства, $_�
 	}*/
 
 //[..]Event Global
-function strJson($arr)
-	{
-	$str	='';
-	if(is_array($arr))
-		{
-		$str	='{';
-		foreach($arr as $strName=>$strValue)
-			{
-			$strName	=str_replace('"','',$strName);
-			$strValue	=str_replace('"','',$strValue);
-			$str	.='"'.$strName.'":"'.$strValue.'",';
-			}
-		$str	=substr($str,0,-1);
-		$str	.='}';
-		}
-	return $str;
-	}
-function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase inspired Armin van Buuren */
+function мФразы($_сФраза) /* Could be inputed by anyone and after that used in pfrase. Inspired by Armin van Buuren programm, I have heard in record of hour programm on Trance.kG*/
 	{
 	/*
 	$ч1Длинна	=strlen($_сФраза);
@@ -741,19 +730,20 @@ function сДляСравнения($с_Вход)
 function cФразы_ИсправитьНаписание($_сВход)
 	{
 	$мИсправить	=
+		//Исправить	Исправлено
 	array(
 		'&amp;'		=>'&', 
-		'Hip Hop'	=>'Hip-Hop', 
-		'Drum and Base'	=>'Drum and Bass',
-		'R@B'		=>'R&B',
+		'hip hop'	=>'Hip-Hop', 
+		'drum and base'	=>'Drum and Bass',
+		"d'n'b"		=>'Drum and Bass',
+		'drum and bas'	=>'Drum and Bass',
+		'r@b'		=>'R&B',
 		);
 	foreach($мИсправить as $сИсправить=>$сИсправлено)
 		{
-		if(
-			strpos(mb_strtolower($_сВход), mb_strtolower($сИсправить))!==FALSE
-			)
+		if(strpos(mb_strtolower($_сВход), mb_strtolower($сИсправить))!==FALSE)
 			{
-			$_сВход		=str_replace($сИсправить, $сИсправлено, $_сВход);
+			$_сВход		=str_replace($сИсправить, $сИсправлено, mb_strtolower($_сВход));
 			}
 		}
 	return $_сВход;
@@ -1248,7 +1238,7 @@ function rmLb($_str)
 //
 //
 //
-function bIzEvent($_strEvent, $_strRequest)
+/*function bIzEvent($_strEvent, $_strRequest)
 	{
 	$strEvent		=substr($_strEvent,1);
 	                          unset($_strEvent);
@@ -1268,7 +1258,7 @@ function bIzEvent($_strEvent, $_strRequest)
 		$bIzMutch=true;
 		}
 	return $bIzMutch;
-	}
+	}*/
 function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
 	{
 	$str;
@@ -1314,8 +1304,10 @@ function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearN
 		}
 		$strEventParams	=substr($strEventParams, 0, -1);
 		$strEventParams	.='};';
+		$strEventParams	.='this.className	+=" loading"';
 		$strEventParams	.='objEvent._ActualizeSearch();';
-		$strEventParams	.='objEvent._UpdateURLDyn();';
+		$strEventParams	.='objEvent._UpdateURLDyn(true, this);';
+		
 		$strEventParams	.='return false;';
 		$arr['strHref']		=' href="/search?'.substr($strEventLink, 1).'" ';
 		$arr['strOnClick']	=' onClick="'.$strEventParams.'" ';

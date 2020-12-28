@@ -3,7 +3,6 @@
 //Zero load 
 //Money saver+;
 
-session_start();
 _DropTheSessionDust();
 
 
@@ -16,32 +15,35 @@ $arrEvent		=arrGetEventSetter();
 //exit;
 //echo '123';
 //exit;
-$strEventSetter		=$arrEvent['strEvent'];
+$strEvent		=$arrEvent['strEvent'];
 $arrReality		=$arrEvent['arrReality'];
+
+//echo $strEvent;
+//exit;
 
 //echo $strEventSetter;
 //print_r($arrReality);
 //exit;
 
-if(bIzEvent('/robots.txt', $strEventSetter))
+if('/robots.txt'==$strEvent)
 	{
 	header('Content-Type: text/plain');
 	echo readfile('/home/HiFiIntelligentClub.Ru/robots.txt');
 	exit(0);
 	}
-elseif(bIzEvent('/favicon.ico', $strEventSetter))
+elseif('/favicon.ico'==$strEvent)
 	{
 	header('Content-Type: image/png');
 	echo readfile('/home/HiFiIntelligentClub.Ru/favicon.png');
 	exit(0);
 	}
-elseif(bIzEvent('/Hfic_Samin.jpg', $strEventSetter))
+elseif('/Hfic_Samin.jpg'==$strEvent)
 	{
 	header('Content-Type: image/jpeg');
 	echo readfile('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
 	exit(0);
 	}
-//elseif(bIzEvent('/RedirectFromError', $strEventSetter))
+//elseif(bIzEvent('/RedirectFromError', $strEvent))
 //	{
 	//echo'123';
 	//
@@ -50,7 +52,7 @@ elseif(bIzEvent('/Hfic_Samin.jpg', $strEventSetter))
 	//exit(0);
 //	}
 
-elseif(bIzEvent('/getStation', $strEventSetter))
+elseif('/getStation'==$strEvent)
 	{
 	//print_r($arrReality);
 	//header('Content-Type: application/json');
@@ -73,7 +75,7 @@ elseif(bIzEvent('/getStation', $strEventSetter))
 	//echo strMyJson($strDec.'?strUserEvent=HiFiIntelligentClub&msg=Tihis is  the beta of the future version 2.0. Used from TOR browser(torproject.org), on http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion domain. Very good. Future is coming! Working version are here: HiFiIntelligentClub.COM Hfic.Samin');
 	exit;
 	}
-elseif(bIzEvent('/getNews', $strEventSetter))
+elseif('/getNews'==$strEvent)
 	{
 	require_once('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
 	require_once('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
@@ -99,13 +101,13 @@ elseif(bIzEvent('/getNews', $strEventSetter))
 		));
 	exit;
 	}
-elseif(bIzEvent('/getListeners', $strEventSetter))
+elseif('/getListeners'==$strEvent)
 	{
 	
 	$str	=Listeners::strHTML($objKIIM, $objEDRO->arrReality['arrCurrentListeners'], $objEDRO->arrEvent['arrReality']);
 	exit(0);
 	}
-elseif(bIzEvent('/getTest', $strEventSetter))
+elseif('/getTest'==$strEvent)
 	{
 	//print_r($arrReality);
 	//header('Content-Type: application/json');
@@ -116,7 +118,7 @@ elseif(bIzEvent('/getTest', $strEventSetter))
 	echo json_encode($strEnc);
 	exit;
 	}
-/*elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEventSetter))
+/*elseif(bIzEvent('/HiFiIntelligentClub.tar.gz', $strEvent))
 	{
 	//echo'123';
 	//print_r($arrReality);
@@ -131,7 +133,7 @@ elseif(bIzEvent('/getTest', $strEventSetter))
 	readfile('/home/HiFiIntelligentClub.Ru/HiFiIntelligentClub.tar.gz');
 	exit(0);
 	}*/
-/*elseif(bIzEvent('/HficAssminogZzzuzzZ.mp3', $strEventSetter))
+/*elseif(bIzEvent('/HficAssminogZzzuzzZ.mp3', $strEvent))
 	{
 	//echo'123';
 	//print_r($arrReality);
@@ -145,7 +147,7 @@ elseif(bIzEvent('/getTest', $strEventSetter))
 	readfile('/home/HiFiIntelligentClub.Ru/tmp/HficAssminogZzzuzzZ.mp3');
 	exit(0);
 	}*/
-elseif(bIzEvent('/HficAssminogZzzuzzZ2.mp3', $strEventSetter))
+elseif('/HficAssminogZzzuzzZ2.mp3'==$strEvent)
 	{
 	//echo'123';
 	//print_r($arrReality);
@@ -159,14 +161,14 @@ elseif(bIzEvent('/HficAssminogZzzuzzZ2.mp3', $strEventSetter))
 	readfile('/home/HiFiIntelligentClub.Ru/tmp/HficAssminogZzzuzzZ2.mp3');
 	exit(0);
 	}
-elseif(bIzEvent('/fireUpStation', $strEventSetter))
+elseif('/fireUpStation'==$strEvent)
 	{
 	//print_r($arrReality);
 	$strEnc			=сКодировать($arrReality['strPlayingStationId'], $_сДействие='д');
 	echo json_encode($strEnc);
 	exit(0);
 	}
-elseif(bIzEvent('/ServerOnline', $strEventSetter))
+elseif('/ServerOnline'==$strEvent)
 	{
 	echo json_encode(array('ok'));
 	//header('Content-Type: image/jpeg');
