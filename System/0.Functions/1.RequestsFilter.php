@@ -2,28 +2,36 @@
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
 //Zero load 
 //Money saver+;
+//			  1            1            1
+//			    E E E E E  E  E E E E E
+//			    E 2        2        2 E
+//strNDigit		        D D D  D  D D D
+//			    E   D 3    3    3 D   E
+//			        D   R--R--R   D
+//			    E   D   R 444 R   D   E
+//			  1 E 2 D 3 R 4O4 R 3 D 2 E 1
+//			    E   D   R 444 R   D   E
+//Level 0		        D   R--R--R   D
+//			    E   D 3 |  3  | 3 D   E
+//			        D D |D D D| D D
+//			    E 2     |  2  |     2 E
+//			    E E E E |E E E| E E E E
+//			  1         |  !  |         1
+//Reality___________________________|_____|______________
+/////////////////////////////////////////////////////////|
+//		ЕДРО:ПОЛИМЕР	S EDRO dx		||
+//							||
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+//[Vv]Event Global
 
-_DropTheSessionDust();
-
+_DropTheSessionDust(); //Zero level functions EDRO.SOT
 
 $arrEvent		=arrGetEventSetter();
-//echo '<pre>';
-//print_r($arrEvent);
-//echo '</pre>';
-//print_r($arrEvent);
-//echo '123';
-//exit;
-//echo '123';
-//exit;
 $strEvent		=$arrEvent['strEvent'];
 $arrReality		=$arrEvent['arrReality'];
 
-//echo $strEvent;
-//exit;
+//Iinted from /home/HiFiIntelligentClub.Ru/index.php
 
-//echo $strEventSetter;
-//print_r($arrReality);
-//exit;
 
 if('/robots.txt'==$strEvent)
 	{

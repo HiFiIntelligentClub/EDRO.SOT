@@ -1636,6 +1636,7 @@ function strArray2JS($_arrReality, $_strArrName='')
 	}
 function _DropTheSessionDust()
 	{
+	session_start();
 	$strPlayingStationId	='';
 	if(isset($_SESSION)&&isset($_SESSION['strListener'])&&(!empty($_SESSION['strListener'])))
 	/*+1+*/	{
