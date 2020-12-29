@@ -66,6 +66,7 @@ class EDRO_Buffering
 			'Registration'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Registration/Registration.php',
 			// 'Bitrate'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/Bitrate.php',
 			// 'BitrateTag'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/BitrateTag.php',
+			'ICQRType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/AudioType/ICQRType.php',
 			'AudioType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/AudioType/AudioType.php',
 			'CreatorType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/CreatorType/CreatorType.php',
 			'StationLink'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationLink.php',
@@ -85,7 +86,7 @@ class EDRO_Buffering
 			'DynaScreenEventIndicator'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaScreen/DynaScreenEventIndicator.php',
 
 			'DynaScreen'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaScreen/DynaScreen.php',
-			'DynaBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaBlock/DynaBlock.php',
+			// 'DynaBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaBlock/DynaBlock.php',
 			'FileUploadForm'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Form/FileUploadForm.php',
 
 			// 'FileSetupRead'						=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FileSetupRead.php',
