@@ -170,10 +170,10 @@ function arrAllEventIncomeParametrsDefault()
 function strMyJson($arr)
 	{
 	$str	='';
+	$str	='{';
 	//print_r($arr);
 	if(is_array($arr))
 		{
-		$str	='{';
 		foreach($arr as $strName=>$strValue)
 			{
 			$strName	=str_replace('"','',$strName);
@@ -181,8 +181,8 @@ function strMyJson($arr)
 			$str	.='"'.$strName.'":"'.$strValue.'",';
 			}
 		$str	=substr($str,0,-1);
-		$str	.='}';
 		}
+	$str	.='}';
 	return $str;
 	}
 function сЗаменаСлэшУЕ($_сВход)
@@ -399,24 +399,42 @@ function мУрлРазобратьПоток($_сСтр) 	//Разобрать 
 
 function strGetDomainLang()
 	{
-	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')===FALSE)
+	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')!==FALSE)
 		{
 		$strLang='RU';
 		}
-	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.com')===FALSE)
+	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.com')!==FALSE)
+		{
+		
+		$strLang='EN';
+		}
+	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), '192.168.1.198')!==FALSE)
 		{
 		$strLang='EN';
 		}
-	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), '192.168.1.198')===FALSE)
+	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), 'ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion')!==FALSE)
 		{
 		$strLang='EN';
 		}
 	else	
 		{
 		$strLang='EN';
-		_Report('strGetDomainName():$_SERVER[SERVER_NAME] do not have RU or COM suffix and dont 192.168.1.198');
+		_Report('strGetDomainName():'.$_SERVER['SERVER_NAME'].$strLang.' do not have RU or COM suffix and dont 192.168.1.198 or onion');
 		}
 	return $strLang;
+	}
+function strGetDomainZone()
+	{
+	$strLang		=strGetDomainLang();
+	if($strLang=='RU')
+		{
+		$strDomain='ru';
+		}
+	if($strLang=='EN')
+		{
+		$strDomain='com';
+		}
+	return $strDomain;
 	}
 function strGetDefaultLanguage()
 	{
@@ -727,17 +745,26 @@ function сДляСравнения($с_Вход)
 		//My figure prefere the first one.  Hfic.Samin. 2020
 	return strtolower($с_Вход);
 	}
-function cФразы_ИсправитьНаписание($_сВход)
+function cФразыСтиль_ИсправитьНаписание($_сВход) //Для предворительной обработки или пользовательского ввода, не для вывода в реальном времени кешированного каталога!
 	{
 	$мИсправить	=
 		//Исправить	Исправлено
 	array(
-		'&amp;'		=>'&', 
-		'hip hop'	=>'Hip-Hop', 
-		'drum and base'	=>'Drum and Bass',
-		"d'n'b"		=>'Drum and Bass',
-		'drum and bas'	=>'Drum and Bass',
-		'r@b'		=>'R&B',
+		'&amp;'			=>'&', 
+		'hip hop'		=>'Hip-Hop', 
+		'drum and base'		=>'Drum and Bass',
+		"d'n'b"			=>'Drum and Bass',
+		"dnb"			=>'Drum and Bass',
+		"d&b"			=>'Drum and Bass',
+		'drum and bas'		=>'Drum and Bass',
+		'r@b'			=>'R&B',
+		'70-80-90'		=>'70x 80x 90x',
+		'60-70-80-90-20хх'	=>'60x 70x 80x 90x 20хх',
+		'2000-x'		=>'2000x',
+		'.'			=>'',
+		'&#39;'			=>"'",
+		"90'S"			=>"90's",
+		"80's-90's-00's"	=>"80's 90's 00's"
 		);
 	foreach($мИсправить as $сИсправить=>$сИсправлено)
 		{
@@ -823,7 +850,7 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 		{
 		return $мФраза;
 		}
-	$_сВход		=cФразы_ИсправитьНаписание($_сВход);
+	$_сВход		=cФразыСтиль_ИсправитьНаписание($_сВход);
 	$мВход		=мФразы_ИзвлечьИзвестную($_сВход);
 	$сВход		=$мВход['сЧист'];
 	unset($_сВход);
@@ -1283,7 +1310,7 @@ function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearN
 		}
 		$strEventParams	=substr($strEventParams, 0, -1);
 		$strEventParams	.='};';
-		$strEventParams	.='this.className	+=" loading"';
+		//$strEventParams	.='this.className	+=" loading"';
 		$strEventParams	.='objEvent._ActualizeSearch();';
 		$strEventParams	.='objEvent._UpdateURLDyn(true, this);';
 		
@@ -1413,10 +1440,10 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 		{
 		$arrResult['strEvent']	=$arrDefault['arrEvent']['strDefault'];
 		_Report($arrResult['strEvent'].' is not in allowed list');
-		$strLang		=strGetDomainLang();
+
 		//echo 'Location: http://192.168.1.198'.$arrDefault['arrEvent']['strDefault'];
 		//exit;
-		header('Location: http://192.168.1.198'.$arrDefault['arrEvent']['strDefault']);
+		header('Location: http://HiFiIntelligentClub.'.strGetDomainZone().$arrDefault['arrEvent']['strDefault']);
 		
 		}
 	foreach($arrDefault['arrReality'] as $strDefaultName=>$arrDefaultParams)
