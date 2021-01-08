@@ -1,27 +1,42 @@
 <?php
-
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
-
-//			  1            1            1
-//			    E E E E E  E  E E E E E
-//			    E 2        2        2 E
-//strNDigit		        D D D  D  D D D
-//			    E   D 3    3    3 D   E
-//			        D   R--R--R   D
-//			    E   D   R 444 R   D   E
-//			  1 E 2 D 3 R 4O4 R 3 D 2 E 1
-//			    E   D   R 444 R   D   E
-//Level 0		        D   R--R--R   D
-//			    E   D 3 |  3  | 3 D   E
-//			        D D |D D D| D D
-//			    E 2     |  2  |     2 E
-//			    E E E E |E E E| E E E E
-//			  1         |  !  |         1
-//Reality___________________________|_____|______________
-/////////////////////////////////////////////////////////|
-//		ЕДРО:ПОЛИМЕР	S EDRO dx		||
-//							||
-//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+//							 
+//							  1            1         1  1         1            1
+//							    E-E-E-E-E--E--E-E-E-E-EE-E-E-E-E--E--E-E-E-E-E
+//							    E-2--------2--------2-EE-2--------2--------2-E
+//strNDigit						  2 |-- D-D-D--D--D-D-D------- D-D-D--D--D-D-D---| 2
+//							    E---D-3----3----3 D---EE---D-3----3----3 D---E
+//							------------R--R--R----------------R--R--R------------
+//							    E---D---R-444-R---D---EE---D---R-444-R---D---E
+//							--1 E-2-D-3-R-4O4-R-3-D-2-EE-2-D-3-R-4O4-R-3-D-2-E 1--
+//							    E---D---R-444-R---D---EE---D---R-444-R---D---E
+//Level 0						------------R--R--R----------------R--R--R------------
+//							    E---D-3----3----3-D---EE---D-3----3----3-D---E
+//							  2 |---D-D--D D D--D-D--------D-D--D D D--D-D---| 2
+//							    E-2--------2--------2-EE-2--------2--------2-E
+//							    E-E-E-E--E-E-E--E-E-E-EE-E-E-E--E-E-E--E-E-E-E
+//							  1            1         1  1         1            1
+//							
+//Reality_____________________________________________   o1   02    
+/////////////////////////////////////////////////|	 1Ed->1E2D.
+////////////////////////////////////////////////	 2Ro->3R4O
+//		ЕДРО:ПОЛИМЕР	S EDRO dx	||	   
+//						||	 
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|	R: SystemStartup EDRO.Start = S
+//|o1		 |o2		|o3            |o4	  |o5		|o6				|o7
+//|E.0levelFilter|E.0levelEvents|E..SystemStart|E..EDRO.S+|E..ReadFile	|E..StationList.Construct	|E..StationBick.Construct
+//|D._		 |D._		|D.._	       |D.._	  |D.._Report	|D..strDesignStationList	|D..strStationBick
+//|R.local	 |R.EDRO	|R..System     |R..INIT	  |R..EDRO	|R..EDRO			|R..EDRO
+//|O._		 |O._		|O..KIIM       |O..EDRO   |O..ReadFile	|O..StationList			|O..StationBick
+//|---------------------------------------------   ----
+//					|    	    	
+//					|   	   ^	^	^	^	^	^	^
+//					'---------------------------------------------------------------------------
+//
+//
+//
+//
 //[Vv]Event Global
 function _Report($str)
 	{
@@ -34,136 +49,267 @@ function сКлючь()
 	{
 	return '4aPrIsAForaPr';
 	}
-function arrAllEventIncomeParametrsDefault()
+function arrAllEventIncomeParametrsFallBack()
 	{
 	$arrO	=  //[arrAction]['arrDesign']['strEvent']
-	array(
+		array(
 		'arrEvent'=>
-		array(
-			'arrDesign'=>
 			array(
-				'/robots.txt'=>
+			'/robots.txt'=>
+				array(
+				'arrEN'=>
 					array(
-					'strTemplate'	=>'',
 					),
-				'/Hfic_Samin.jpg'=>
+				'arrRU'=>
 					array(
-					'strTemplate'	=>'',
 					),
-				'/favicon.ico'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/'=>	//Defined
-					array(
-					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
-					),
-				'/search'=>
-					array(
-					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
-					),
-				'/getStation'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/getListeners'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/getNews'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/getTest'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/ServerOnline'=>
-					array(
-					'strTemplate'	=>'',
-					),
-
-				'/RedirectFromError'	=>
-					array(
-					'strTemplate'	=>'/home/EDRO/2.Design/.strFileList.php',
-					),
-				
-				'/HiFiIntelligentClub.tar.gz'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/HficAssminogZzzuzzZ.mp3'=>
-					array(
-					'strTemplate'	=>'',
-					),
-				'/HficAssminogZzzuzzZ2.mp3'=>
-					array(
-					'strTemplate'	=>'',
-					)
 				),
-			'strDefault'	=>'/',
-			'int0MaxLength'	=>28,
+			'/Hfic_Samin.jpg'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/favicon.ico'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/АнастасияМаксимова'=>
+				array(
+				'arrEN'=>
+					array(
+					'strAlias'		=>'/AMaksimovaMusic',
+					'strTitle'		=>'',
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/'=>	//Defined
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/search'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/getStation'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/getListeners'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/getNews'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/getTest'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/ServerOnline'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/RedirectFromError'	=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/HiFiIntelligentClub.tar.gz'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/HficAssminogZzzuzzZ.mp3'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			'/HficAssminogZzzuzzZ2.mp3'=>
+				array(
+				'arrEN'=>
+					array(
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+
 			),
+		'arrDesign'		=>array(),
 		'arrReality'=>
-		array(
-			'strName'	=>
 			array(
-				'strDefault'	=>'',
+			'strName'	=>
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>100,
 				),//
 			'strStyle'	=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>65,
 				),//
 			'strGenre'	=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>65,
 				),//
 			'strHiFiType'	=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>65,
 				),//
 			'intBitrate'	=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>4,
 				),
 			'strCodec'	=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>16,
 				),
 			'int0Page'	=>
-			array(
-				'strDefault'	=>0,
+				array(
+				'strFallBack'	=>0,
 				'int0MaxLength'	=>6,
 				),
 			'int1OnPage'	=>
-			array(
-				'strDefault'	=>1,
+				array(
+				'int1FallBack'	=>1,
 				'int0MaxLength'	=>3,
 				'int0MaxValue'	=>40,
 				),
-			'int0PlayingStationNum'=>
-			array(
-				'strDefault'	=>0,
+			'int1PlayingStationNum'=>
+				array(
+				'int1FallBack'	=>0,
 				'int0MaxLength'	=>10,
 				),
 			'strPlayingStationStyle'=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>65,
 				),
 			'strPlayingStationId'=>
-			array(
-				'strDefault'	=>'',
+				array(
+				'strFallBack'	=>'',
 				'int0MaxLength'	=>150,
-				)
-			)
-		
+				),
+			'strStationID'=>
+				array(
+				'strFallBack'	=>'',
+				'int0MaxLength'	=>150,
+				),
+			),
+		'arrObjects'=>
+			array(
+			'arrFallBack'=>
+				array(
+				'int0MaxLengthInt'	=>10,
+				'int0MaxLengthStr'	=>150,
+				'strTemplate'		=>'',
+				'strEN'			=>'',
+				'int0MaxValue'		=>40,
+				),
+			),
+		'arrFallBack'=>
+			array(
+			'arrEventData'=>
+				array(
+				'arrEN'=>
+					array(
+					'strAlias'		=>false,
+					'strTitle'		=>'Title',
+					),
+				'arrRU'=>
+					array(
+					'strAlias'		=>false,
+					'strTitle'		=>'Заголовок',
+					),
+				),
+			'arrEventTestConditions'=>
+				array(
+				'arrEventName'=>
+					array(
+					'int0MaxLength'			=>28,
+					),
+				'arrEventPage'=>
+					array(
+					'strFindTextToMarkExist' 	=>'HIC',
+					),
+				),
+			'arrEventsOnErrors'=>
+				array(
+				'arrEventName'		=>
+					array(
+					'strChangeLocation'		=>'/',
+					'strPriority'			=>'Urgent',
+					),
+				'arrEventPage'		=>
+					array(
+					'strReport'			=>'Can not open event page: arrEventName',
+					'strPriority'			=>'Urgent',
+					),
+				),
+			),
 		);
 	return $arrO;
 	}
@@ -436,26 +582,26 @@ function strGetDomainZone()
 		}
 	return $strDomain;
 	}
-function strGetDefaultLanguage()
+function strGetFallBackLanguage()
 	{
 	$strZone	=strGetDomainLang();
 	if($strZone=='ru')
 		{
-		$strDefaultLang='ru';
+		$strFallBackLang='RU';
 		}
 	elseif($strZone=='onion')
 		{
-		$strDefaultLang='en';
+		$strFallBackLang='EN';
 		}
 	elseif($strZone=='com')
 		{
-		$strDefaultLang='en';
+		$strFallBackLang='EN';
 		}
 	else
 		{
-		$strDefaultLang='en';
+		$strFallBackLang='EN';
 		}
-	return strtoupper($strDefaultLang);
+	return $strFallBackLang;
 	}
 function strGetServerName()
 	{
@@ -575,7 +721,7 @@ function фЖанрОтСлушателя($мВозможныеЖанры, $_с�
 	return $ф;
 	}
 function фДубль($_м_мСтанция, $_мСтанция, $_strGenre) // ifDoubles - will compare all genres of station and station name. 
-	{//If equal - will be listed as different bitrate of the parent station. Default is higher bitrate.
+	{//If equal - will be listed as different bitrate of the parent station. FallBack is higher bitrate.
 	// Если название и жанры у станций одинаковы, значит станции одинаковы и будут отображаться, 
 	//как разные битрейты станции с таким-же названием.
 	$ф=FALSE;
@@ -745,7 +891,7 @@ function сДляСравнения($с_Вход)
 		//My figure prefere the first one.  Hfic.Samin. 2020
 	return strtolower($с_Вход);
 	}
-function cФразыСтиль_ИсправитьНаписание($_сВход) //Для предворительной обработки или пользовательского ввода, не для вывода в реальном времени кешированного каталога!
+function cФразыЖанр_ИсправитьНаписание($_сВход) //Для предворительной обработки или пользовательского ввода, не для вывода в реальном времени кешированного каталога!
 	{
 	$мИсправить	=
 		//Исправить	Исправлено
@@ -758,6 +904,7 @@ function cФразыСтиль_ИсправитьНаписание($_сВход
 		"d&b"			=>'Drum and Bass',
 		'drum and bas'		=>'Drum and Bass',
 		'r@b'			=>'R&B',
+		"r'nb"			=>"R'n'B",
 		'70-80-90'		=>'70x 80x 90x',
 		'60-70-80-90-20хх'	=>'60x 70x 80x 90x 20хх',
 		'2000-x'		=>'2000x',
@@ -824,11 +971,9 @@ function мФразы_ИзвлечьИзвестную($_сВход)
 		);
 	foreach($мИзвестные as $сИзвестная)
 		{
-		if(
-			strpos(mb_strtolower($_сВход), mb_strtolower($сИзвестная))!==FALSE
-			)
+		if(strpos(mb_strtolower($_сВход), mb_strtolower($сИзвестная))!==FALSE)
 			{
-			$_сВход		=str_replace($сИзвестная, '', $_сВход);
+			$_сВход			=str_replace($сИзвестная, '', $_сВход);
 			$мФраза['сЧист']	=$_сВход;
 			$мФраза['мФразы'][]	=$сИзвестная;
 			}
@@ -836,9 +981,8 @@ function мФразы_ИзвлечьИзвестную($_сВход)
 	if(strpos(mb_strtolower($мФраза['сЧист']), 'and')!==FALSE)
 		{
 		_Report('And^ '.$мФраза['сЧист']);
-		$мФраза['сЧист']	=str_replace(array('and','And','AND'), '', $мФраза['сЧист']);
+		//$мФраза['сЧист']	=str_replace(array('and','And','AND'), '', $мФраза['сЧист']);
 		}
-	
 	return $мФраза;
 	}
 function мСобратьФразы($_сВход, $_сБолМал='НеТрог') //'Бол'/'Мал'/'НеТрог'/'МалДиректор'
@@ -850,11 +994,13 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 		{
 		return $мФраза;
 		}
-	$_сВход		=cФразыСтиль_ИсправитьНаписание($_сВход);
+	$//_сВход		=cФразыСтиль_ИсправитьНаписание($_сВход);
+	$_сВход		=cФразыЖанр_ИсправитьНаписание($_сВход);
 	$мВход		=мФразы_ИзвлечьИзвестную($_сВход);
+				    	   unset($_сВход);
 	$сВход		=$мВход['сЧист'];
-	unset($_сВход);
-	$сВход		=$сВход.' ';
+
+	//$сВход		=$сВход.' ';
 	$мФраза		=$мВход['мФразы'];
 		   unset($мВход);
 	$ч1Длинна	=strlen($сВход);
@@ -862,9 +1008,15 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 
 	for($ч0Шаг=0;$ч0Шаг<$ч1Длинна;$ч0Шаг++)
 		{
-		$сСлово.=$сВход[$ч0Шаг];
-
-		if($ч0Шаг!=0&&($сВход[$ч0Шаг]==" "||$сВход[$ч0Шаг]=="."))
+		$сСлово		.=$сВход[$ч0Шаг];
+		if(
+		($ч0Шаг!=0)&&
+			(	
+			($сВход[$ч0Шаг]==" ")||
+			($сВход[$ч0Шаг]==".")||
+			($ч0Шаг==$ч0Длинна)
+			)
+		)
 			{
 			$сСлово		=substr($сСлово,0,-1);
 			if(фУникальный($мСлово, $сСлово)!==TRUE)
@@ -892,7 +1044,6 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 			$сСлово		='';
 			}
 		}
-	
 	/*echo'<pre>';
 	print_r($мСлово);
 	echo'</pre>';*/
@@ -900,7 +1051,7 @@ function мСобратьФразы($_сВход, $_сБолМал='НеТрог
 		{
 		$мСлово[]=$_сВход;
 		}*/
-	$мФраза=$мСлово;
+	$мФраза		=$мСлово;
 	//28 august 2020 Hfic Samin simplified solution. Will be beter next time. 
 	//I doo my fast, as fast as possible. Extra fast. Extra thrust. 
 	//Trust no one. Dj will save my soul today for vacancies. I hope it will....  :) 
@@ -926,7 +1077,13 @@ function мСобратьO2o($_сВход) // Слово
 		$сСлово.=$_сВход[$ч0Шаг];
 		//echo $ч0Шаг;
 		//echo '<br>';
-		if($ч0Шаг!=0&&($_сВход[$ч0Шаг]=="_"||$_сВход[$ч0Шаг]=="."))
+		if(
+		$ч0Шаг!=0&&
+			(
+			$_сВход[$ч0Шаг]=="_"||
+			$_сВход[$ч0Шаг]=="."
+			)
+		)
 			{
 			$сСлово		=substr($сСлово,0,-1);
 			$мСлово[]	=$сСлово;
@@ -1265,6 +1422,7 @@ function rmLb($_str)
 //
 //
 //
+
 function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearName=false, $strPage=0)
 	{
 	$str;
@@ -1324,6 +1482,10 @@ function arrEventLink($_arrReality, $_strGroove, $_strGrooveData='', $_bIzClearN
 		//echo $arr['onClick'];
 	return $arr;
 	}
+function strEventLink($arr)
+	{
+	return ' '.$arr['strHref'].' '.$arr['strOnClick'].' ';
+	}
 //
 //	Управляющий сигнал
 //
@@ -1353,9 +1515,9 @@ function strQuery($_strEvent, $_strRequest)
 	$strIncomeName		=$_strIncomeName;
 			   unset($_strIncomeName);
 	$bHasAction	=false;
-	$arrDefaultIncomeParams	=arrAllEventIncomeParametrsDefault();
+	$arrFallBackIncomeParams	=arrAllEventIncomeParametrsFallBack();
 
-	foreach($arrDefaultIncomeParams['arrEvent'] as $strExistName)
+	foreach($arrFallBackIncomeParams['arrEvent'] as $strExistName)
 		{
 		if($strIncomeName==$strExistName)
 			{
@@ -1370,17 +1532,17 @@ function strQuery($_strEvent, $_strRequest)
 	}*/
 function arrGetEventSetter()
 /*!0!*/	{
-/*!1!*/	$arrEvent			=array();
-/*!2!*/	$arrEvent['strEvent']		='';
-/*!3!*/	$arrEvent['arrReality']		=array();
+/*!1!*/	$arrEvent		=array();
+/*!2!*/	$arrEvent['strEvent']	='';
+/*!3!*/	$arrEvent['arrReality']	=array();
 /*!4!*/
-/*!5!*/	$strRequest			=strGetRequest();
-/*13+*/	$arrEvent			=arrRestrictAndReportActionAndParametrs(
-						array(
-							'strEvent'	=>сДоСимвола($strRequest, '?'),
-							'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
-						)
-					);
+/*!5!*/	$strRequest		=strGetRequest();
+/*13+*/	$arrEvent		=arrRestrictAndReportActionAndParametrs(
+					array(
+						'strEvent'	=>urldecode(сДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
+						'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
+					)
+				);
 //	echo '<pre>';
 //	print_r($arrEvent);
 //	echo '</pre>';
@@ -1408,11 +1570,80 @@ function arrEventParams2Array($_strQuery)
 
 function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
+	/*	
+		array(
+		'arrEvent'=>
+			array(
+			'/АнастасияМаксимова'=>
+				array(
+				'arrEN'=>
+					array(
+					'strAlias'		=>'/AMaksimovaMusic',
+					'strTitle'		=>'',
+					),
+				'arrRU'=>
+					array(
+					),
+				),
+			),
+		'arrObjects'=>
+			array(
+			'arrFallBack'=>
+				array(
+				'int0MaxLengthInt'	=>10,
+				'int0MaxLengthStr'	=>150,
+				'strTemplate'		=>'',
+				'strEN'			=>'',
+				'int0MaxValue'		=>40,
+				),
+			),
+		'arrFallBack'=>
+			array(
+			'arrEventData'=>
+				array(
+				'arrEN'=>
+					array(
+					'strAlias'		=>false,
+					'strTitle'		=>'Title',
+					),
+				'arrRU'=>
+					array(
+					'strAlias'		=>false,
+					'strTitle'		=>'Заголовок',
+					),
+				),
+			'arrEventTestConditions'=>
+				array(
+					'arrEventName'=>
+						array(
+						'int0MaxLength'			=>28,
+						),
+					'arrEventPage'
+						array(
+						'strFindTextToMarkExist' 	=>'HIC',
+						),
+					
+				),
+			'arrEventsOnErrors'=>
+				array(
+				'arrEventName'		=>
+					array(
+					'strChangeLocation'		=>'/',
+					'strPriority'			=>'Urgent',
+					),
+				'arrEventPage'		=>
+					array(
+					'strReport'			=>'Can not open event page: arrEventName',
+					'strPriority'			=>'Urgent',
+					),
+				),
+			),
+	*/
 
 	$arrResult['strEvent']		='';
 	$arrResult['arrReality']	=array();
-	$arrDefault			=arrAllEventIncomeParametrsDefault();
-
+	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
+	//$arrFallBack['arrFallBack']
 	if(is_array($_arrIncome))
 		{
 		$arrIncome		=$_arrIncome;
@@ -1426,56 +1657,72 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				   unset($_strReplaceName);
 	$strReplaceValue		=$_strReplaceValue;
 				   unset($_strReplaceValue);
-	//print_r($arrDefault['arrEvent']);
+	//print_r($arrFallBack['arrEvent']);
 	$bIzInAllowedActions	=FALSE;
-	foreach($arrDefault['arrEvent']['arrDesign'] as $strAllowedActionName=>$arrEventTemplateParams)
+	foreach($arrFallBack['arrEvent'] as $strAllowedActionName=>$arrEventElements)
 		{
-		if(strtolower($arrIncome['strEvent'])==strtolower($strAllowedActionName))
+		if(mb_strtolower($arrIncome['strEvent'])==mb_strtolower($strAllowedActionName))
 			{
 			$bIzInAllowedActions	=TRUE;
-			$arrResult['strEvent']	=$strAllowedActionName;
 			}
+		elseif(isset($arrEventElements['arrEN']['strAlias'])&& (mb_strtolower($arrEventElements['arrEN']['strAlias'])==mb_strtolower($strAllowedActionName)))
+			{
+			$bIzInAllowedActions	=TRUE;
+			}
+		elseif(isset($arrEventElements['arrRU']['strAlias'])&& (mb_strtolower($arrEventElements['arrRU']['strAlias'])==mb_strtolower($strAllowedActionName)))
+			{
+			$bIzInAllowedActions	=TRUE;
+			}
+		else
+			{
+			$bIzInAllowedActions	=FALSE;
+			}
+		$arrResult['strEvent']	=$strAllowedActionName;
+		}
+	if(strlen($strAllowedActionName)>$arrFallBack['arrFallBack']['arrEventTestConditions']['arrEventName']['int0MaxLength'])
+		{
+		_Report($arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strReport'].': '.$strAllowedActionName));
 		}
 	if($bIzInAllowedActions===FALSE)
 		{
-		$arrResult['strEvent']	=$arrDefault['arrEvent']['strDefault'];
+		$arrResult['strEvent']	=$arrFallBack['arrEvent']['strFallBack'];
 		_Report($arrResult['strEvent'].' is not in allowed list');
 
-		//echo 'Location: http://192.168.1.198'.$arrDefault['arrEvent']['strDefault'];
+		//echo 'Location: http://192.168.1.198'.$arrFallBack['arrEvent']['strFallBack'];
 		//exit;
-		header('Location: http://HiFiIntelligentClub.'.strGetDomainZone().$arrDefault['arrEvent']['strDefault']);
+		header('Location: http://HiFiIntelligentClub.'.strGetDomainZone().$arrFallBack['arrEvent']['strFallBack']);
 		
 		}
-	foreach($arrDefault['arrReality'] as $strDefaultName=>$arrDefaultParams)
+	foreach($arrFallBack['arrReality'] as $strFallBackName=>$arrFallBackParams)
 		{
-		$arrResult['arrReality'][$strDefaultName]	=$arrDefaultParams['strDefault'];
-		if(isset($arrDefaultParams['int0MaxValue']))
+		$arrResult['arrReality'][$strFallBackName]	=$arrFallBackParams['strFallBack'];
+		if(isset($arrFallBackParams['int0MaxValue']))
 			{
-			if($arrDefaultParams['int0MaxValue']<=$arrResult['arrReality'][$strDefaultName])
+			if($arrFallBackParams['int0MaxValue']<=$arrResult['arrReality'][$strFallBackName])
 				{
-				$arrResult['arrReality'][$strDefaultName]	=$arrDefaultParams['int0MaxValue'];
+				$arrResult['arrReality'][$strFallBackName]	=$arrFallBackParams['int0MaxValue'];
 				}
 			}
 		foreach($arrIncome['arrReality'] as $strIncomeName=>$strIncomeValue)
 			{
-			if($strDefaultName==$strIncomeName)
+			if($strFallBackName==$strIncomeName)
 				{
-				if(strlen($arrIncome['arrReality'][$strIncomeName])>$arrDefault['arrReality'][$strDefaultName]['int0MaxLength'])
+				if(strlen($arrIncome['arrReality'][$strIncomeName])>$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength'])
 					{
-					 _Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrDefault['arrReality'][$strDefaultName]['int0MaxLength']);
-					$arrIncome['arrReality'][$strIncomeName]		=substr($arrIncome['arrReality'][$strIncomeName],0, $arrDefault['arrReality'][$strDefaultName]['int0MaxLength']);
+					 _Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
+					$arrIncome['arrReality'][$strIncomeName]		=substr($arrIncome['arrReality'][$strIncomeName],0, $arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
 					}
-				if(isset($arrDefault['arrReality'][$strDefaultName]['int0MaxValue']))
+				if(isset($arrFallBack['arrReality'][$strFallBackName]['int0MaxValue']))
 					{
-					if($strIncomeValue>=$arrDefault['arrReality'][$strDefaultName]['int0MaxValue'])
+					if($strIncomeValue>=$arrFallBack['arrReality'][$strFallBackName]['int0MaxValue'])
 						{
-						_Report('$strIncomeValue>=$arrDefault[arrReality][$strDefaultName][int0MaxValue] $strIncomeValue: '.$strIncomeValue.'>='.$arrDefault['arrReality'][$strDefaultName]['int0MaxValue']);
-						$strIncomeValue		=$arrDefault['arrReality'][$strDefaultName]['int0MaxValue'];
+						_Report('$strIncomeValue>=$arrFallBack[arrReality][$strFallBackName][int0MaxValue] $strIncomeValue: '.$strIncomeValue.'>='.$arrFallBack['arrReality'][$strFallBackName]['int0MaxValue']);
+						$strIncomeValue		=$arrFallBack['arrReality'][$strFallBackName]['int0MaxValue'];
 						}
 					else
 						{
-						//$strIncomeValue		=$arrDefault['arrReality'][$strDefaultName]['maxValue'];
-						//_Report($strIncomeValue.' >'.$arrDefault['arrReality'][$strDefaultName]['maxValue']);
+						//$strIncomeValue		=$arrFallBack['arrReality'][$strFallBackName]['maxValue'];
+						//_Report($strIncomeValue.' >'.$arrFallBack['arrReality'][$strFallBackName]['maxValue']);
 						}
 					}	
 				$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
