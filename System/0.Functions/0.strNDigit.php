@@ -38,6 +38,10 @@
 //
 //
 //[Vv]Event Global
+function bIzFormat()
+	{
+	return true;
+	}
 function _Report($str)
 	{
 	//echo$str;
@@ -261,17 +265,6 @@ function arrAllEventIncomeParametrsFallBack()
 			),
 		'arrObjects'=>
 			array(
-			'arrFallBack'=>
-				array(
-				'int0MaxLengthInt'	=>10,
-				'int0MaxLengthStr'	=>150,
-				'strTemplate'		=>'',
-				'strEN'			=>'',
-				'int0MaxValue'		=>40,
-				),
-			),
-		'arrFallBack'=>
-			array(
 			'arrEventData'=>
 				array(
 				'arrEN'=>
@@ -300,13 +293,15 @@ function arrAllEventIncomeParametrsFallBack()
 				array(
 				'arrEventName'		=>
 					array(
-					'strChangeLocation'		=>'/',
+					'strReport'			=>'Event name is too long.',
 					'strPriority'			=>'Urgent',
+					'strFallBack'			=>'/',
 					),
 				'arrEventPage'		=>
 					array(
 					'strReport'			=>'Can not open event page: arrEventName',
 					'strPriority'			=>'Urgent',
+					'strFallBack'			=>'/',
 					),
 				),
 			),
@@ -1586,18 +1581,21 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 					),
 				),
 			),
-		'arrObjects'=>
+		'arrDesign'		=>array(),
+		'arrReality'=>
 			array(
-			'arrFallBack'=>
+			'strName'	=>
 				array(
-				'int0MaxLengthInt'	=>10,
-				'int0MaxLengthStr'	=>150,
-				'strTemplate'		=>'',
-				'strEN'			=>'',
-				'int0MaxValue'		=>40,
-				),
-			),
-		'arrFallBack'=>
+				'strFallBack'	=>'',
+				'int0MaxLength'	=>100,
+				),//
+			'strStyle'	=>
+				array(
+				'strFallBack'	=>'',
+				'int0MaxLength'	=>65,
+				),//
+			)
+		'arrObjects'=>
 			array(
 			'arrEventData'=>
 				array(
@@ -1628,7 +1626,8 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				array(
 				'arrEventName'		=>
 					array(
-					'strChangeLocation'		=>'/',
+					'strFallBack'			=>'/',
+					'strReport'			=>'EventName is too long',
 					'strPriority'			=>'Urgent',
 					),
 				'arrEventPage'		=>
@@ -1658,7 +1657,7 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 	$strReplaceValue		=$_strReplaceValue;
 				   unset($_strReplaceValue);
 	//print_r($arrFallBack['arrEvent']);
-	$bIzInAllowedActions	=FALSE;
+	$bIzInAllowedActions		=FALSE;
 	foreach($arrFallBack['arrEvent'] as $strAllowedActionName=>$arrEventElements)
 		{
 		if(mb_strtolower($arrIncome['strEvent'])==mb_strtolower($strAllowedActionName))
@@ -1681,17 +1680,14 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 		}
 	if(strlen($strAllowedActionName)>$arrFallBack['arrFallBack']['arrEventTestConditions']['arrEventName']['int0MaxLength'])
 		{
-		_Report($arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strReport'].': '.$strAllowedActionName));
+						_Report($arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strReport'].': '.$strAllowedActionName);
+		$bIzInAllowedActions		=FALSE;
 		}
 	if($bIzInAllowedActions===FALSE)
 		{
-		$arrResult['strEvent']	=$arrFallBack['arrEvent']['strFallBack'];
-		_Report($arrResult['strEvent'].' is not in allowed list');
-
-		//echo 'Location: http://192.168.1.198'.$arrFallBack['arrEvent']['strFallBack'];
-		//exit;
-		header('Location: http://HiFiIntelligentClub.'.strGetDomainZone().$arrFallBack['arrEvent']['strFallBack']);
-		
+		$arrResult['strEvent']		=$arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strFallBack'];
+						_Report($arrIncome['strEvent'].' '.$arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strReport']);
+						header('Location: http://HiFiIntelligentClub.'.strGetDomainZone().$arrResult['strEvent']);
 		}
 	foreach($arrFallBack['arrReality'] as $strFallBackName=>$arrFallBackParams)
 		{
@@ -1709,7 +1705,7 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				{
 				if(strlen($arrIncome['arrReality'][$strIncomeName])>$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength'])
 					{
-					 _Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
+												_Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
 					$arrIncome['arrReality'][$strIncomeName]		=substr($arrIncome['arrReality'][$strIncomeName],0, $arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
 					}
 				if(isset($arrFallBack['arrReality'][$strFallBackName]['int0MaxValue']))
@@ -1850,7 +1846,7 @@ function strParType($_strParName)
 	}
 function strArrayRec2JS($_arrReality, $_strLayerName='', $bIzFormat=false, $strFormatLR='')
 	{
-	$bIzFormat	=false;
+	$bIzFormat	=bIzFormat();
 	$strFormatLR	='<br/>';
 	$strLayerName	=$_strLayerName;
 		   unset($_strLayerName);
