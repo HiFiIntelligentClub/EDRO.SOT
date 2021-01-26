@@ -38,9 +38,13 @@
 //
 //
 //[Vv]Event Global
+function strDomain()
+	{
+	return 'https://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion/';
+	}
 function bIzFormat()
 	{
-	return true;
+	return false;
 	}
 function _Report($str)
 	{
@@ -56,256 +60,50 @@ function сКлючь()
 function arrAllEventIncomeParametrsFallBack()
 	{
 	$arrO	=  //[arrAction]['arrDesign']['strEvent']
-		array(
-		'arrEvent'=>
-			array(
-			'/robots.txt'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/Hfic_Samin.jpg'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/favicon.ico'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/АнастасияМаксимова'=>
-				array(
-				'arrEN'=>
-					array(
-					'strAlias'		=>'/AMaksimovaMusic',
-					'strTitle'		=>'',
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/'=>	//Defined
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/search'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/getStation'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/getListeners'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/getNews'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/getTest'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/ServerOnline'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/RedirectFromError'	=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/HiFiIntelligentClub.tar.gz'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/HficAssminogZzzuzzZ.mp3'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			'/HficAssminogZzzuzzZ2.mp3'=>
-				array(
-				'arrEN'=>
-					array(
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-
-			),
-		'arrDesign'		=>array(),
-		'arrReality'=>
-			array(
-			'strName'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>100,
-				),//
-			'strStyle'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>65,
-				),//
-			'strGenre'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>65,
-				),//
-			'strHiFiType'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>65,
-				),//
-			'intBitrate'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>4,
-				),
-			'strCodec'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>16,
-				),
-			'int0Page'	=>
-				array(
-				'strFallBack'	=>0,
-				'int0MaxLength'	=>6,
-				),
-			'int1OnPage'	=>
-				array(
-				'int1FallBack'	=>1,
-				'int0MaxLength'	=>3,
-				'int0MaxValue'	=>40,
-				),
-			'int1PlayingStationNum'=>
-				array(
-				'int1FallBack'	=>0,
-				'int0MaxLength'	=>10,
-				),
-			'strPlayingStationStyle'=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>65,
-				),
-			'strPlayingStationId'=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>150,
-				),
-			'strStationID'=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>150,
-				),
-			),
-		'arrObjects'=>
-			array(
-			'arrEventData'=>
-				array(
-				'arrEN'=>
-					array(
-					'strAlias'		=>false,
-					'strTitle'		=>'Title',
-					),
-				'arrRU'=>
-					array(
-					'strAlias'		=>false,
-					'strTitle'		=>'Заголовок',
-					),
-				),
-			'arrEventTestConditions'=>
-				array(
-				'arrEventName'=>
-					array(
-					'int0MaxLength'			=>28,
-					),
-				'arrEventPage'=>
-					array(
-					'strFindTextToMarkExist' 	=>'HIC',
-					),
-				),
-			'arrEventsOnErrors'=>
-				array(
-				'arrEventName'		=>
-					array(
-					'strReport'			=>'Event name is too long.',
-					'strPriority'			=>'Urgent',
-					'strFallBack'			=>'/',
-					),
-				'arrEventPage'		=>
-					array(
-					'strReport'			=>'Can not open event page: arrEventName',
-					'strPriority'			=>'Urgent',
-					'strFallBack'			=>'/',
-					),
-				),
-			),
-		);
+		array('arrEvent'=>array(
+			'/robots.txt'	=>array('arrEN'		=>array(),
+						'arrRU'		=>array(),),
+			'/Hfic_Samin.jpg'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/favicon.ico'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/АнастасияМаксимова'	=>array('arrEN'		=>array('strAlias'		=>'/AMaksimovaMusic',
+										'strTitle'		=>''),
+										'arrRU'		=>array(),),
+			'/'			=>array('arrEN'		=>array(),	'arrRU'		=>array().),
+			'/search'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/getStation'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/getListeners'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/getNews'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/getTest'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/ServerOnline'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+			'/RedirectFromError'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+		'/HiFiIntelligentClub.tar.gz'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+		'/HficAssminogZzzuzzZ.mp3'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
+		'/HficAssminogZzzuzzZ2.mp3'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),),
+		'arrDesign'			=>array(),
+		'arrReality'			=>array('strName'	=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
+							'strStyle'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+							'strGenre'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+							'strHiFiType'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+							'intBitrate'	=>array('strFallBack'	=>'','int0MaxLength'	=>4,),'strCodec'	=>array('strFallBack'	=>'','int0MaxLength'	=>16,),
+							'int0Page'	=>array('strFallBack'	=>0, 'int0MaxLength'	=>6,),
+							'int1OnPage'	=>array('int1FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
+						'int1PlayingStationNum'	=>array('int1FallBack'	=>0, 'int0MaxLength'	=>10,),
+						'strPlayingStationStyle'=>array('strFallBack'	=>'','int0MaxLength'	=>65,),
+						'strPlayingStationId'	=>array('strFallBack'	=>'','int0MaxLength'	=>150,),
+						'strStationID'		=>array('strFallBack'	=>'','int0MaxLength'	=>150,),),
+						'arrObjects'		=>array('arrEventData'	=>array('arrEN'		=>array('strAlias'	=>false, 'strTitle'	=>'Title',),
+						'arrRU'			=>array('strAlias'	=>false,
+										'strTitle'	=>'Заголовок',),),
+						'arrEventTestConditions'=>array('arrEventName'	=>array('int0MaxLength'	=>28,),
+						'arrEventPage'		=>array('strFindTextToMarkExist' 	=>'HIC',),),
+						'arrEventsOnErrors'	=>array('arrEventName'			
+									=>array('strReport'		=>'Event name is too long.',
+										'strPriority'		=>'Urgent',
+										'strFallBack'		=>'/',),
+						'arrEventPage'		=>array('strReport'		=>'Can not open event page: arrEventName',
+										'strPriority'		=>'Urgent',
+										'strFallBack'		=>'/',),),),
+			);
 	return $arrO;
 	}
 function strMyJson($arr)
@@ -982,6 +780,8 @@ function мФразы_ИзвлечьИзвестную($_сВход)
 	}
 function мСобратьФразы($_сВход, $_сБолМал='НеТрог') //'Бол'/'Мал'/'НеТрог'/'МалДиректор'
 	{
+	//echo $_сВход;
+	//exit;
 	$мСлово		=array();
 	$мФраза		=array();
 	$сСлово		='';
@@ -1331,6 +1131,7 @@ function сКодировать($_сСтрокаДляКодирования, $_
 	$чТекущаяПозицияКлюча		=0;
 	for($чШаг=0;$чШаг<$чДлинаСтрокиДляКодирования;$чШаг++)
 		{
+		//echo '$сДляКодирования[$чШаг]^$сКлючь[$чТекущаяПозицияКлюча]'.$сДляКодирования[$чШаг].'-'.$сКлючь[$чТекущаяПозицияКлюча]."\n";
 		$сПослеКодирования.=$сДляКодирования[$чШаг]^$сКлючь[$чТекущаяПозицияКлюча];
 		if($чТекущаяПозицияКлюча==$чДлинаКлюча-1)
 			{
@@ -1351,7 +1152,54 @@ function сКодировать($_сСтрокаДляКодирования, $_
 		}
 	return $сПослеКодирования;
 	}
+function сЕХЕ($_сСтрокаДляКодирования)
+	{
+	$сДляКодирования		=(string)$_сСтрокаДляКодирования;
+	$сКлючь				=(string)сКлючь();
+	$ч1ДлинаКлюча			=strlen($сКлючь);
+	$ч1ДлинаСтрокиДляКодирования	=strlen($сДляКодирования);
+	$ч0ТекущаяПозицияКлюча		=0;
+	for($ч0Шаг=0;$ч0Шаг<$ч1ДлинаСтрокиДляКодирования;$ч0Шаг++)
+		{
+		//$сКод	.=($сДляКодирования[$ч0Шаг]^$сКлючь[$ч0ТекущаяПозицияКлюча]).$сКлючь[$ч0ТекущаяПозицияКлюча];
+		$сКод	.=$сДляКодирования[$ч0Шаг].$сКлючь[$ч0ТекущаяПозицияКлюча];
+		if($ч0ТекущаяПозицияКлюча==($ч1ДлинаСтрокиДляКодирования-1))
+			{
+			$ч0ТекущаяПозицияКлюча	=0;
+			}
+		else
+			{
+			
+			$ч0ТекущаяПозицияКлюча++;
+			}
+		}
+	return	base64_encode($сКод);
+	}
+function сЕХЕ2($_сСтрокаДляКодирования)
+	{
+	$сДляКодирования		=(string)base64_decode($_сСтрокаДляКодирования);
+	//$сКлючь				=(string)сКлючь();
+	$сДействие			=$_сДействие;
+	$ч1ДлинаСтрокиДляКодирования	=strlen($сДляКодирования);
+	$сКод				='';
+	$odd				=0;
+	for($ч0Шаг=0;$ч0Шаг<$ч1ДлинаСтрокиДляКодирования;$ч0Шаг++)
+		{
+		if($odd==0)
+			{
+			//$сКод	.=$сДляКодирования[$ч0Шаг]^$сДляКодирования[($ч0Шаг+1)];
+			$сКод	.=$сДляКодирования[$ч0Шаг];
+			$odd++;
+			}
+		else
+			{
+			$odd=0;
+			}
+		
 
+		}
+	return	$сКод;
+	}
 function strEncode2($_str)
 	{//Testing with JSON with pleasure. Is not used often, but I using it sometimes,
 	//instead of Ruslan Mihailovich Pegov (strLength/3, 3 bytes, [UTF-16?]) rule.
@@ -1494,7 +1342,6 @@ function strQuery($_strEvent, $_strRequest)
 	$strQurey=substr($_strRequest,$intEventLen);
 	return substr($strQurey,1);
 	}
-
 /*!*/function strSafeUsers($_strRequest)
 /*!*//*+1+*/	{
 /*!*//*+2+*/	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
@@ -1538,11 +1385,12 @@ function arrGetEventSetter()
 						'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
 					)
 				);
-//	echo '<pre>';
-//	print_r($arrEvent);
-//	echo '</pre>';
+	//echo '<pre>';
+	//print_r($arrEvent);
+	//echo '</pre>';
+	//exit;
 /*14!*/return $arrEvent;
-/*15!*/}
+/*15!*/	}
 function arrEventParams2Array($_strQuery)
 	{
 	$arrResult	=array();
@@ -1638,7 +1486,6 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				),
 			),
 	*/
-
 	$arrResult['strEvent']		='';
 	$arrResult['arrReality']	=array();
 	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
@@ -1678,16 +1525,17 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 			}
 		$arrResult['strEvent']	=$strAllowedActionName;
 		}
-	if(strlen($strAllowedActionName)>$arrFallBack['arrFallBack']['arrEventTestConditions']['arrEventName']['int0MaxLength'])
+	if(strlen($strAllowedActionName)>$arrFallBack['arrObjects']['arrEventTestConditions']['arrEventName']['int0MaxLength'])
 		{
-						_Report($arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strReport'].': '.$strAllowedActionName);
+						_Report($arrFallBack['arrObjects']['arrEventsOnErrors']['arrEventName']['strReport'].': '.$strAllowedActionName);
 		$bIzInAllowedActions		=FALSE;
 		}
 	if($bIzInAllowedActions===FALSE)
 		{
-		$arrResult['strEvent']		=$arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strFallBack'];
-						_Report($arrIncome['strEvent'].' '.$arrFallBack['arrFallBack']['arrEventsOnErrors']['arrEventName']['strReport']);
-						header('Location: http://HiFiIntelligentClub.'.strGetDomainZone().$arrResult['strEvent']);
+		$arrResult['strEvent']		=$arrFallBack['arrObjects']['arrEventsOnErrors']['arrEventName']['strFallBack'];
+						_Report($arrIncome['strEvent'].' '.$arrFallBack['arrObjects']['arrEventsOnErrors']['arrEventName']['strReport']);
+						//header('Location: http://'.strDomain().'.'.strGetDomainZone().$arrResult['strEvent']);
+						//header('Location: http://'.strDomain().$arrResult['strEvent']);
 		}
 	foreach($arrFallBack['arrReality'] as $strFallBackName=>$arrFallBackParams)
 		{
@@ -1906,7 +1754,7 @@ function strArray2JS($_arrReality, $_strArrName='')
 	}
 function _DropTheSessionDust()
 	{
-	session_start();
+	//session_start();
 	$strPlayingStationId	='';
 	if(isset($_SESSION)&&isset($_SESSION['strListener'])&&(!empty($_SESSION['strListener'])))
 	/*+1+*/	{
