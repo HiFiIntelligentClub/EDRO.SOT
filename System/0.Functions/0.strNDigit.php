@@ -67,7 +67,7 @@ function arrAllEventIncomeParametrsFallBack()
 			'/favicon.ico'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
 			'/АнастасияМаксимова'	=>array('arrEN'	=>array('strAlias'=>'/AMaksimovaMusic',		'strTitle'=>''),
 										'arrRU'	=>array(),),
-			'/'			=>array('arrEN'	=>array(),	'arrRU'	=>array().),
+			'/'			=>array('arrEN'	=>array(),	'arrRU'	=>array()),
 			'/search'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
 			'/getStation'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
 			'/getListeners'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
@@ -107,11 +107,7 @@ function arrAllEventIncomeParametrsFallBack()
 			);
 	return $arrO;
 	}
-function strMyJson($_arrJson)
-	{
-	return substr(strMyJsonRec($_arrJson),0,-2);
-	}
-function strJsonRec($_arrJson)
+function strMyJsonRec($_arrJson)
 	{
 	
 	if(is_array($_arrJson))
@@ -134,6 +130,11 @@ function strJsonRec($_arrJson)
 		}
 	return $str;
 	}
+function strMyJson($_arrJson)
+	{
+	return substr(strMyJsonRec($_arrJson),0,-2);
+	}
+
 function сЗаменаСлэшУЕ($_сВход)
 	{
 	//$сВход=str_replace('\u043e31\u043e\u043e28\u043e\u043e28\u043e','://', $_сВход); //Долбанная билиберда!
