@@ -40,8 +40,15 @@
 //[Vv]Event Global
 function strDomain()
 	{
-	return 'https://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion/';
+	return '192.168.1.198';
+	//return 'https://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion/';
+	//return 'tcp://hifiintelligentclub.ru:80';
+	//return 'tcp://hifiintelligentclub.com:80';
 	}
+/*function strDomain()
+	{
+	return 'https://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion/';
+	}*/
 function bIzFormat()
 	{
 	return false;
@@ -60,33 +67,15 @@ function сКлючь()
 function arrAllEventIncomeParametrsFallBack()
 	{
 	$arrO	=  //[arrAction]['arrDesign']['strEvent']
-		array('arrEvent'=>array(
-			'/robots.txt'	=>array('arrEN'		=>array(),
-						'arrRU'		=>array(),),
-			'/Hfic_Samin.jpg'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/favicon.ico'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/АнастасияМаксимова'	=>array('arrEN'	=>array('strAlias'=>'/AMaksimovaMusic',		'strTitle'=>''),
-										'arrRU'	=>array(),),
-			'/'			=>array('arrEN'	=>array(),	'arrRU'	=>array()),
-			'/search'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/getStation'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/getListeners'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/getNews'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/getTest'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/ServerOnline'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-			'/RedirectFromError'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-		'/HiFiIntelligentClub.tar.gz'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-		'/HficAssminogZzzuzzZ.mp3'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
-		'/HficAssminogZzzuzzZ2.mp3'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),),
-		'arrDesign'			=>array(),
-		'arrReality'			=>array(
-			'strName'	=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
-			'strStyle'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-			'strGenre'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-			'strHiFiType'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-			'intBitrate'	=>array('strFallBack'	=>'','int0MaxLength'	=>4,),'strCodec'	=>array('strFallBack'	=>'','int0MaxLength'	=>16,),
-			'int0Page'	=>array('strFallBack'	=>0, 'int0MaxLength'	=>6,),
-			'int1OnPage'	=>array('int1FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
+		array(
+		'arrReality'=>array(
+			'strName'		=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
+			'strStyle'		=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+			'strGenre'		=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+			'strHiFiType'		=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+			'intBitrate'		=>array('strFallBack'	=>'','int0MaxLength'	=>4,),'strCodec'	=>array('strFallBack'	=>'','int0MaxLength'	=>16,),
+			'int0Page'		=>array('strFallBack'	=>0, 'int0MaxLength'	=>6,),
+			'int1OnPage'		=>array('int1FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
 			'int1PlayingStationNum'	=>array('int1FallBack'	=>0, 'int0MaxLength'	=>10,),
 			'strPlayingStationStyle'=>array('strFallBack'	=>'','int0MaxLength'	=>65,),
 			'strPlayingStationId'	=>array('strFallBack'	=>'','int0MaxLength'	=>150,),
