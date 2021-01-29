@@ -79,29 +79,31 @@ function arrAllEventIncomeParametrsFallBack()
 		'/HficAssminogZzzuzzZ.mp3'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
 		'/HficAssminogZzzuzzZ2.mp3'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),),
 		'arrDesign'			=>array(),
-		'arrReality'			=>array('strName'	=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
-							'strStyle'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-							'strGenre'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-							'strHiFiType'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-							'intBitrate'	=>array('strFallBack'	=>'','int0MaxLength'	=>4,),'strCodec'	=>array('strFallBack'	=>'','int0MaxLength'	=>16,),
-							'int0Page'	=>array('strFallBack'	=>0, 'int0MaxLength'	=>6,),
-							'int1OnPage'	=>array('int1FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
-						'int1PlayingStationNum'	=>array('int1FallBack'	=>0, 'int0MaxLength'	=>10,),
-						'strPlayingStationStyle'=>array('strFallBack'	=>'','int0MaxLength'	=>65,),
-						'strPlayingStationId'	=>array('strFallBack'	=>'','int0MaxLength'	=>150,),
-						'strStationID'		=>array('strFallBack'	=>'','int0MaxLength'	=>150,),),
-						'arrObjects'		=>array('arrEventData'	=>array('arrEN'		=>array('strAlias'	=>false, 'strTitle'	=>'Title',),
+		'arrReality'			=>array(
+			'strName'	=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
+			'strStyle'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+			'strGenre'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+			'strHiFiType'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
+			'intBitrate'	=>array('strFallBack'	=>'','int0MaxLength'	=>4,),'strCodec'	=>array('strFallBack'	=>'','int0MaxLength'	=>16,),
+			'int0Page'	=>array('strFallBack'	=>0, 'int0MaxLength'	=>6,),
+			'int1OnPage'	=>array('int1FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
+			'int1PlayingStationNum'	=>array('int1FallBack'	=>0, 'int0MaxLength'	=>10,),
+			'strPlayingStationStyle'=>array('strFallBack'	=>'','int0MaxLength'	=>65,),
+			'strPlayingStationId'	=>array('strFallBack'	=>'','int0MaxLength'	=>150,),
+			'strStationID'		=>array('strFallBack'	=>'','int0MaxLength'	=>150,),),
+		'arrObjects'		=>array(
+			'arrEventData'	=>array('arrEN'		=>array('strAlias'	=>false, 'strTitle'	=>'Title',),
 						'arrRU'			=>array('strAlias'	=>false,
 										'strTitle'	=>'Заголовок',),),
-						'arrEventTestConditions'=>array('arrEventName'	=>array('int0MaxLength'	=>28,),
-						'arrEventPage'		=>array('strFindTextToMarkExist' 	=>'HIC',),),
-						'arrEventsOnErrors'	=>array('arrEventName'			
-									=>array('strReport'		=>'Event name is too long.',
-										'strPriority'		=>'Urgent',
-										'strFallBack'		=>'/',),
-						'arrEventPage'		=>array('strReport'		=>'Can not open event page: arrEventName',
-										'strPriority'		=>'Urgent',
-										'strFallBack'		=>'/',),),),
+			'arrEventTestConditions'=>array('arrEventName'	=>array('int0MaxLength'	=>28,),
+			'arrEventPage'		=>array('strFindTextToMarkExist' 	=>'HIC',),),
+			'arrEventsOnErrors'	=>array('arrEventName'			
+							=>array('strReport'		=>'Event name is too long.',
+								'strPriority'		=>'Urgent',
+								'strFallBack'		=>'/',),
+			'arrEventPage'		=>array('strReport'		=>'Can not open event page: arrEventName',
+							'strPriority'		=>'Urgent',
+							'strFallBack'		=>'/',),),),
 			);
 	return $arrO;
 	}
@@ -117,14 +119,14 @@ function strJsonRec($_arrJson)
 		$str	='{';
 		foreach($_arrJson as $srtName=>$_Value)
 			{
-			$str	.='"'.$srtName.'":';
+			$str	.='"'.сПреобразовать($srtName, "вКоманду").'":';
 			if(is_array($_Value))
 				{
 				$str	.=strMyJsonRec($_arrJson[$srtName]);
 				}
 			else
 				{
-				$str	.='"'.$_Value.'", ';
+				$str	.='"'.сПреобразовать($_Value, "вКоманду").'", ';
 				}
 			}
 		$str	=substr($str,0,-2);
