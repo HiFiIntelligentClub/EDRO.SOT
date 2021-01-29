@@ -63,22 +63,21 @@ function arrAllEventIncomeParametrsFallBack()
 		array('arrEvent'=>array(
 			'/robots.txt'	=>array('arrEN'		=>array(),
 						'arrRU'		=>array(),),
-			'/Hfic_Samin.jpg'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/favicon.ico'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/АнастасияМаксимова'	=>array('arrEN'		=>array('strAlias'		=>'/AMaksimovaMusic',
-										'strTitle'		=>''),
-										'arrRU'		=>array(),),
-			'/'			=>array('arrEN'		=>array(),	'arrRU'		=>array().),
-			'/search'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/getStation'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/getListeners'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/getNews'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/getTest'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/ServerOnline'		=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-			'/RedirectFromError'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-		'/HiFiIntelligentClub.tar.gz'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-		'/HficAssminogZzzuzzZ.mp3'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),
-		'/HficAssminogZzzuzzZ2.mp3'	=>array('arrEN'		=>array(),	'arrRU'		=>array(),),),
+			'/Hfic_Samin.jpg'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/favicon.ico'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/АнастасияМаксимова'	=>array('arrEN'	=>array('strAlias'=>'/AMaksimovaMusic',		'strTitle'=>''),
+										'arrRU'	=>array(),),
+			'/'			=>array('arrEN'	=>array(),	'arrRU'	=>array().),
+			'/search'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/getStation'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/getListeners'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/getNews'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/getTest'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/ServerOnline'		=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+			'/RedirectFromError'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+		'/HiFiIntelligentClub.tar.gz'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+		'/HficAssminogZzzuzzZ.mp3'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),
+		'/HficAssminogZzzuzzZ2.mp3'	=>array('arrEN'	=>array(),	'arrRU'	=>array(),),),
 		'arrDesign'			=>array(),
 		'arrReality'			=>array('strName'	=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
 							'strStyle'	=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
@@ -106,22 +105,31 @@ function arrAllEventIncomeParametrsFallBack()
 			);
 	return $arrO;
 	}
-function strMyJson($arr)
+function strMyJson($_arrJson)
 	{
-	$str	='';
-	$str	='{';
-	//print_r($arr);
-	if(is_array($arr))
+	return substr(strMyJsonRec($_arrJson),0,-2);
+	}
+function strJsonRec($_arrJson)
+	{
+	
+	if(is_array($_arrJson))
 		{
-		foreach($arr as $strName=>$strValue)
+		$str	='{';
+		foreach($_arrJson as $srtName=>$_Value)
 			{
-			$strName	=str_replace('"','',$strName);
-			$strValue	=str_replace('"','',$strValue);
-			$str	.='"'.$strName.'":"'.$strValue.'",';
+			$str	.='"'.$srtName.'":';
+			if(is_array($_Value))
+				{
+				$str	.=strMyJsonRec($_arrJson[$srtName]);
+				}
+			else
+				{
+				$str	.='"'.$_Value.'", ';
+				}
 			}
-		$str	=substr($str,0,-1);
+		$str	=substr($str,0,-2);
+		$str	.='}, ';
 		}
-	$str	.='}';
 	return $str;
 	}
 function сЗаменаСлэшУЕ($_сВход)
@@ -1050,29 +1058,38 @@ function сПреобразовать($_сСтрока, $_сНаправлени
 				"о19о"=> "https://",
 				"о20о"=> "<" ,
 				"о21о"=> ">" ,
+				"о60о"=> "«",
+				"о61о"=> "»", 
 				"о22о"=> "\"",
-				"о23о"=> "'" ,
+				"о28о"=> "/" ,
+				"о29о"=> "\\",
 				"о24о"=> "?" ,
 				"о25о"=> "&" ,
 				"о26о"=> "=" ,
 				"о27о"=> " " ,
-				"о28о"=> "/" ,
-				"о29о"=> "\\",
+				"о23о"=> "'" ,
+				"о40о"=> ",",  //
+				"о42о"=> "-",  //
+				"о43о"=> ".",  //
+				"о44о"=> "`",  //
+				"о55о"=> "´",
+				"о56о"=> "-",
+				"о57о"=> "~",
+				"о58о"=> ".",
+				"о59о"=> "’",
 				"о30о"=> ";",
-				"о31о"=> "%",
 				"о32о"=> ":",
+				"о31о"=> "%",
 				"о33о"=> "[",  //To integrate
 				"о34о"=> "]",  //
 				"о35о"=> "(",  //To integrate
 				"о36о"=> ")",  //
+				"о62о"=> "{", 
+				"о63о"=> "}", 
 				"о37о"=> "?",  //To integrate
 				"о38о"=> "!",  //
 				"о39о"=> "*",  //
-				"о40о"=> ",",  //
 				"о41о"=> "|",  //
-				"о42о"=> "-",  //
-				"о43о"=> ".",  //
-				"о44о"=> "`",  //
 				"о45о"=> "~",  //
 				"о46о"=> "$",  //
 				"о47о"=> "#",  //
@@ -1081,15 +1098,7 @@ function сПреобразовать($_сСтрока, $_сНаправлени
 				"о51о"=> "^",  //
 				"о52о"=> "%",  //
 				"о53о"=> "%",  //
-				"о54о"=> "№",  //
-				"о55о"=> "´",
-				"о56о"=> "-",
-				"о57о"=> "~",
-				"о58о"=> ".",
-				"о59о"=> "’",
-				"о60о"=> "«",
-				"о61о"=> "»", 
-				
+				"о54о"=> "№",  //63
 			);
 	foreach($мПравилаПреобразования as $сПреобразованноВКоманду=>$сПодлежитПреобразованиюВКоманду)
 		{
@@ -1099,7 +1108,6 @@ function сПреобразовать($_сСтрока, $_сНаправлени
 				$сСтрока	=str_replace($сПреобразованноВКоманду, $сПодлежитПреобразованиюВКоманду, $сСтрока);
 			break;
 			case 'вКоманду':
-
 				$сСтрока	=str_replace($сПодлежитПреобразованиюВКоманду, $сПреобразованноВКоманду, $сСтрока);
 			break;
 			}
