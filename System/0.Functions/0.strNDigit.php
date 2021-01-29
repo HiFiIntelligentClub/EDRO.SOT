@@ -115,7 +115,10 @@ function strMyJsonRec($_arrJson)
 		$str	='{';
 		foreach($_arrJson as $srtName=>$_Value)
 			{
-			$str	.='"'.сПреобразовать($srtName, "вКоманду").'":';
+			if(!is_int($srtName))
+				{
+				$str	.='"'.сПреобразовать($srtName, "вКоманду").'":';
+				}
 			if(is_array($_Value))
 				{
 				$str	.=strMyJsonRec($_arrJson[$srtName]);
@@ -346,7 +349,7 @@ function мУрлРазобратьПоток($_сСтр) 	//Разобрать 
 	}
 
 
-
+/*
 function strGetDomainLang()
 	{
 	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')!==FALSE)
@@ -373,6 +376,7 @@ function strGetDomainLang()
 		}
 	return $strLang;
 	}
+*/
 function strGetDomainZone()
 	{
 	$strLang		=strGetDomainLang();
@@ -1355,11 +1359,11 @@ function strQuery($_strEvent, $_strRequest)
 /*!*//*+1+*/	{
 /*!*//*+2+*/	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
 /*!*//*+3+*/	}
-/*!*/function strGetRequest()
-/*!*//*+4+*/	{
-/*!*//*+5+*/	$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);
-/*+6+*/	return $strRequest;
-/*!*//*+7+*/	}
+/*!*///function strGetRequest()
+/*!*//*+4+*///	{
+/*!*//*+5+*///	$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);
+/*+6+*///	return $strRequest;
+/*!*//*+7+*///	}
 /*!*/
 /*function _ExitOnUndefunedAction($_strIncomeName)
 	{
@@ -1381,14 +1385,15 @@ function strQuery($_strEvent, $_strRequest)
 		exit;
 		}
 	}*/
+/*
 function arrGetEventSetter()
-/*!0!*/	{
-/*!1!*/	$arrEvent		=array();
-/*!2!*/	$arrEvent['strEvent']	='';
-/*!3!*/	$arrEvent['arrReality']	=array();
-/*!4!*/
-/*!5!*/	$strRequest		=strGetRequest();
-/*13+*/	$arrEvent		=arrRestrictAndReportActionAndParametrs(
+	{
+	$arrEvent		=array();
+	$arrEvent['strEvent']	='';
+	$arrEvent['arrReality']	=array();
+
+	$strRequest		=strGetRequest();
+	$arrEvent		=arrRestrictAndReportActionAndParametrs(
 					array(
 						'strEvent'	=>urldecode(сДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
 						'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
@@ -1398,8 +1403,8 @@ function arrGetEventSetter()
 	//print_r($arrEvent);
 	//echo '</pre>';
 	//exit;
-/*14!*/return $arrEvent;
-/*15!*/	}
+	return $arrEvent;
+	}
 function arrEventParams2Array($_strQuery)
 	{
 	$arrResult	=array();
@@ -1422,79 +1427,7 @@ function arrEventParams2Array($_strQuery)
 
 function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
-	/*	
-		array(
-		'arrEvent'=>
-			array(
-			'/АнастасияМаксимова'=>
-				array(
-				'arrEN'=>
-					array(
-					'strAlias'		=>'/AMaksimovaMusic',
-					'strTitle'		=>'',
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			),
-		'arrDesign'		=>array(),
-		'arrReality'=>
-			array(
-			'strName'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>100,
-				),//
-			'strStyle'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>65,
-				),//
-			)
-		'arrObjects'=>
-			array(
-			'arrEventData'=>
-				array(
-				'arrEN'=>
-					array(
-					'strAlias'		=>false,
-					'strTitle'		=>'Title',
-					),
-				'arrRU'=>
-					array(
-					'strAlias'		=>false,
-					'strTitle'		=>'Заголовок',
-					),
-				),
-			'arrEventTestConditions'=>
-				array(
-					'arrEventName'=>
-						array(
-						'int0MaxLength'			=>28,
-						),
-					'arrEventPage'
-						array(
-						'strFindTextToMarkExist' 	=>'HIC',
-						),
-					
-				),
-			'arrEventsOnErrors'=>
-				array(
-				'arrEventName'		=>
-					array(
-					'strFallBack'			=>'/',
-					'strReport'			=>'EventName is too long',
-					'strPriority'			=>'Urgent',
-					),
-				'arrEventPage'		=>
-					array(
-					'strReport'			=>'Can not open event page: arrEventName',
-					'strPriority'			=>'Urgent',
-					),
-				),
-			),
-	*/
+
 	$arrResult['strEvent']		='';
 	$arrResult['arrReality']	=array();
 	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
@@ -1617,7 +1550,7 @@ function arrPrepare2($_strQuery, $_arrDataTypes=array())
 		{
 		}
 	return $arrQuery;
-	}
+	}*/
 
 
 function strParType($_strParName)
@@ -1761,21 +1694,23 @@ function strArray2JS($_arrReality, $_strArrName='')
 	$str	=str_replace(','.$strFormatLR.'}', $strFormatLR.'}', $str);
 	return $str;
 	}
+/*
 function _DropTheSessionDust()
 	{
 	//session_start();
 	$strPlayingStationId	='';
 	if(isset($_SESSION)&&isset($_SESSION['strListener'])&&(!empty($_SESSION['strListener'])))
-	/*+1+*/	{
+		{
 		//print_r($_SESSION);
-	/*+2+*/	$strListener			=strSafeUsers(substr($_SESSION['strListener'],0, 15));
+		$strListener			=strSafeUsers(substr($_SESSION['strListener'],0, 15));
 		if(isset($_SESSION['strPlayingStationId']))
 			{
-		/*+3+*/	$strPlayingStationId		=strSafeUsers(substr($_SESSION['strPlayingStationId'],0, 55));
+			$strPlayingStationId		=strSafeUsers(substr($_SESSION['strPlayingStationId'],0, 55));
 			}
-	/*+4+*/				          unset($_SESSION);
-	/*+5+*/	$_SESSION['strListener']		=$strListener;
-	/*+6+*/	$_SESSION['strPlayingStationId']	=$strPlayingStationId;
-	/*+7+*/	}
+					          unset($_SESSION);
+		$_SESSION['strListener']		=$strListener;
+		$_SESSION['strPlayingStationId']	=$strPlayingStationId;
+		}
 	}
+*/
 ?>
