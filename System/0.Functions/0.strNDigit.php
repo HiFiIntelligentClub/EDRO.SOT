@@ -69,19 +69,20 @@ function arrAllEventIncomeParametrsFallBack()
 	$arrO	=  //[arrAction]['arrDesign']['strEvent']
 		array(
 		'arrReality'=>array(
-			'strName'		=>array('strFallBack'	=>'','int0MaxLength'	=>100,),//
-			'strStyle'		=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-			'strGenre'		=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-			'strHiFiType'		=>array('strFallBack'	=>'','int0MaxLength'	=>65,),//
-			'intBitrate'		=>array('strFallBack'	=>'','int0MaxLength'	=>4,),'strCodec'	=>array('strFallBack'	=>'','int0MaxLength'	=>16,),
-			'int0Page'		=>array('strFallBack'	=>0, 'int0MaxLength'	=>6,),
-			'int1OnPage'		=>array('int1FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
-			'int1PlayingStationNum'	=>array('int1FallBack'	=>0, 'int0MaxLength'	=>10,),
-			'strPlayingStationStyle'=>array('strFallBack'	=>'','int0MaxLength'	=>65,),
-			'strPlayingStationId'	=>array('strFallBack'	=>'','int0MaxLength'	=>150,),
-			'strStationID'		=>array('strFallBack'	=>'','int0MaxLength'	=>150,),),
+			'strName'		=>array('int0FallBack'	=>'','int0MaxLength'	=>100,),//
+			'strStyle'		=>array('int0FallBack'	=>'','int0MaxLength'	=>65,),//
+			'strGenre'		=>array('int0FallBack'	=>'','int0MaxLength'	=>65,),//
+			'strHiFiType'		=>array('int0FallBack'	=>'','int0MaxLength'	=>65,),//
+			'intBitrate'		=>array('int0FallBack'	=>'','int0MaxLength'	=>4,),
+			'strCodec'		=>array('int0FallBack'	=>'','int0MaxLength'	=>16,),
+			'int0Page'		=>array('int0FallBack'	=>0, 'int0MaxLength'	=>6,),
+			'int1OnPage'		=>array('int0FallBack'	=>1, 'int0MaxLength'	=>3, 'int0MaxValue'	=>40,),
+			'int1PlayingStationNum'	=>array('int0FallBack'	=>0, 'int0MaxLength'	=>10,),
+			'strPlayingStationStyle'=>array('int0FallBack'	=>'','int0MaxLength'	=>65,),
+			'strPlayingStationId'	=>array('int0FallBack'	=>'','int0MaxLength'	=>150,),
+			'strStationID'		=>array('int0FallBack'	=>'','int0MaxLength'	=>150,),),
 		'arrObjects'		=>array(
-			'arrEventData'	=>array('arrEN'		=>array('strAlias'	=>false, 'strTitle'	=>'Title',),
+			'arrEventData'		=>array('arrEN'		=>array('strAlias'	=>false, 'strTitle'	=>'Title',),
 						'arrRU'			=>array('strAlias'	=>false,
 										'strTitle'	=>'Заголовок',),),
 			'arrEventTestConditions'=>array('arrEventName'	=>array('int0MaxLength'	=>28,),
@@ -336,9 +337,6 @@ function мУрлРазобратьПоток($_сСтр) 	//Разобрать 
 	$м['strGet']		= сНачОтСимвола($_сСтр, '/', 1);
 	return $м;
 	}
-
-
-/*
 function strGetDomainLang()
 	{
 	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')!==FALSE)
@@ -365,7 +363,6 @@ function strGetDomainLang()
 		}
 	return $strLang;
 	}
-*/
 function strGetDomainZone()
 	{
 	$strLang		=strGetDomainLang();
@@ -373,7 +370,11 @@ function strGetDomainZone()
 		{
 		$strDomain='ru';
 		}
-	if($strLang=='EN')
+	elseif($strLang=='EN')
+		{
+		$strDomain='com';
+		}
+	else
 		{
 		$strDomain='com';
 		}

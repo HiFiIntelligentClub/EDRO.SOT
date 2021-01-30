@@ -21,32 +21,7 @@
 /*!*//*+5+*/	$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);
 /*+6+*/	return $strRequest;
 /*!*//*+7+*/	}
-function strGetDomainLang()
-	{
-	if(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.ru')!==FALSE)
-		{
-		$strLang='RU';
-		}
-	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), 'hifiintelligentclub.com')!==FALSE)
-		{
-		
-		$strLang='EN';
-		}
-	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), '192.168.1.198')!==FALSE)
-		{
-		$strLang='EN';
-		}
-	elseif(strpos(strtolower($_SERVER['SERVER_NAME']), 'ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion')!==FALSE)
-		{
-		$strLang='EN';
-		}
-	else	
-		{
-		$strLang='EN';
-		_Report('strGetDomainName():'.$_SERVER['SERVER_NAME'].$strLang.' do not have RU or COM suffix and dont 192.168.1.198 or onion');
-		}
-	return $strLang;
-	}
+
 function arrGetEventSetter()
 /*!0!*/	{
 /*!1!*/	$arrEvent		=array();
@@ -88,83 +63,10 @@ function arrEventParams2Array($_strQuery)
 
 function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
-	/*	
-		array(
-		'arrEvent'=>
-			array(
-			'/АнастасияМаксимова'=>
-				array(
-				'arrEN'=>
-					array(
-					'strAlias'		=>'/AMaksimovaMusic',
-					'strTitle'		=>'',
-					),
-				'arrRU'=>
-					array(
-					),
-				),
-			),
-		'arrDesign'		=>array(),
-		'arrReality'=>
-			array(
-			'strName'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>100,
-				),//
-			'strStyle'	=>
-				array(
-				'strFallBack'	=>'',
-				'int0MaxLength'	=>65,
-				),//
-			)
-		'arrObjects'=>
-			array(
-			'arrEventData'=>
-				array(
-				'arrEN'=>
-					array(
-					'strAlias'		=>false,
-					'strTitle'		=>'Title',
-					),
-				'arrRU'=>
-					array(
-					'strAlias'		=>false,
-					'strTitle'		=>'Заголовок',
-					),
-				),
-			'arrEventTestConditions'=>
-				array(
-					'arrEventName'=>
-						array(
-						'int0MaxLength'			=>28,
-						),
-					'arrEventPage'
-						array(
-						'strFindTextToMarkExist' 	=>'HIC',
-						),
-					
-				),
-			'arrEventsOnErrors'=>
-				array(
-				'arrEventName'		=>
-					array(
-					'strFallBack'			=>'/',
-					'strReport'			=>'EventName is too long',
-					'strPriority'			=>'Urgent',
-					),
-				'arrEventPage'		=>
-					array(
-					'strReport'			=>'Can not open event page: arrEventName',
-					'strPriority'			=>'Urgent',
-					),
-				),
-			),
-	*/
 	$arrResult['strEvent']		='';
 	$arrResult['arrReality']	=array();
 	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
-	//$arrFallBack['arrFallBack']
+	$arrFallBack['arrFallBack']
 	if(is_array($_arrIncome))
 		{
 		$arrIncome		=$_arrIncome;
@@ -189,37 +91,28 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 		}
 	foreach($arrFallBack['arrReality'] as $strFallBackName=>$arrFallBackParams)
 		{
-		$arrResult['arrReality'][$strFallBackName]	=$arrFallBackParams['strFallBack'];
-		if(isset($arrFallBackParams['int0MaxValue']))
-			{
-			if($arrFallBackParams['int0MaxValue']<=$arrResult['arrReality'][$strFallBackName])
-				{
-				$arrResult['arrReality'][$strFallBackName]	=$arrFallBackParams['int0MaxValue'];
-				}
-			}
+		$arrResult['arrReality'][$strFallBackName]	=$arrFallBackParams['int0FallBack']; //attach strFaallBack(defaults)
+
 		foreach($arrIncome['arrReality'] as $strIncomeName=>$strIncomeValue)
 			{
 			if($strFallBackName==$strIncomeName)
 				{
-				if(strlen($arrIncome['arrReality'][$strIncomeName])>$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength'])
+				if(isset($arrFallBackParams['int0MaxValue'])&&($strIncomeValue>$arrFallBackParams['int0MaxValue']))
 					{
-												_Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
-					$arrIncome['arrReality'][$strIncomeName]		=substr($arrIncome['arrReality'][$strIncomeName],0, $arrFallBack['arrReality'][$strFallBackName]['int0MaxLength']);
+												_Report($strIncomeName.'>'.$arrFallBackParams['int0MaxValue'].': '.$strIncomeValue);
+					$strIncomeValue						=$arrFallBackParams['int0MaxValue'];
+					$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
+	    				}
+				if(isset($arrFallBackParams['int0MaxLength'])&&(strlen($strIncomeValue)>$arrFallBackParams['int0MaxLength']))
+					{
+												_Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrFallBackParams['int0MaxLength']);
+					$strIncomeValue						=substr($arrIncome['arrReality'][$strIncomeName],0, $arrFallBackParams['int0MaxLength']);
+					$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
 					}
-				if(isset($arrFallBack['arrReality'][$strFallBackName]['int0MaxValue']))
+				else
 					{
-					if($strIncomeValue>=$arrFallBack['arrReality'][$strFallBackName]['int0MaxValue'])
-						{
-						_Report('$strIncomeValue>=$arrFallBack[arrReality][$strFallBackName][int0MaxValue] $strIncomeValue: '.$strIncomeValue.'>='.$arrFallBack['arrReality'][$strFallBackName]['int0MaxValue']);
-						$strIncomeValue		=$arrFallBack['arrReality'][$strFallBackName]['int0MaxValue'];
-						}
-					else
-						{
-						//$strIncomeValue		=$arrFallBack['arrReality'][$strFallBackName]['maxValue'];
-						//_Report($strIncomeValue.' >'.$arrFallBack['arrReality'][$strFallBackName]['maxValue']);
-						}
-					}	
-				$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
+					$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
+					}
 				}
 			}
 		}
