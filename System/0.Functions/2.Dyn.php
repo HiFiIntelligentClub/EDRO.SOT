@@ -66,7 +66,7 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 	$arrResult['strEvent']		='';
 	$arrResult['arrReality']	=array();
 	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
-	$arrFallBack['arrFallBack']
+	//$arrFallBack['arrFallBack']
 	if(is_array($_arrIncome))
 		{
 		$arrIncome		=$_arrIncome;
