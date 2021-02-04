@@ -2,14 +2,13 @@
 //
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
 //
-if(!$objERDO->arrReality['bIzAndroid']||!$objERDO->arrReality['bIzApple'])
+if(!$objEDRO->arrReality['bIzAndroid']||!$objEDRO->arrReality['bIzApple'])
 	{
 	}
 $strDynascreenStyle='
 <style>
 	/*EDRO father*/
 	body		{font-family:sans-serif;}'.
-	$strCSS.
 	'/*Vertical*/
 	.V100		{top	: 0px;}
 	.V99		{top	: 20px;}
@@ -17,6 +16,7 @@ $strDynascreenStyle='
 	.V97		{top	: 60px;}
 	.V96		{top	: 80px;}
 	.V95		{top	: 100px;}
+	.V94		{top	: 120px;}
 
 	.V50pc 		{bottom	: 50%;}
 
@@ -26,8 +26,8 @@ $strDynascreenStyle='
 	.V5 		{bottom	: 100px;}
 	.V4 		{bottom	: 80px;}
 	.V3 		{bottom	: 60px;}
-	.V2 		{bottom	: 40px;}
-	.V1 		{bottom	: 20px;}
+	.V2 		{bottom	: 50px;}
+	.V1 		{bottom	: 10px;}
 	.V0 		{bottom	: 0px;}
 
 
@@ -35,6 +35,19 @@ $strDynascreenStyle='
 	.HL0		{left	: 0px;}
 	.H035pc		{left	: 35%;}
 	.HR0		{right	: 0px;}
+
+	/*//EDRO page elements*/
+	.halfLine		{height:10px;line-height:10px;font-size:xx-small;}
+	.line			{height:20px;line-height:19px;font-size:x-small	;}
+	.doubleLine		{height:40px;line-height:18px;font-size:large	;}
+	.doubleLineLargeText	{height:40px;line-height:36px;font-size:xx-large;}
+	.tripleLine		{height:60px;line-height:18px;font-size:large	;}
+	//Dhort long etc...
+
+	/*//EDRO line elements*/
+	.halfLineButton		{height:10px;line-height:10px;font-size:xx-small;}
+	.lineButton		{height:20px;line-height:18px;font-size:small	;}
+	.doubleLineLargeButton	{height:39px;line-height:36px;font-size:x-large	;}
 
 	/*//EDRO matrix*/
 
@@ -47,21 +60,22 @@ $strDynascreenStyle='
 
 	/*EDRO base*/
 	window 		{} /*Not configured yet. Will be in a future.*/
-	.block		{display:block; overflow:hidden;}
-	.hidden		{display:none;}
-	.transparent	{opacity:0;}
-	.rel		{display:block; position:relative;}
-	.abs		{display:block; position:absolute;}
-	.fix		{display:block; position:fixed;}
-	.fixed		{display:block; position:fixed;}
-	.left		{float:left;}
-	.right		{float:right;}
-	.cursor		{cursor:pointer;}
-	.scrollerY	{overflow-x:hidden;overflow-y:scroll;}
-	.scrollerX	{overflow-y:hidden;overflow-x:scroll;}
+	.block		{display:block; overflow:hidden		;}
+	.inline		{display:inline-block;overflow:hidden	;}
+	.hidden		{display:none!important			;}
+	.transparent	{opacity:0				;}
+	.rel		{display:block; position:relative	;}
+	.abs		{display:block; position:absolute	;}
+	.fix		{display:block; position:fixed		;}
+	.fixed		{display:block; position:fixed		;}
+	.left		{float:left				;}
+	.right		{float:right				;}
+	.cursor		{cursor:pointer				;}
+	.scrollerY	{overflow-x:hidden;overflow-y:scroll	;}
+	.scrollerX	{overflow-y:hidden;overflow-x:scroll	;}
 	scrollerY	{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;}
 	scrollerX	{overflow-y:hidden;overflow-x:scroll;-webkit-overflow-scrolling:touch;}
-	.scrollerGlide	{-webkit-overflow-scrolling:touch;}
+	.scrollerGlide	{-webkit-overflow-scrolling:touch	;}
 	.border,	.BO	{border:	1px solid #1a1a1a4a;}
 	.border-bottom,	.BBV	{border-bottom: 1px solid #1a1a1a4a;}
 	.border-top,	.BTA	{border-top: 	1px solid #1a1a1a4a;}
@@ -69,6 +83,7 @@ $strDynascreenStyle='
 	.border-right,	.BRJ	{border-right:	1px solid #e2e2e2;}
 	.BRJ2			{border-right:	1px solid #868686;}
 	.BLL2			{border-left:	1px solid #868686;}
+	.loading		{background-color:grey;color:white;}
 	paragraph	{display:block;float:left;width:40px;height:10px;}
 	.RTL_LTR	{text-align: center;}
 
@@ -96,7 +111,7 @@ $strDynascreenStyle='
 	.bcol2,	.BC2	{background-color	:#575757;}
 
 	.tcol3,	.TC3	{color			:#FFF;}
-	.bcol3,	.BC3	{background-color	:#000;}
+	.bcol3,	.BC3	{background-color	:#000000e3}
 
 	.tcenter	{text-align:center;}
 	.tleft		{text-align:right;}
@@ -112,7 +127,7 @@ $strDynascreenStyle='
 	 /*//EDRO sensor*/
 	a.sensor				{text-decoration:none;}
 	sensorHorizontalRotate 			{overflow-y:hidden;overflow-x:scroll!important;-webkit-overflow-scrolling:touch;user-select:none;-webkit-user-select:none;-ms-user-select:none;cursor:pointer;}
-	sensorButton				{cursor:pointer;}
+	sensorButton, .sensorButton		{cursor:pointer;}
 	sensorHorisontalDisplay			{font-weight:lighter;}
 	sensorHorisontalDisplay .selected	{font-weight:normal;color:#000;padding-left:3px;padding-right:3px;}
 	 /*//EDRO sensor*/
@@ -270,15 +285,15 @@ $strDynascreenStyle='
 	    Sensitive folowers: "F"*/
 	/*MO----. SMM->-. .----F*/
 	/*	V	V V	*/
-	 HficMenu.CutDown ifCutDown,  HficMenu.default ifCutDown	/*Default  is CutDown*/
+	 HficSearch.CutDown ifCutDown,  HficSearch.default ifCutDown	/*Default  is CutDown*/
 						{width:20px;display:block;} 
 
-	 HficMenu.CutDown ifExpanded,  HficMenu.default ifExpanded	/*Default  is CutDown*/
+	 HficSearch.CutDown ifExpanded,  HficSearch.default ifExpanded	/*Default  is CutDown*/
 						{display	: none;!important;width:100%;} 
 
-	 HficMenu.Expanded ifExpanded		{display	: block;}
+	 HficSearch.Expanded ifExpanded		{display	: block;}
 
-	 HficMenu.Expanded ifCutDown		{display	: none;}
+	 HficSearch.Expanded ifCutDown		{display	: none;}
 
 	/*/ EDRO Station Search expanded*/
 
@@ -596,7 +611,7 @@ $strDynascreenStyle='
 		0% {
 		    opacity:0;
 		    }
-		10% {
+		4% {
 		    opacity:1;
 		    }
 		
