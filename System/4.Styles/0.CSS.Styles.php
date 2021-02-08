@@ -37,11 +37,11 @@ $strDynascreenStyle='
 	.HR0		{right	: 0px;}
 
 	/*//EDRO page elements*/
-	.halfLine		{height:10px;line-height:10px;font-size:xx-small;}
-	.line			{height:20px;line-height:19px;font-size:x-small	;}
-	.doubleLine		{height:40px;line-height:18px;font-size:large	;}
-	.doubleLineLargeText	{height:40px;line-height:36px;font-size:xx-large;}
-	.tripleLine		{height:60px;line-height:18px;font-size:large	;}
+	.halfLine,		.L0	{height:10px;line-height:10px;font-size:xx-small;}
+	.line	, 		.L1	{height:20px;line-height:19px;font-size:x-small	;}
+	.doubleLine,		.Lx2	{height:40px;line-height:18px;font-size:large	;}
+	.doubleLineLargeText,	.Lx2t2	{height:40px;line-height:36px;font-size:xx-large;}
+	.tripleLine,		.Lx3	{height:60px;line-height:18px;font-size:large	;}
 	//Dhort long etc...
 
 	/*//EDRO line elements*/
@@ -60,7 +60,7 @@ $strDynascreenStyle='
 
 	/*EDRO base*/
 	window 		{} /*Not configured yet. Will be in a future.*/
-	.block		{display:block; overflow:hidden		;}
+	.block,. brick	{display:block; overflow:hidden		;}
 	.inline		{display:inline-block;overflow:hidden	;}
 	.hidden		{display:none!important			;}
 	.transparent	{opacity:0				;}
