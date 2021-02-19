@@ -38,44 +38,38 @@ $strDynascreenStyle='
 
 	/*//EDRO page elements*/
 	.halfLine,		.L0	{height:10px;line-height:10px;font-size:xx-small;}
-	.line	, 		.L1	{height:20px;line-height:19px;font-size:x-small	;}
-	.doubleLine,		.Lx2	{height:40px;line-height:18px;font-size:large	;}
-	.doubleLineLargeText,	.Lx2t2	{height:40px;line-height:36px;font-size:xx-large;}
-	.tripleLine,		.Lx3	{height:60px;line-height:18px;font-size:large	;}
+	.line,			.L1	{height:20px;line-height:19px;font-size:x-small	;}
+	.doubleLine,		.L2	{height:40px;line-height:18px;font-size:large	;}
+	.doubleLineLargeText,	.L3	{height:40px;line-height:36px;font-size:xx-large;}
 	//Dhort long etc...
-
-	/*//EDRO line elements*/
-	.halfLineButton		{height:10px;line-height:10px;font-size:xx-small;}
-	.lineButton		{height:20px;line-height:18px;font-size:small	;}
-	.doubleLineLargeButton	{height:39px;line-height:36px;font-size:x-large	;}
 
 	/*//EDRO matrix*/
 
-	/*// Margins /*//
+	/*/ Margins /*/
 	.ML		{margin-left	: 4px;}
 	.ML1		{margin-left	: 4px;}
 	.MR		{margin-right	: 4px;}
 	.MR1		{margin-right	: 4px;}
-	/*// Margins /*//
+	/*/ Margins /*/
 
 	/*EDRO base*/
 	window 		{} /*Not configured yet. Will be in a future.*/
-	.block,. brick	{display:block; overflow:hidden		;}
-	.inline		{display:inline-block;overflow:hidden	;}
-	.hidden		{display:none!important			;}
-	.transparent	{opacity:0				;}
-	.rel		{display:block; position:relative	;}
-	.abs		{display:block; position:absolute	;}
-	.fix		{display:block; position:fixed		;}
-	.fixed		{display:block; position:fixed		;}
-	.left		{float:left				;}
-	.right		{float:right				;}
-	.cursor		{cursor:pointer				;}
-	.scrollerY	{overflow-x:hidden;overflow-y:scroll	;}
-	.scrollerX	{overflow-y:hidden;overflow-x:scroll	;}
+	.block,.brick	{display:block; overflow:hidden;}
+	.inline		{display:inline-block;overflow:hidden;}
+	.hidden		{display:none!important;}
+	.transparent	{opacity:0;}
+	.rel		{display:block; position:relative;}
+	.abs		{display:block; position:absolute;}
+	.fix		{display:block; position:fixed;}
+	.fixed		{display:block; position:fixed;}
+	.left		{float:left;}
+	.right		{float:right;}
+	.cursor		{cursor:pointer;}
+	.scrollerY	{overflow-x:hidden;overflow-y:scroll;}
+	.scrollerX	{overflow-y:hidden;overflow-x:scroll;}
 	scrollerY	{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;}
 	scrollerX	{overflow-y:hidden;overflow-x:scroll;-webkit-overflow-scrolling:touch;}
-	.scrollerGlide	{-webkit-overflow-scrolling:touch	;}
+	.scrollerGlide	{-webkit-overflow-scrolling:touch;}
 	.border,	.BO	{border:	1px solid #1a1a1a4a;}
 	.border-bottom,	.BBV	{border-bottom: 1px solid #1a1a1a4a;}
 	.border-top,	.BTA	{border-top: 	1px solid #1a1a1a4a;}
@@ -83,7 +77,7 @@ $strDynascreenStyle='
 	.border-right,	.BRJ	{border-right:	1px solid #e2e2e2;}
 	.BRJ2			{border-right:	1px solid #868686;}
 	.BLL2			{border-left:	1px solid #868686;}
-	.loading		{background-color:grey;color:white;}
+	.loading		{background-color:grey;color:white}
 	paragraph	{display:block;float:left;width:40px;height:10px;}
 	.RTL_LTR	{text-align: center;}
 
@@ -104,14 +98,15 @@ $strDynascreenStyle='
 	.PlayTC4	{color			:#000;}
 	.PlayBC4	{background-color	:#FFF;}
 
-	.tcol1, .TC1	{color			:#000;}
-	.bcol1, .BC1	{background-color	:#F4F4F4;}
+	.BC0	{background-color	:#FFF;}
+	.TC1	{color			:#000;}
+	.BC1	{background-color	:#F4F4F4;}
 
-	.tcol2,	.TC2	{color			:#FFF;}
-	.bcol2,	.BC2	{background-color	:#575757;}
+	.TC2	{color			:#FFF;}
+	.BC2	{background-color	:#575757;}
 
-	.tcol3,	.TC3	{color			:#FFF;}
-	.bcol3,	.BC3	{background-color	:#000000e3}
+	.TC3	{color			:#FFF;}
+	.BC3	{background-color	:#000;}
 
 	.tcenter	{text-align:center;}
 	.tleft		{text-align:right;}
