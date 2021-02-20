@@ -38,6 +38,10 @@
 //
 //
 //[Vv]Event Global
+function strDataBase()
+	{
+	return 'HiFiIntelligentClub';
+	}
 function strDomain()
 	{
 	return '192.168.1.198';
@@ -80,7 +84,7 @@ function arrAllEventIncomeParametrsFallBack()
 			'int1PlayingStationNum'	=>array('int0FallBack'	=>0, 'int0MaxLength'	=>10,),
 			'strPlayingStationStyle'=>array('int0FallBack'	=>'','int0MaxLength'	=>65,),
 			'strPlayingStationId'	=>array('int0FallBack'	=>'','int0MaxLength'	=>150,),
-			'strStationID'		=>array('int0FallBack'	=>'','int0MaxLength'	=>150,),),
+			'strListenerDate'	=>array('int0FallBack'	=>'','int0MaxLength'	=>150,),),
 		'arrObjects'		=>array(
 			'arrEventData'		=>array('arrEN'		=>array('strAlias'	=>false, 'strTitle'	=>'Title',),
 						'arrRU'			=>array('strAlias'	=>false,
@@ -895,6 +899,10 @@ function мСобратьO2o($_сВход) // Слово
 			{
 			$мСлово[]	=$сСлово;
 			}
+		}
+	if(!isset($мСлово[1]))
+		{
+		_Report($_сВход.'не даёт второго значения О2О');
 		}
 	return $мСлово;
 	}

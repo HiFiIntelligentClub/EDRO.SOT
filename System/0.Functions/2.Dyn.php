@@ -67,6 +67,7 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 	$arrResult['arrReality']	=array();
 	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
 	//$arrFallBack['arrFallBack']
+
 	if(is_array($_arrIncome))
 		{
 		$arrIncome		=$_arrIncome;
@@ -80,8 +81,7 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				   unset($_strReplaceName);
 	$strReplaceValue		=$_strReplaceValue;
 				   unset($_strReplaceValue);
-	
-	if(is_file('/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Events/'.сПреобразовать($arrIncome['strEvent'], "вКоманду").'/run.php'))
+	if(is_file('/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase().'/Events/'.сПреобразовать($arrIncome['strEvent'], "вКоманду").'/run.php'))
 		{
 		$arrResult['strEvent']		=$arrIncome['strEvent'];
 		}
@@ -116,6 +116,8 @@ function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName=''
 				}
 			}
 		}
+	//print_r($arrResult);
+	//exit;
 	return $arrResult;
 	}
 function arrPrepare($_strQuery, $_arrDataTypes=array())
