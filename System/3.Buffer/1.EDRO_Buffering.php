@@ -7,7 +7,6 @@
 ////// 2020
 //EDRO.Buffering.
 //		EDRO.Buffer
-
 //		EDRO.Process(HFIC.Construct)
 		//R 'Report' -> Browser
 		//R 'ReportError' -> Browser
@@ -51,11 +50,12 @@ class EDRO_Buffering
 			//WiReach - Assembles parttakers in to a complete project.  
 		//	'WiReach_DjWorking'				=>'/home/EDRO/4.Objects/Read/Net/WiReach_DjWorking.php',
 		//	'WiReach_HFIC_ParttakersSignatures'		=>'/home/EDRO/4.Objects/Write/Display/Element/WiReach_HFIC_ParttakersSignatures.php',
+			'Overlay'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Overlay/Overlay.php',
 			'Listener'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Listener/Listener.php',
-			'Listeners'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/Listeners.php',
+			'Listeners'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Listener/Listeners.php',
 //			'Shader'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Shader/Shader.php',
 //			'Image'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Image/Image.php',
-			'StatiticIndicator'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StatisticIndicator.php',
+			'StatiticIndicator'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/StatisticIndicator.php',
 			'StationBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationBlock.php',
 			'StationSearchBlock'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SearchBlocks/StationSearchBlock.php',
 			// 'Genre'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Genre/Genre.php',
@@ -68,11 +68,12 @@ class EDRO_Buffering
 			// 'BitrateTag'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Bitrate/BitrateTag.php',
 			'ICQRType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/AudioType/ICQRType.php',
 			'AudioType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/AudioType/AudioType.php',
-			'CreatorType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/CreatorType/CreatorType.php',
+			// 'CreatorType'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/CreatorType/CreatorType.php',
 			'StationLink'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationLink.php',
 			'StationQualityUPLink'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationQualityUPLink.php',
 			'StationPlayerHeader'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/Header/Header.php',
-			'StationPlayerEventIndicator'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/Player/PlayerEventIndicator.php',
+			// 'StationPlayerEventIndicator'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/PlayerEventIndicator.php',
+			'IndicatorPlayer'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/IndicatorPlayer.php',
 			'StationPlayer'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/Player/Player.php',
 			'SystemEventIndicatorStream'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/SystemEventIndicatorStream.php',
 			'IndicatorRole'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/IndicatorRole.php',
@@ -83,11 +84,11 @@ class EDRO_Buffering
 			'IndicatorDimensions'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/IndicatorDimensions.php',
 			'Pagination'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Pagination/Pagination.php',
 			'HiFiNavigation'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/HiFiNavigation/HiFiNavigation.php',
-			'DynaScreenEventIndicator'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaScreen/DynaScreenEventIndicator.php',
+			'DynaScreenEventIndicator'				=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/SystemEventIndicatorStream/DynaScreenEventIndicator.php',
 
 			'DynaScreen'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaScreen/DynaScreen.php',
 			// 'DynaBlock'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/DynaBlock/DynaBlock.php',
-			'FileUploadForm'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Form/FileUploadForm.php',
+			// 'FileUploadForm'					=>'/home/EDRO/4.Objects/Write/Listener/Display/Form/FileUploadForm.php',
 
 			// 'FileSetupRead'						=>'/home/EDRO/4.Objects/Read/Cloud/Disk/FileSetupRead.php',
 			'MyXML'							=>'/home/EDRO/4.Objects/Read/Cloud/Disk/MyXML.php',
@@ -105,7 +106,8 @@ class EDRO_Buffering
 			// 'File'							=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/File/File.php',
 
 			// 'FileList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/FileList.php',
-			'StationList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/StationList.php',
+			// 'StationList'						=>'/home/EDRO/4.Objects/Write/Listener/Display/Element/Station/StationLink.php',
+			'StationList'						=>'/home/EDRO/4.Objects//Write/Listener/Display/Element/Station/StationList.php',
 			//  'FileTreet'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/FileTree.php',
 			// 'FileListSort'						=>'/home/EDRO/4.Objects/Write/Listener/Display/List/FileListSort.php',
 			
@@ -127,30 +129,24 @@ class EDRO_Buffering
 		// FileWrite'		=>'/home/RCe.EDRO/4.Objects/Waveinspiration/File/FileWrite.php',
 		// FileIndex'		=>'/home/RCe.EDRO/4.Objects/Waveinspiration/File/FileIndex.php',
 		// FileShow'		=>'/home/RCe.EDRO/4.Objects/Waveinspiration/File/FileShow.php',
-	public function __construct($_objKIIM)
+	public function __construct()
 		{
-		$objKIIM=$_objKIIM;
-		unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		foreach($this->arrLib as $strName=>$strPath)
 			{
 			$this->strName	=$strName;
 			$this->strPath	=$strPath;
-			$this->_Read($objKIIM, $strName);
+			$this->_Read($strName);
 			//sleep(1);
 			}
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	private function _Read($_objKIIM, $_strName)
+	private function _Read($_strName)
 		{
-		$objKIIM=$_objKIIM;
-		unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>$this->strName));
-		
-		require_once($this->strPath);
-
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>$this->strName));
+		require($this->strPath);
+		}
+	public static function RAM()
+		{
+		$objEDRO_Buffering=new EDRO_Buffering();
 		}
 	}
-$objEDRO_Buffering=new EDRO_Buffering($objKIIM);
+EDRO_Buffering::RAM();
 ?>
