@@ -117,7 +117,7 @@ function arrGetEventSetter($rRadio)
 /*!5!*/	$arrRequest['arrListener']	= arrGetRequest($rRadio);
 	$strRequest			= str_replace($arrRequest['arrListener']['strRequest'], 'HTTP/1.1', '');
 
-/*13+*/	$arrEvent			= arrRestrictAndReportActionAndParametrs(
+/*13+*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
 					array(
 						'strEvent'	=>urldecode(сДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
 						'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
@@ -152,7 +152,7 @@ function arrEventParams2Array($_strQuery)
 	return $arrResult;
 	}
 
-function arrRestrictAndReportActionAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
+function arrRestrictAndReportEventAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
 	$arrResult['strEvent']		='';
 	$arrResult['arrReality']	=array();
