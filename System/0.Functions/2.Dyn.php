@@ -16,31 +16,122 @@
 
 //$arrr = arrRestrictAndReportActionAndParametrs($_arrIncome=array());
 //print_r($arrr);
-/*!*/function strGetRequest()
-/*!*//*+4+*/	{
-/*!*//*+5+*/	$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);
-/*+6+*/	return $strRequest;
-/*!*//*+7+*/	}
+function strSafeUsers($_strRequest)
+	{
+	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
+	}
+/*!*/function arrGetRequest($rRadio)
+/*+4+*/	{//$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);----
+	$rRadio 				= stream_socket_accept($rRadio, -1);
+	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
+	//strSafeUsers();
+	print_r($arrReadRequestFromListenersBrowser);
+	exit;
+/*+6+*/ return $arrReadRequestFromListenersBrowser;
+/*+7+*/	}
+function arrReadRequestFromListenersBrowser($_rRadio)
+	{
+	$sListenerRadio		=strSafeUsers(fread($_rRadio, 4096));
+	if(!empty($sListenerRadio))
+		{
+		$arrListenerSetup	=explode("\n", $sListenerRadio	);
+		}
+	else
+		{
+		_Report('fread($sListenerRadio, 512) empty.');
+		}
+	if(!is_array($arrListenerSetup))
+		{
+		$arrListenerSetup	=array();
+		}
+	return $arrListenerSetup;
+	}
+function arrRequest2IndexArray($_arrRequest)
+	{
+	if(is_array($_arrRequest))
+		{
+		$int0X=0;
+		foreach($_arrRequest as $strRequest)
+			{
+			if($int0X==0)
+				{
+				if(strpos($strRequest, "GET")===0||strpos($strRequest, "POST")===0||strpos($strRequest, "PUT")===0)
+					{
+					$arrRequest['arrRequest']['strProto']	= сКонцДоСимвола($strRequest, ' ');
+					$arrRequest['arrRequest']['strMethod']	= сНачДоСимвола($strRequest, ' ');
+					$arrRequest['strRequest']		= $strRequest;
+					}
+				else
+					{
+					_Report('Unusall position of request string $arrRequest[strRequest]: '.$strRequest);
+					}
+				}
+			else
+				{
+				$arrIndex			= explode(":" , $strRequest);
+				}
+			if(isset($arrIndex[0])&&isset($arrIndex[1]))
+				{
+				$arrRequest[$arrIndex[0]]	= $arrIndex[1];
+				}
+			//elseif(isset($arrIndex[0])&&!isset($arrIndex[1]))
+			//	{
+			//	$arrRequest['strRequest']	= $arrIndex[0];
+			//	}
+			else
+				{
+				}
+			$int0X++;
+			}
+		}
+	if(!isset($arrRequest['User-Agent']))
+		{
+		$arrRequest['User-Agent']	='BOT';
+		}
+	if(!isset($arrRequest['Host']))
+		{
+		$arrRequest['Host']		='BOT';
+		}
+	if(!isset($arrRequest['Accept-Language']))
+		{
+		$arrRequest['Accept-Language']	='BOT';
+		}
+	if(!isset($arrRequest['Accept-Encoding']))
+		{
+		$arrRequest['Accept-Encoding']	='BOT';
+		}
+	return $arrRequest;
+	}
 
-function arrGetEventSetter()
+function arrGetEventSetter($rRadio)
 /*!0!*/	{
-/*!1!*/	$arrEvent		=array();
-/*!2!*/	$arrEvent['strEvent']	='';
-/*!3!*/	$arrEvent['arrReality']	=array();
+	
+/*!1!*/	$arrEvent				= array();
+///+	$arrEvent['rRadio'] 			= '';
+/*!2!*/	$arrEvent['strEvent']			= '';
+/*!3!*/	$arrEvent['arrReality']			= array();
+	$arrEvent['arrListener'] = array();
 /*!4!*/
-/*!5!*/	$strRequest		=strGetRequest();
-/*13+*/	$arrEvent		=arrRestrictAndReportActionAndParametrs(
+
+	
+/*!5!*/	$arrRequest['arrListener']	= arrGetRequest($rRadio);
+	$strRequest			= str_replace($arrRequest['arrListener']['strRequest'], 'HTTP/1.1', '');
+
+/*13+*/	$arrEvent			= arrRestrictAndReportActionAndParametrs(
 					array(
 						'strEvent'	=>urldecode(сДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
 						'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
-					)
-				);
+						)
+					);
+	$arrEvent['arrListener']	= $arrRequest['arrListener'];
+
 	//echo '<pre>';
 	//print_r($arrEvent);
 	//echo '</pre>';
 	//exit;
 /*14!*/return $arrEvent;
 /*15!*/	}
+
 function arrEventParams2Array($_strQuery)
 	{
 	$arrResult	=array();
