@@ -61,7 +61,7 @@ function arrRequest2IndexArray($_arrRequest)
 					$arrRequest['arrRequest']['strMethodLen']	= strlen($arrRequest['arrRequest']['strMethod']);
 					$arrRequest['arrRequest']['strProto']		= сКонцДоСимвола($strRequest, ' ');
 					$arrRequest['arrRequest']['strProtoLen']	= strlen($arrRequest['arrRequest']['strProto']);
-					$arrRequest['strRequest']			= substr($strRequest, $arrRequest['arrRequest']['strMethodLen'], -($arrRequest['arrRequest']['strProtoLen']));
+					$arrRequest['arrRequest']['strRequest']		= substr($strRequest, $arrRequest['arrRequest']['strMethodLen'], -($arrRequest['arrRequest']['strProtoLen']));
 					}
 				else
 					{
@@ -116,7 +116,7 @@ function arrGetEventSetter($rRadio)
 
 	
 /*!5!*/	$arrRequest['arrListener']	= arrGetRequest($rRadio);
-/*!6*/	$strRequest			= str_replace($arrRequest['arrListener']['strRequest'], 'HTTP/1.1', '');
+/*!6*/	$strRequest			= $arrRequest['arrListener']['strRequest'];
 
 /*!7*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
 					array(
@@ -125,7 +125,6 @@ function arrGetEventSetter($rRadio)
 						)
 					);
 	$arrEvent['arrListener']	= $arrRequest['arrListener'];
-
 	//echo '<pre>';
 	//print_r($arrEvent);
 	//echo '</pre>';
