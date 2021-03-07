@@ -191,21 +191,37 @@ function arrRequest2IndexArray($_arrRequest)
 			}
 		$arrRequest['arrRequest']['rRadio']	= $_arrRequest['rRadio'];
 		}
-	if(!isset($arrRequest['User-Agent']))
+	if(!isset($arrRequest['arrRequest']['strUserAgent']))
 		{
-		$arrRequest['User-Agent']	='BOT';
+		$arrRequest['arrRequest']['strUserAgent']	= 'BOT';
 		}
-	if(!isset($arrRequest['Host']))
+	else
 		{
-		$arrRequest['Host']		='BOT';
+		_Report('[arrRequest][strUserAgent]= BOT');
+		}
+	if(!isset($arrRequest['arrRequest']['strHost']))
+		{
+		$arrRequest['arrRequest']['strHost']		= 'BOT';
+		}
+	else
+		{
+		_Report('[arrRequest][strHost]= BOT');
 		}
 	if(!isset($arrRequest['Accept-Language']))
 		{
-		$arrRequest['Accept-Language']	='BOT';
+		$arrRequest['Accept-Language']			= 'BOT';
+		}
+	else
+		{
+		_Report('[Accept-Language]= BOT');
 		}
 	if(!isset($arrRequest['Accept-Encoding']))
 		{
-		$arrRequest['Accept-Encoding']	='BOT';
+		$arrRequest['Accept-Encoding']			= 'BOT';
+		}
+	else
+		{
+		_Report('[Accept-Encoding]= BOT');
 		}
 	return $arrRequest;
 	}
