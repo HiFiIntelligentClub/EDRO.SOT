@@ -68,11 +68,11 @@ function strUserAgent2Platform($_strHTTP_USER_AGENT)
 	{
 	$мPlatform	=
 		array(
-		'bIzCheckMaPhone'	= FALSE,
-		'bIzAndroid'		= FALSE,
-		'bIzApple'		= FALSE,
-		'bIzDesktop'		= FALSE,
-		'bIzOther'		= FALSE,
+		'bIzCheckMaPhone'	=> FALSE,
+		'bIzAndroid'		=> FALSE,
+		'bIzApple'		=> FALSE,
+		'bIzDesktop'		=> FALSE,
+		'bIzOther'		=> FALSE,
 		);
 	if(bIzCheckMaPhone($_strHTTP_USER_AGENT))
 		{
@@ -172,7 +172,7 @@ function arrRequest2IndexArray($_arrRequest)
 					}
 				elseif($arrIndex[0]=='User-Agent')
 					{
-					$arrRequest['arrRequest']['strPlatform'] 	= strUserAgent2Platform($arrIndex[1]);
+					$arrRequest['arrRequest']['arrPlatform'] 	= strUserAgent2Platform($arrIndex[1]);
 					$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
 					}
 				else
@@ -225,8 +225,8 @@ function arrGetEventSetter($rRadio)
 
 /*!7*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
 					array(
-						'strEvent'	=>urldecode(сДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
-						'arrReality'	=>arrEventParams2Array(substr(сОтСимвола($strRequest, '?'),1)),
+						'strEvent'	=>urldecode(сНачДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
+						'arrReality'	=>arrEventParams2Array(сНачОтСимвола($strRequest, '?', 0, 1),
 						)
 					);
 	$arrEvent['arrListener']	= $arrRequest['arrListener'];
@@ -252,7 +252,6 @@ function arrEventParams2Array($_strQuery)
 		$strParamValue			= $arrBeforeValidate[1];
 		$arrResult[$strParamName]	= urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
 		}
-
 	return $arrResult;
 	}
 
