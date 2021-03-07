@@ -64,7 +64,7 @@ function bIzDesktop($_strHTTP_USER_AGENT)
 		}
 	return $bIz;
 	}
-function strUserAgent2Platform($_strHTTP_USER_AGENT)
+function arrUserAgent2Platform($_strHTTP_USER_AGENT)
 	{
 	$мPlatform	=
 		array(
@@ -173,7 +173,7 @@ function arrRequest2IndexArray($_arrRequest)
 				elseif($arrIndex[0]=='User-Agent')
 					{
 					$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
-					$arrRequest['arrRequest']['arrPlatform'] 	= strUserAgent2Platform($arrRequest['arrRequest']['strUserAgent']);
+					$arrRequest['arrRequest']['arrPlatform'] 	= arrUserAgent2Platform($arrRequest['arrRequest']['strUserAgent']);
 					}
 				else
 					{
