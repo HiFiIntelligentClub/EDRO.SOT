@@ -16,6 +16,76 @@
 
 //$arrr = arrRestrictAndReportActionAndParametrs($_arrIncome=array());
 //print_r($arrr);
+function bIzCheckMaPhone($_strHTTP_USER_AGENT)
+	{
+	$bIz=false;
+	$strUserAgent=strtolower($_strHTTP_USER_AGENT);
+	if(strpos($strUserAgent, 'edro:polimer')!==false)
+		{
+		$bIz=true;
+		}
+	return $bIz;
+	//return true;
+	}
+function bIzAndroid($_strHTTP_USER_AGENT)
+	{
+	$bIz=false;
+	$strUserAgent=strtolower($_strHTTP_USER_AGENT]);
+	if(strpos($strUserAgent, 'android')!==false)
+		{
+		$bIz=true;
+		}
+	return $bIz;
+	//return true;
+	}
+function bIzApple($_strHTTP_USER_AGENT)
+	{
+	$bIz=false;
+	$strUserAgent=strtolower($_strHTTP_USER_AGENT);
+	if((strpos($strUserAgent, 'ipad')!==false)||(strpos($strUserAgent, 'iphone')!==false)||(strpos($strUserAgent, 'ipod')!==false))
+		{
+		$bIz=true;
+		}
+	return $bIz;
+	//return true;
+	}
+function bIzDesktop($_strHTTP_USER_AGENT)
+	{
+	$bIz=false;
+	if($this->bIzAndroid()===false)
+		{
+		if($this->bIzApple()===false)
+			{
+			$bIz=true;
+			}
+		}
+	return $bIz;
+	}
+function strUserAgent2Platform($_strHTTP_USER_AGENT)
+	{
+	if(bIzCheckMaPhone($_strHTTP_USER_AGENT))
+		{
+		$strPlatform	='CheckMaPhone';
+		}
+	elseif(bIzAndroid($_strHTTP_USER_AGENT))
+		{
+		$strPlatform	='Android';
+		}
+	elseif(bIzApple($_strHTTP_USER_AGENT))
+		{
+		$strPlatform	='AppleMobile';
+		}
+	elseif(bIzDesktop($_strHTTP_USER_AGENT))
+		{
+		$strPlatform	='Desktop';
+		}
+	else
+		{
+		_Report('Unknown platform: '.$_strHTTP_USER_AGENT);
+		$strPlatform	='Unknown';
+		}
+	return $strPlatform;
+	}
 function сРасширение($_сЗапрос)
 	{
 	
@@ -66,7 +136,9 @@ function arrRequest2IndexArray($_arrRequest)
 					$arrRequest['arrRequest']['strProto']		= сКонцДоСимвола($strRequest, ' ');
 					$arrRequest['arrRequest']['strProtoLen']	= strlen($arrRequest['arrRequest']['strProto']);
 					$arrRequest['arrRequest']['strRequest']		= substr($strRequest, $arrRequest['arrRequest']['strMethodLen'], -($arrRequest['arrRequest']['strProtoLen']));
-					$arrRequest['arrRequest']['strExt']		= ;
+					$strExt						= сКонцДоСимвола($arrRequest['arrRequest']['strRequest'], '.');
+					$int1ExtLength					= strlen($strExt);
+					$arrRequest['arrRequest']['strExt']		= ($int1ExtLength>6)?FALSE:$strExt;
 					}
 				else
 					{
@@ -78,8 +150,24 @@ function arrRequest2IndexArray($_arrRequest)
 				$arrIndex			= explode(":" , $strRequest);
 				}
 			if(isset($arrIndex[0])&&isset($arrIndex[1]))
-				{
-				$arrRequest[$arrIndex[0]]	= $arrIndex[1];
+				{	
+				if($arrIndex[0]=='Host')
+					{
+					$arrRequest['arrRequest']['strHost'] 		= $arrIndex[1];
+					}
+				elseif($arrIndex[0]=='Connection')
+					{
+					$arrRequest['arrRequest']['strConnection'] 	= $arrIndex[1];
+					}
+				elseif($arrIndex[0]=='User-Agent')
+					{
+					$arrRequest['arrRequest']['strPlatform'] 	= strUserAgent2Platform($arrIndex[1]);
+					$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
+					}
+				else
+					{
+					$arrRequest[$arrIndex[0]]	= $arrIndex[1];
+					}
 				}
 			//elseif(isset($arrIndex[0])&&!isset($arrIndex[1]))
 			//	{
