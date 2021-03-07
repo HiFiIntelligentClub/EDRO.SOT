@@ -44,12 +44,15 @@ function arrReadRequestFromListenersBrowser($_rRadio)
 		{
 		$arrListenerSetup	=array();
 		}
+	$arrListenerSetup['rRadio']	= $_rRadio;
 	return $arrListenerSetup;
 	}
 function arrRequest2IndexArray($_arrRequest)
 	{
 	if(is_array($_arrRequest))
 		{
+		//print_r($_arrRequest);
+		//exit;
 		$int0X=0;
 		foreach($_arrRequest as $strRequest)
 			{
@@ -85,6 +88,7 @@ function arrRequest2IndexArray($_arrRequest)
 				}
 			$int0X++;
 			}
+		$arrRequest['arrRequest']['rRadio']	= $_arrRequest['rRadio'];
 		}
 	if(!isset($arrRequest['User-Agent']))
 		{
