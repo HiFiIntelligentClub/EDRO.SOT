@@ -16,6 +16,10 @@
 
 //$arrr = arrRestrictAndReportActionAndParametrs($_arrIncome=array());
 //print_r($arrr);
+function сРасширение($_сЗапрос)
+	{
+	
+	}
 function strSafeUsers($_strRequest)
 	{
 	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
@@ -24,17 +28,14 @@ function strSafeUsers($_strRequest)
 /*+4+*/	{//$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);----
 	$rRadio 				= stream_socket_accept($rRadio, -1);
 	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
-	//strSafeUsers();
-	//print_r($arrReadRequestFromListenersBrowser);
-	//exit;
 /*+6+*/ return $arrReadRequestFromListenersBrowser;
 /*+7+*/	}
 function arrReadRequestFromListenersBrowser($_rRadio)
 	{
-	$sListenerRadio		=strSafeUsers(fread($_rRadio, 4096));
+/*!*/	$sListenerRadio		=strSafeUsers(fread($_rRadio, 4096));
 	if(!empty($sListenerRadio))
 		{
-		$arrListenerSetup	=explode("\n", $sListenerRadio	);
+		$arrListenerSetup	= explode("\n", $sListenerRadio	);
 		}
 	else
 		{
@@ -42,7 +43,7 @@ function arrReadRequestFromListenersBrowser($_rRadio)
 		}
 	if(!is_array($arrListenerSetup))
 		{
-		$arrListenerSetup	=array();
+		$arrListenerSetup	= array();
 		}
 	$arrListenerSetup['rRadio']	= $_rRadio;
 	return $arrListenerSetup;
@@ -65,6 +66,7 @@ function arrRequest2IndexArray($_arrRequest)
 					$arrRequest['arrRequest']['strProto']		= сКонцДоСимвола($strRequest, ' ');
 					$arrRequest['arrRequest']['strProtoLen']	= strlen($arrRequest['arrRequest']['strProto']);
 					$arrRequest['arrRequest']['strRequest']		= substr($strRequest, $arrRequest['arrRequest']['strMethodLen'], -($arrRequest['arrRequest']['strProtoLen']));
+					$arrRequest['arrRequest']['strExt']		= ;
 					}
 				else
 					{
