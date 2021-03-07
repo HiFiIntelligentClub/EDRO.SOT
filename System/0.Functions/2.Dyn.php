@@ -172,8 +172,8 @@ function arrRequest2IndexArray($_arrRequest)
 					}
 				elseif($arrIndex[0]=='User-Agent')
 					{
-					$arrRequest['arrRequest']['arrPlatform'] 	= strUserAgent2Platform($arrIndex[1]);
 					$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
+					$arrRequest['arrRequest']['arrPlatform'] 	= strUserAgent2Platform($arrRequest['arrRequest']['strUserAgent']);
 					}
 				else
 					{
