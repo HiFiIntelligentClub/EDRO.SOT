@@ -30,7 +30,7 @@ function bIzCheckMaPhone($_strHTTP_USER_AGENT)
 function bIzAndroid($_strHTTP_USER_AGENT)
 	{
 	$bIz=false;
-	$strUserAgent=strtolower($_strHTTP_USER_AGENT]);
+	$strUserAgent=strtolower($_strHTTP_USER_AGENT);
 	if(strpos($strUserAgent, 'android')!==false)
 		{
 		$bIz=true;
@@ -52,39 +52,50 @@ function bIzApple($_strHTTP_USER_AGENT)
 function bIzDesktop($_strHTTP_USER_AGENT)
 	{
 	$bIz=false;
-	if($this->bIzAndroid()===false)
+	if(
+	!$мPlatform['CheckMaPhone']&&
+	!$мPlatform['Android']&&
+	!$мPlatform['AppleMobile']&&
+	!$мPlatform['Desktop']&&
+	!$мPlatform['Other']
+		)
 		{
-		if($this->bIzApple()===false)
-			{
-			$bIz=true;
-			}
+		$bIz	= true;
 		}
 	return $bIz;
 	}
 function strUserAgent2Platform($_strHTTP_USER_AGENT)
 	{
+	$мPlatform	=
+		array(
+		'bIzCheckMaPhone'	= FALSE,
+		'bIzAndroid'		= FALSE,
+		'bIzApple'		= FALSE,
+		'bIzDesktop'		= FALSE,
+		'bIzOther'		= FALSE,
+		);
 	if(bIzCheckMaPhone($_strHTTP_USER_AGENT))
 		{
-		$strPlatform	='CheckMaPhone';
+		$мPlatform['CheckMaPhone']	= true;
 		}
 	elseif(bIzAndroid($_strHTTP_USER_AGENT))
 		{
-		$strPlatform	='Android';
+		$мPlatform['Android']		= true;
 		}
 	elseif(bIzApple($_strHTTP_USER_AGENT))
 		{
-		$strPlatform	='AppleMobile';
+		$мPlatform['AppleMobile']	= true;
 		}
-	elseif(bIzDesktop($_strHTTP_USER_AGENT))
+	elseif(bIzDesktop($мPlatform))
 		{
-		$strPlatform	='Desktop';
+		$мPlatform['Desktop']		= true;
 		}
 	else
 		{
 		_Report('Unknown platform: '.$_strHTTP_USER_AGENT);
-		$strPlatform	='Unknown';
+		$мPlatform['Other']		= true;
 		}
-	return $strPlatform;
+	return $мPlatform;
 	}
 function сРасширение($_сЗапрос)
 	{
