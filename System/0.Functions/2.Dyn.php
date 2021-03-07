@@ -146,10 +146,10 @@ function arrEventParams2Array($_strQuery)
 
 	foreach($arrQuery as $strQuery)
 		{
-		$arrBeforeValidate		=arrPrepare2($strQuery);
-		$strParamName			=$arrBeforeValidate[0];
-		$strParamValue			=$arrBeforeValidate[1];
-		$arrResult[$strParamName]	=urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
+		$arrBeforeValidate		= arrPrepare2($strQuery);
+		$strParamName			= $arrBeforeValidate[0];
+		$strParamValue			= $arrBeforeValidate[1];
+		$arrResult[$strParamName]	= urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
 		}
 
 	return $arrResult;
@@ -157,31 +157,31 @@ function arrEventParams2Array($_strQuery)
 
 function arrRestrictAndReportEventsAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
-	$arrResult['strEvent']		='';
-	$arrResult['arrReality']	=array();
-	$arrFallBack			=arrAllEventIncomeParametrsFallBack();
+	$arrResult['strEvent']		= '';
+	$arrResult['arrReality']	= array();
+	$arrFallBack			= arrAllEventIncomeParametrsFallBack();
 	//$arrFallBack['arrFallBack']
 
 	if(is_array($_arrIncome))
 		{
-		$arrIncome		=$_arrIncome;
+		$arrIncome		= $_arrIncome;
 				   unset($_arrIncome);
 		}
 	else
 		{
-		$arrIncome		=array();
+		$arrIncome		= array();
 		}
-	$strReplaceName			=$_strReplaceName;
-				   unset($_strReplaceName);
-	$strReplaceValue		=$_strReplaceValue;
-				   unset($_strReplaceValue);
+	$strReplaceName			= $_strReplaceName;
+				    unset($_strReplaceName);
+	$strReplaceValue		= $_strReplaceValue;
+				    unset($_strReplaceValue);
 	if(is_file('/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase().'/Events/'.сПреобразовать($arrIncome['strEvent'], "вКоманду").'/run.php'))
 		{
-		$arrResult['strEvent']		=$arrIncome['strEvent'];
+		$arrResult['strEvent']		= $arrIncome['strEvent'];
 		}
 	else
 		{
-		$arrResult['strEvent']		='/';
+		$arrResult['strEvent']		= '/';
 		}
 	foreach($arrFallBack['arrReality'] as $strFallBackName=>$arrFallBackParams)
 		{
@@ -194,18 +194,18 @@ function arrRestrictAndReportEventsAndParametrs($_arrIncome, $_strReplaceName=''
 				if(isset($arrFallBackParams['int0MaxValue'])&&($strIncomeValue>$arrFallBackParams['int0MaxValue']))
 					{
 												_Report($strIncomeName.'>'.$arrFallBackParams['int0MaxValue'].': '.$strIncomeValue);
-					$strIncomeValue						=$arrFallBackParams['int0MaxValue'];
-					$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
+					$strIncomeValue						= $arrFallBackParams['int0MaxValue'];
+					$arrResult['arrReality'][$strIncomeName]		= $strIncomeValue;
 	    				}
 				if(isset($arrFallBackParams['int0MaxLength'])&&(strlen($strIncomeValue)>$arrFallBackParams['int0MaxLength']))
 					{
 												_Report($arrIncome['arrReality'][$strIncomeName].'length>'.$arrFallBackParams['int0MaxLength']);
-					$strIncomeValue						=substr($arrIncome['arrReality'][$strIncomeName],0, $arrFallBackParams['int0MaxLength']);
-					$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
+					$strIncomeValue						= substr($arrIncome['arrReality'][$strIncomeName],0, $arrFallBackParams['int0MaxLength']);
+					$arrResult['arrReality'][$strIncomeName]		= $strIncomeValue;
 					}
 				else
 					{
-					$arrResult['arrReality'][$strIncomeName]		=$strIncomeValue;
+					$arrResult['arrReality'][$strIncomeName]		= $strIncomeValue;
 					}
 				}
 			}
@@ -216,17 +216,17 @@ function arrRestrictAndReportEventsAndParametrs($_arrIncome, $_strReplaceName=''
 	}
 function arrPrepare($_strQuery, $_arrDataTypes=array())
 	{
-	$arrQuery=array();
-	$strQuery=$_strQuery;
+	$arrQuery	= array();
+	$strQuery	= $_strQuery;
 	    unset($_strQuery);
 	
 	if(strpos($strQuery, '&'))
 		{
-		$arrQuery=explode('&', $strQuery);
+		$arrQuery	= explode('&', $strQuery);
 		}
 	elseif(strpos($strQuery, '='))
 		{
-		$arrQuery[0]=$strQuery;
+		$arrQuery[0]	= $strQuery;
 		//$arrQuery=explode('=', $strQuery);
 		}
 	else
@@ -236,12 +236,12 @@ function arrPrepare($_strQuery, $_arrDataTypes=array())
 	}
 function arrPrepare2($_strQuery, $_arrDataTypes=array())
 	{
-	$arrQuery=array();
-	$strQuery=$_strQuery;
+	$arrQuery	= array();
+	$strQuery	= $_strQuery;
 	    unset($_strQuery);
 	if(strpos($strQuery, '='))
 		{
-		$arrQuery=explode('=', $strQuery);
+		$arrQuery	= explode('=', $strQuery);
 		}
 	else
 		{
