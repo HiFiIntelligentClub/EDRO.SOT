@@ -152,26 +152,18 @@ function arrRequest2IndexArray($_arrEvent)
 				$int1LenIndex		= strlen($strIndex);
 				$strListenerProto	= сКонцДоСимвола($strIndex, ' ');
 				$strListenerLenProto	= strlen($strListenerProto);
-				$strListenerEvent	= CheckMaSubstr($strEvent , $int1LenIndex,  -$strListenerLenProto);
-				$strListenerEventName	= сНачДоСимвола($strListenerEvent, "?");
-				$strListenerParams	= сНачОтСимвола($strListenerEvent, "?", 0, 1);
+
 				//$strListenerAccept	= str_replace( ':', '', $strIndex);
 
-			/*	if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
+				if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 					{
-					$arrEvent['strType']		= $strIndex;
-					$arrEvent['strTypeLen']		= strlen($strIndex);
-					$arrEvent['strProto']		= сКонцДоСимвола($strEvent, ' ');
-					$arrEvent['strProtoLen']	= strlen($arrEvent['strProto']);
-					strEventAndParams		= substr($strEvent, $arrEvent['strTypeLen'], -($arrEvent['strProtoLen']));
-					if(strpos())
-					if($strEvent)
-						{
-						}
-					$arrEvent['strEvent']		= substr($strEvent, $arrEvent['strTypeLen'], -($arrEvent['strProtoLen']));
-    					$strExt				= сКонцДоСимвола($arrEvent['strEvent'], '.');
-					$int1ExtLength			= strlen($strExt);
-					$arrEvent['strExt']		= $int1ExtLength>6?FALSE:$strExt;
+					$strListenerEvent		= CheckMaSubstr($strEvent , $int1LenIndex,  -$strListenerLenProto);
+					$strListenerEventName		= сНачДоСимвола($strListenerEvent, "?");
+					$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
+					$arrEvent['strName']		= $strListenerEventName;
+					$arrEvent['strParams']		= $strListenerParams;
+    					$strExt				= сКонцДоСимвола($arrEvent['strName'], '.');;
+					$arrEvent['strExt']		= $strExt?FALSE:$strExt;
 					///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
 					}
 				elseif($strIndex=='Host')
