@@ -105,7 +105,7 @@ function strSafeUsers($_strRequest)
 	{
 	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
 	}
-/*!*/function arrGetRequest($rRadio)
+/*!*/function arrGetEvent($rRadio)
 /*+4+*/	{//$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);----
 	$rRadio 				= stream_socket_accept($rRadio, -1);
 	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
@@ -113,14 +113,14 @@ function strSafeUsers($_strRequest)
 /*+7+*/	}
 function arrReadRequestFromListenersBrowser($_rRadio)
 	{
-/*!*/	$sListenerRadio		=strSafeUsers(fread($_rRadio, 4096));
+/*!*/	$sListenerRadio		= strSafeUsers(fread($_rRadio, 4096));
 	if(!empty($sListenerRadio))
 		{
 		$arrListenerSetup	= explode("\n", $sListenerRadio	);
 		}
 	else
 		{
-		_Report('fread($sListenerRadio, 512) empty.');
+		_Report('fread($sListenerRadio, 4096) empty.');
 		}
 	if(!is_array($arrListenerSetup))
 		{
@@ -129,115 +129,117 @@ function arrReadRequestFromListenersBrowser($_rRadio)
 	$arrListenerSetup['rRadio']	= $_rRadio;
 	return $arrListenerSetup;
 	}
-function arrRequest2IndexArray($_arrRequest)
+function arrRequest2IndexArray($_arrEvent)
 	{
-	if(is_array($_arrRequest))
+	if(!isset($_arrEvent['rRadio']))
 		{
-		foreach($_arrRequest as $strI=>$strRequest)
+		_Report('No radio is not working!!!');
+		return ....;
+		}
+	$arrEvent['rRadio']	= $_arrEvent['rRadio'];
+			    unset($_arrEvent['rRadio']);
+	if(is_array($_arrEvent))
+		{
+		foreach($_arrEvent as $strI=>$strEvent)
 			{
-			if($strI=='rRadio')
+			echo $strEvent."\n";
+
+			if(($strIndex=сНачДоСимвола($strEvent, ' '))!==FALSE)
 				{
-				$arrRequest['arrRequest']['rRadio']	= $_arrRequest['rRadio'];
-				continue;
-				}
-			if(сНачДоСимвола($strRequest, ' ')====FALSE)
-				{
-				$arrIndex	= explode(":" , $strRequest);
-				if(strpos($strRequest, "GET")===0||strpos($strRequest, "POST")===0||strpos($strRequest, "PUT")===0)
+				echo$strIndex."\n";
+				$strEvent	= str_replace($strEvent, $strIndex,'');
+				echo $strEvent."\n";
+				$strIndex	= str_replace($strIndex, ':', '');
+				echo $strEvent."\n";
+				/*if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 					{
-					$arrRequest['arrRequest']['strMethod']		= сНачДоСимвола($strRequest, ' ');
-					$arrRequest['arrRequest']['strMethodLen']	= strlen($arrRequest['arrRequest']['strMethod']);
-					$arrRequest['arrRequest']['strProto']		= сКонцДоСимвола($strRequest, ' ');
-					$arrRequest['arrRequest']['strProtoLen']	= strlen($arrRequest['arrRequest']['strProto']);
-					if($strRequest)
+					$arrEvent['strMethod']	= $strIndex;
+					$arrEvent['strMethodLen']	= strlen($strIndex);
+					$arrEvent['strProto']		= сКонцДоСимвола($strEvent, ' ');
+					$arrEvent['strProtoLen']	= strlen($arrEvent['strProto']);
+					if($strEvent)
 						{
 						}
-					$arrRequest['arrRequest']['strRequest']		= substr($strRequest, $arrRequest['arrRequest']['strMethodLen'], -($arrRequest['arrRequest']['strProtoLen']));
-					$strExt						= сКонцДоСимвола($arrRequest['arrRequest']['strRequest'], '.');
-					$int1ExtLength					= strlen($strExt);
-					$arrRequest['arrRequest']['strExt']		= ($int1ExtLength>6)?FALSE:$strExt;
+					$arrEvent['strEvent']		= substr($strEvent, $arrEvent['strMethodLen'], -($arrEvent['strProtoLen']));
+					$strExt				= сКонцДоСимвола($arrEvent['strEvent'], '.');
+					$int1ExtLength			= strlen($strExt);
+					$arrEvent['strExt']		= ($int1ExtLength>6)?FALSE:$strExt;
+					///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
+					}
+				elseif($strIndex=='Host')
+					{
+					$arrEvent['strHost'] 		= $strEvent;
+					}
+				elseif($strIndex=='Accept')
+					{
+					$arr=explode(',' ,trim($strEvent));
+					if(is_array($arr))
+						{
+						}
+					else
+						{
+						$arr	=array();
+						}
+					$arrEvent['strAccept'] 	= $arr;
+					}
+				elseif($strIndex=='Connection')
+					{
+					$arrEvent['strConnection'] 	= $strEvent;
+					}
+				elseif($strIndex=='User-Agent')
+					{
+					$arrEvent['strUserAgent'] 	= $strEvent;
+					$arrEvent['arrPlatform'] 	= arrUserAgent2Platform($arrEvent['strUserAgent']);
+					}
+				elseif($strIndex=='Accept-Language')
+					{
+					$arrEvent['strAcceptLanguage'] 	= $strEvent;
+					}
+				elseif($strIndex=='Accept-Encoding')
+					{
+					$arrEvent['strAcceptEncoding'] 	= $strEvent;
 					}
 				else
 					{
-					///_Report('Unusall position of request string $arrRequest[strRequest]: '.$strRequest);
-					if(isset($arrIndex[0])&&isset($arrIndex[1]))
-						{	
-						if($arrIndex[0]=='Host')
-							{
-							$arrRequest['arrRequest']['strHost'] 		= $arrIndex[1];
-							}
-						elseif($arrIndex[0]=='Accept')
-							{
-							$arr=explode(',' ,trim($arrIndex[1]));
-							if(is_array($arr))
-								{
-								}
-							else
-								{
-								$arr	=array();
-								}
-							$arrRequest['arrRequest']['strAccept'] 	= $arr;
-							}
-						elseif($arrIndex[0]=='Connection')
-							{
-							$arrRequest['arrRequest']['strConnection'] 	= $arrIndex[1];
-							}
-						elseif($arrIndex[0]=='User-Agent')
-							{
-							$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
-							$arrRequest['arrRequest']['arrPlatform'] 	= arrUserAgent2Platform($arrRequest['arrRequest']['strUserAgent']);
-							}
-						elseif($arrIndex[0]=='Accept-Language')
-							{
-							$arrRequest['arrRequest']['strAcceptLanguage'] 	= $arrIndex[1];
-							}
-						elseif($arrIndex[0]=='Accept-Encoding')
-							{
-							$arrRequest['arrRequest']['strAcceptEncoding'] 	= $arrIndex[1];
-							}
-						else
-							{
-							$arrRequest[$arrIndex[0]]	= $arrIndex[1];
-							_Report('Unusall position of request string $arrRequest[strRequest]: '.$strRequest);
-							}//Accept-Encoding
-						}
-					}
+					$arrEvent[$strIndex]	= $strEvent;
+					_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strIndex.'/'.$strEvent);
+					}*/
 				}
 			}
 		}
-	if(!isset($arrRequest['arrRequest']['strUserAgent']))
+	if(!isset($arrEvent['arrEvent']['strUserAgent']))
 		{
-		$arrRequest['arrRequest']['strUserAgent']	= 'BOT';
+		$arrEvent['arrEvent']['strUserAgent']	= 'BOT';
 		}
 	else
 		{
-		_Report('[arrRequest][strUserAgent]= BOT');
+		_Report('[arrEvent][strUserAgent]= BOT');
 		}
-	if(!isset($arrRequest['arrRequest']['strHost']))
+	if(!isset($arrEvent['arrEvent']['strHost']))
 		{
-		$arrRequest['arrRequest']['strHost']		= 'BOT';
+		$arrEvent['arrEvent']['strHost']		= 'BOT';
 		}
 	else
 		{
-		_Report('[arrRequest][strHost]= BOT');
+		_Report('[arrEvent][strHost]= BOT');
 		}
-	if(!isset($arrRequest['Accept-Language']))
+	if(!isset($arrEvent['Accept-Language']))
 		{
-		$arrRequest['Accept-Language']			= 'BOT';
+		$arrEvent['Accept-Language']			= 'BOT';
 		}
 	else
 		{
 		_Report('[Accept-Language]= BOT');
 		}
-	if(!isset($arrRequest['Accept-Encoding']))
+	if(!isset($arrEvent['Accept-Encoding']))
 		{
-		$arrRequest['Accept-Encoding']			= 'BOT';
+		$arrEvent['Accept-Encoding']			= 'BOT';
 		}
 	else
 		{
 		_Report('[Accept-Encoding]= BOT');
 		}
-	return $arrRequest;
+	return $arrEvent;
 	}
 function arrGetEventSetter($rRadio)
 /*!0!*/	{
@@ -246,23 +248,23 @@ function arrGetEventSetter($rRadio)
 ///+	$arrEvent['rRadio'] 			= '';
 /*!2!*/	$arrEvent['strEvent']			= '';
 /*!3!*/	$arrEvent['arrReality']			= array();
-/*!4!*/	$arrEvent['arrListener'] = array();
+/*!4!*/	$arrEvent['arrListener'] 		= array();
 
 
 	
-/*!5!*/	$arrRequest['arrListener']	= arrGetRequest($rRadio);
+/*!5!*/	$arrEvent['arrListener']	= arrGetEvent($rRadio);
 
-/*!6*/	$strRequest			= $arrRequest['arrListener']['arrRequest']['strRequest'];
-	print_r($arrRequest);
+/*!6*/	$strEvent			= $arrEvent['arrListener']['strEvent'];
+	print_r($arrEvent);
 	exit;
 
 /*!7*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
 					array(
-						'strEvent'	=>urldecode(сНачДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
-						'arrReality'	=>arrEventParams2Array(сНачОтСимвола($strRequest, '?', 0, 1)),
+						'strEvent'	=>urldecode(сНачДоСимвола($strEvent, '?')), //Why it is encoded? Shall find
+						'arrReality'	=>arrEventParams2Array(сНачОтСимвола($strEvent, '?', 0, 1)),
 						)
 					);
-	$arrEvent['arrListener']	= $arrRequest['arrListener'];
+	$arrEvent['arrListener']	= $arrEvent['arrListener'];
 	//echo '<pre>';
 	//print_r($arrEvent);
 	//echo '</pre>';
