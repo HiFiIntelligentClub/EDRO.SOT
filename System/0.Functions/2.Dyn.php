@@ -139,36 +139,38 @@ function arrRequest2IndexArray($_arrEvent)
 	if(!isset($_arrEvent['rRadio']))
 		{
 		_Report('No radio is not working!!!');
-		return ....;
+		return $arrEvent['rRadio']	=FALSE;
 		}
 	$arrEvent['rRadio']	= $_arrEvent['rRadio'];
 			    unset($_arrEvent['rRadio']);
 	if(is_array($_arrEvent))
 		{
-		foreach($_arrEvent as $strI=>$strEvent)
+		foreach($_arrEvent as $strListenerEvent)
 			{
-			echo $strEvent."\n";
-
 			if(($strIndex=сНачДоСимвола($strEvent, ' '))!==FALSE)
 				{
-				echo$strIndex."\n";
-				$strEvent	= str_replace($strEvent, $strIndex,'');
-				echo $strEvent."\n";
-				$strIndex	= str_replace($strIndex, ':', '');
-				echo $strEvent."\n";
-				/*if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
+				$strIndexLength		= strlen($strIndex);
+
+				$strListenerEvent	= CheckMaSubstr($strIndex,'', $strEvent);
+
+				$strListenerParams	= сНачОтСимвола();
+				$strListenerAccept	= str_replace( ':', '', $strIndex);
+
+			/*	if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 					{
-					$arrEvent['strMethod']	= $strIndex;
-					$arrEvent['strMethodLen']	= strlen($strIndex);
+					$arrEvent['strType']		= $strIndex;
+					$arrEvent['strTypeLen']		= strlen($strIndex);
 					$arrEvent['strProto']		= сКонцДоСимвола($strEvent, ' ');
 					$arrEvent['strProtoLen']	= strlen($arrEvent['strProto']);
+					strEventAndParams		= substr($strEvent, $arrEvent['strTypeLen'], -($arrEvent['strProtoLen']));
+					if(strpos())
 					if($strEvent)
 						{
 						}
-					$arrEvent['strEvent']		= substr($strEvent, $arrEvent['strMethodLen'], -($arrEvent['strProtoLen']));
-					$strExt				= сКонцДоСимвола($arrEvent['strEvent'], '.');
+					$arrEvent['strEvent']		= substr($strEvent, $arrEvent['strTypeLen'], -($arrEvent['strProtoLen']));
+    					$strExt				= сКонцДоСимвола($arrEvent['strEvent'], '.');
 					$int1ExtLength			= strlen($strExt);
-					$arrEvent['strExt']		= ($int1ExtLength>6)?FALSE:$strExt;
+					$arrEvent['strExt']		= $int1ExtLength>6?FALSE:$strExt;
 					///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
 					}
 				elseif($strIndex=='Host')
@@ -193,8 +195,8 @@ function arrRequest2IndexArray($_arrEvent)
 					}
 				elseif($strIndex=='User-Agent')
 					{
-					$arrEvent['strUserAgent'] 	= $strEvent;
-					$arrEvent['arrPlatform'] 	= arrUserAgent2Platform($arrEvent['strUserAgent']);
+					$arrEvent['strPlatform'] 	= $strEvent;
+					$arrEvent['arrPlatform'] 	= arrUserAgent2Platform($arrEvent['strPlatform']);
 					}
 				elseif($strIndex=='Accept-Language')
 					{
@@ -212,17 +214,17 @@ function arrRequest2IndexArray($_arrEvent)
 				}
 			}
 		}
-	if(!isset($arrEvent['arrEvent']['strUserAgent']))
+	if(!isset($arrEvent['strPlatform']))
 		{
-		$arrEvent['arrEvent']['strUserAgent']	= 'BOT';
+		$arrEvent['strPlatform']	= 'BOT';
 		}
 	else
 		{
-		_Report('[arrEvent][strUserAgent]= BOT');
+		_Report('arrEvent[strUserAgent]= BOT');
 		}
-	if(!isset($arrEvent['arrEvent']['strHost']))
+	if(!isset($arrEvent['strHost']))
 		{
-		$arrEvent['arrEvent']['strHost']		= 'BOT';
+		$arrEvent['strHost']		= 'BOT';
 		}
 	else
 		{
@@ -257,19 +259,19 @@ function arrGetEventSetter($rRadio)
 
 
 	
-/*!5!*/	$arrEvent['arrListener']	= arrGetEvent($rRadio);
-
-/*!6*/	$strEvent			= $arrEvent['arrListener']['strEvent'];
-	print_r($arrEvent);
-	exit;
+/*!5!*/	$arrListener		= arrGetEvent($rRadio);
+	//print_r($arrListener);
+/*!6*/	echo $strEvent			= $arrListener['strEvent'];
+	
 
 /*!7*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
 					array(
-						'strEvent'	=>urldecode(сНачДоСимвола($strEvent, '?')), //Why it is encoded? Shall find
-						'arrReality'	=>arrEventParams2Array(сНачОтСимвола($strEvent, '?', 0, 1)),
+						'strEvent'	=>urldecode($strEvent), //Why it is encoded? Shall find
+						'arrReality'	=>arrEventParams2Array($strEvent),
 						)
 					);
-	$arrEvent['arrListener']	= $arrEvent['arrListener'];
+	print_r($arrEvent);
+	//$arrEvent['arrListener']	= $arrEvent['arrListener'];
 	//echo '<pre>';
 	//print_r($arrEvent);
 	//echo '</pre>';
@@ -321,6 +323,7 @@ function arrRestrictAndReportEventsAndParametrs($_arrIncome, $_strReplaceName=''
 		}
 	else
 		{
+		_Report('Событие не сществует в реальности!: '.$arrResult['strEvent']);
 		$arrResult['strEvent']		= '/';
 		}
 	foreach($arrFallBack['arrReality'] as $strFallBackName=>$arrFallBackParams)
