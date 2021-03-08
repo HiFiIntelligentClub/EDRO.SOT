@@ -106,11 +106,6 @@ function arrAllEventIncomeParametrsFallBack()
 		);
 	return $arrO;
 	}
-function CheckMaSubstr($int0Left, $int0Right, $_сВход)   //4 PHP brothers, it's very important to me, to use it with str_replace in common style. Thx. PHP is the best language. CheckMa CPU;
-	{
-	$_сВход		= substr($_сВход, $int0Left, $int0Right);
-	return $_сВход;
-	}
 function strMyJsonRec($_arrJson)
 	{
 	if(is_array($_arrJson))
@@ -157,6 +152,11 @@ function мЖанр_мЯзык_мТранскрипция($сВход) //inspire
 		}
 	    }
 	return $сВозврат;
+	}
+function CheckMaSubstr($_сВход ,$int0Left, $int0Right)   //4 PHP brothers, it's very important to me, to use it with str_replace in common style. Thx. PHP is the best language. CheckMa CPU;
+	{
+	$_сВход		= substr($_сВход, $int0Left, $int0Right);
+	return $_сВход;
 	}
 
 function сНачОтСимвола($_сВход, $_сОт='?', $_nu1BeginOffset=0, $_nu1сОтPlusOffset=1) // Слово  SAME FUNCTIONS 2

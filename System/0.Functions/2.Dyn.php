@@ -149,12 +149,13 @@ function arrRequest2IndexArray($_arrEvent)
 			{
 			if(($strIndex=сНачДоСимвола($strEvent, ' '))!==FALSE)
 				{
-				$strIndexLength		= strlen($strIndex);
-
-				$strListenerEvent	= CheckMaSubstr($strIndexLength , $strEvent);
-
-				$strListenerParams	= сНачОтСимвола();
-				$strListenerAccept	= str_replace( ':', '', $strIndex);
+				$int1LenIndex		= strlen($strIndex);
+				$strListenerProto	= сКонцДоСимвола($strIndex, ' ');
+				$strListenerLenProto	= strlen($strListenerProto);
+				$strListenerEvent	= CheckMaSubstr($strEvent , $int1LenIndex,  -$strListenerLenProto);
+				$strListenerEventName	= сНачДоСимвола($strListenerEvent, "?");
+				$strListenerParams	= сНачОтСимвола($strListenerEvent, "?", 0, 1);
+				//$strListenerAccept	= str_replace( ':', '', $strIndex);
 
 			/*	if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 					{
