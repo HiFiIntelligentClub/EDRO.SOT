@@ -143,6 +143,10 @@ function arrRequest2IndexArray($_arrEvent)
 		}
 	$arrEvent['rRadio']	= $_arrEvent['rRadio'];
 			    unset($_arrEvent['rRadio']);
+	$arrEvent['strPlatform']	= 'BOT';
+	$arrEvent['strHost']		= 'BOT';
+	$arrEvent['Accept-Language']	= 'BOT';
+	$arrEvent['Accept-Encoding']	= 'BOT';
 	if(is_array($_arrEvent))
 		{
 		foreach($_arrEvent as $strListenerEvent)
@@ -164,7 +168,7 @@ function arrRequest2IndexArray($_arrEvent)
 					$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
 					$arrEvent['strName']		= $strListenerEventName;
 					$arrEvent['strParams']		= $strListenerParams;
-    					$strExt				= сКонцДоСимвола($arrEvent['strName'], '.');;
+    					$strExt				= сКонцДоСимвола($arrEvent['strName'], '.');
 					$arrEvent['strExt']		= $strExt?FALSE:$strExt;
 					///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
 					}
@@ -205,41 +209,9 @@ function arrRequest2IndexArray($_arrEvent)
 					{
 					$arrEvent[$strIndex]	= $strEvent;
 					_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strIndex.'/'.$strEvent);
-					}*/
+					}
 				}
 			}
-		}
-	if(!isset($arrEvent['strPlatform']))
-		{
-		$arrEvent['strPlatform']	= 'BOT';
-		}
-	else
-		{
-		_Report('arrEvent[strUserAgent]= BOT');
-		}
-	if(!isset($arrEvent['strHost']))
-		{
-		$arrEvent['strHost']		= 'BOT';
-		}
-	else
-		{
-		_Report('[arrEvent][strHost]= BOT');
-		}
-	if(!isset($arrEvent['Accept-Language']))
-		{
-		$arrEvent['Accept-Language']			= 'BOT';
-		}
-	else
-		{
-		_Report('[Accept-Language]= BOT');
-		}
-	if(!isset($arrEvent['Accept-Encoding']))
-		{
-		$arrEvent['Accept-Encoding']			= 'BOT';
-		}
-	else
-		{
-		_Report('[Accept-Encoding]= BOT');
 		}
 	return $arrEvent;
 	}
