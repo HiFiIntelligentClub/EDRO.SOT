@@ -147,17 +147,19 @@ function arrRequest2IndexArray($_arrEvent)
 		{
 		foreach($_arrEvent as $strListenerEvent)
 			{
-			if(($strIndex=сНачДоСимвола($strEvent, ' '))!==FALSE)
+			if(($strIndex=сНачДоСимвола($strListenerEvent, ' '))!==FALSE)
 				{
-				$int1LenIndex		= strlen($strIndex);
-				$strListenerProto	= сКонцДоСимвола($strIndex, ' ');
-				$strListenerLenProto	= strlen($strListenerProto);
+				$arrEvent['strName']		= $strIndex;
+				$int1ListenerEventLenIndex	= strlen($strIndex);
+				$strListenerProto		= сКонцДоСимвола($strIndex, ' ');
+				$int1ListenerLenProto		= strlen($strListenerProto);
+				$arrEvent['strListenerProto']	= $strListenerProto;
 
 				//$strListenerAccept	= str_replace( ':', '', $strIndex);
 
 				if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 					{
-					$strListenerEvent		= CheckMaSubstr($strEvent , $int1LenIndex,  -$strListenerLenProto);
+					$strListenerEvent		= CheckMaSubstr($strListenerEvent , $int1ListenerEventLenIndex,  -$int1ListenerLenProto);
 					$strListenerEventName		= сНачДоСимвола($strListenerEvent, "?");
 					$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
 					$arrEvent['strName']		= $strListenerEventName;
