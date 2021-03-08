@@ -131,6 +131,11 @@ function arrReadRequestFromListenersBrowser($_rRadio)
 	}
 function arrRequest2IndexArray($_arrEvent)
 	{
+	//$arrEvent['rRadio']='False/Resource';
+	//$arrEvent['arr']=
+	//
+	//
+	//
 	if(!isset($_arrEvent['rRadio']))
 		{
 		_Report('No radio is not working!!!');
