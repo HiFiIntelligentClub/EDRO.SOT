@@ -49,15 +49,15 @@ function bIzApple($_strHTTP_USER_AGENT)
 	return $bIz;
 	//return true;
 	}
-function bIzDesktop($_strHTTP_USER_AGENT)
+function bIzDesktop($мPlatform)
 	{
 	$bIz=false;
 	if(
-	!$мPlatform['CheckMaPhone']&&
-	!$мPlatform['Android']&&
-	!$мPlatform['AppleMobile']&&
-	!$мPlatform['Desktop']&&
-	!$мPlatform['Other']
+	!$мPlatform['bIzCheckMaPhone']&&
+	!$мPlatform['bIzAndroid']&&
+	!$мPlatform['bIzAppleMobile']&&
+	!$мPlatform['bIzDesktop']&&
+	!$мPlatform['bIzOther']
 		)
 		{
 		$bIz	= true;
@@ -70,30 +70,30 @@ function arrUserAgent2Platform($_strHTTP_USER_AGENT)
 		array(
 		'bIzCheckMaPhone'	=> FALSE,
 		'bIzAndroid'		=> FALSE,
-		'bIzApple'		=> FALSE,
+		'bIzAppleMobile'	=> FALSE,
 		'bIzDesktop'		=> FALSE,
 		'bIzOther'		=> FALSE,
 		);
 	if(bIzCheckMaPhone($_strHTTP_USER_AGENT))
 		{
-		$мPlatform['CheckMaPhone']	= true;
+		$мPlatform['bIzCheckMaPhone']	= true;
 		}
 	elseif(bIzAndroid($_strHTTP_USER_AGENT))
 		{
-		$мPlatform['Android']		= true;
+		$мPlatform['bIzAndroid']	= true;
 		}
 	elseif(bIzApple($_strHTTP_USER_AGENT))
 		{
-		$мPlatform['AppleMobile']	= true;
+		$мPlatform['bIzAppleMobile']	= true;
 		}
 	elseif(bIzDesktop($мPlatform))
 		{
-		$мPlatform['Desktop']		= true;
+		$мPlatform['bIzDesktop']	= true;
 		}
 	else
 		{
 		_Report('Unknown platform: '.$_strHTTP_USER_AGENT);
-		$мPlatform['Other']		= true;
+		$мPlatform['bIzOther']		= true;
 		}
 	return $мPlatform;
 	}
@@ -237,12 +237,15 @@ function arrGetEventSetter($rRadio)
 
 	
 /*!5!*/	$arrRequest['arrListener']	= arrGetRequest($rRadio);
-/*!6*/	$strRequest			= $arrRequest['arrListener']['strRequest'];
+
+/*!6*/	$strRequest			= $arrRequest['arrListener']['arrRequest']['strRequest'];
+	print_r($arrRequest);
+	exit;
 
 /*!7*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
 					array(
 						'strEvent'	=>urldecode(сНачДоСимвола($strRequest, '?')), //Why it is encoded? Shall find
-						'arrReality'	=>arrEventParams2Array(сНачОтСимвола($strRequest, '?', 0, 1),
+						'arrReality'	=>arrEventParams2Array(сНачОтСимвола($strRequest, '?', 0, 1)),
 						)
 					);
 	$arrEvent['arrListener']	= $arrRequest['arrListener'];
