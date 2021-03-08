@@ -156,10 +156,10 @@ function мЖанр_мЯзык_мТранскрипция($сВход) //inspire
 
 function сНачОтСимвола($_сВход, $_сОт='?', $_nu1BeginOffset=0, $_nu1сОтPlusOffset=1) // Слово  SAME FUNCTIONS 2
 	{
-	if(empty($_сВход)||strpos($_сВход, $_сОт)){return FALSE;}
+	if(empty($_сВход)||(strpos($_сВход, $_сОт)===FALSE)){return FALSE;}
 	$сВход		= (string)$_сВход;
 	$сСлово		= substr($сВход, $_nu1BeginOffset);
-	$сСлово		= '';
+	$сСлово		= FALSE;
 	$фСимволНайден	= false;
 	//echo $с_Символ."\n";
 	$ч1Длинна	= strlen($сВход);
@@ -181,10 +181,10 @@ function сНачОтСимвола($_сВход, $_сОт='?', $_nu1BeginOffset
 	}
 function сНачДоСимвола($_сВход, $_сДо='?', $_nu1BeginOffset=0, $_nu1сОтPlusOffset=0) // Слово  SAME FUNCTIONS
 	{
-	if(empty($_сВход)||strpos($_сВход, $_сДо)){return FALSE;}
+	if(empty($_сВход)||(strpos($_сВход, $_сДо)===FALSE)){return FALSE;}
 	$сСлово		= substr($сСлово, $_nu1сОтPlusOffset);
 	$сВход		= (string)$_сВход;
-	$сСлово		= '';
+	$сСлово		= FALSE;
 	$ч1Длинна	= strlen($сВход);
 	$ч0Длинна	= ($ч1Длинна-1);
 	
@@ -205,9 +205,9 @@ function сНачДоСимвола($_сВход, $_сДо='?', $_nu1BeginOffset
 
 function сНачОтДоСимвола($_сВход, $_сОт, $_сДо, $_nu1BeginOffset=0, $_nu1сОтPlusOffset=1)
 	{
-	if(empty($_сВход)||(strpos($_сВход, $_сОт)&&strpos($_сВход, $_сДо))){return FALSE;}
+	if(empty($_сВход)||(strpos($_сВход, $_сОт)&&(strpos($_сВход, $_сДо)===FALSE))){return FALSE;}
 	$сВход			= (string)$_сВход;
-	$сОтДо			= '';
+	$сОтДо			= FALSE;
 	$сОт			= $_сОт;
 	$сДо			= $_сДо;
 	$nu1BeginOffset		= $_nu1BeginOffset;

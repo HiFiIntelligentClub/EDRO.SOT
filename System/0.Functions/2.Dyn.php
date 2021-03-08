@@ -133,19 +133,25 @@ function arrRequest2IndexArray($_arrRequest)
 	{
 	if(is_array($_arrRequest))
 		{
-		//print_r($_arrRequest);
-		//exit;
-		$int0X=0;
-		foreach($_arrRequest as $strRequest)
+		foreach($_arrRequest as $strI=>$strRequest)
 			{
-			if($int0X==0)
+			if($strI=='rRadio')
 				{
+				$arrRequest['arrRequest']['rRadio']	= $_arrRequest['rRadio'];
+				continue;
+				}
+			if(сНачДоСимвола($strRequest, ' ')====FALSE)
+				{
+				$arrIndex	= explode(":" , $strRequest);
 				if(strpos($strRequest, "GET")===0||strpos($strRequest, "POST")===0||strpos($strRequest, "PUT")===0)
 					{
 					$arrRequest['arrRequest']['strMethod']		= сНачДоСимвола($strRequest, ' ');
 					$arrRequest['arrRequest']['strMethodLen']	= strlen($arrRequest['arrRequest']['strMethod']);
 					$arrRequest['arrRequest']['strProto']		= сКонцДоСимвола($strRequest, ' ');
 					$arrRequest['arrRequest']['strProtoLen']	= strlen($arrRequest['arrRequest']['strProto']);
+					if($strRequest)
+						{
+						}
 					$arrRequest['arrRequest']['strRequest']		= substr($strRequest, $arrRequest['arrRequest']['strMethodLen'], -($arrRequest['arrRequest']['strProtoLen']));
 					$strExt						= сКонцДоСимвола($arrRequest['arrRequest']['strRequest'], '.');
 					$int1ExtLength					= strlen($strExt);
@@ -153,43 +159,51 @@ function arrRequest2IndexArray($_arrRequest)
 					}
 				else
 					{
-					_Report('Unusall position of request string $arrRequest[strRequest]: '.$strRequest);
+					///_Report('Unusall position of request string $arrRequest[strRequest]: '.$strRequest);
+					if(isset($arrIndex[0])&&isset($arrIndex[1]))
+						{	
+						if($arrIndex[0]=='Host')
+							{
+							$arrRequest['arrRequest']['strHost'] 		= $arrIndex[1];
+							}
+						elseif($arrIndex[0]=='Accept')
+							{
+							$arr=explode(',' ,trim($arrIndex[1]));
+							if(is_array($arr))
+								{
+								}
+							else
+								{
+								$arr	=array();
+								}
+							$arrRequest['arrRequest']['strAccept'] 	= $arr;
+							}
+						elseif($arrIndex[0]=='Connection')
+							{
+							$arrRequest['arrRequest']['strConnection'] 	= $arrIndex[1];
+							}
+						elseif($arrIndex[0]=='User-Agent')
+							{
+							$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
+							$arrRequest['arrRequest']['arrPlatform'] 	= arrUserAgent2Platform($arrRequest['arrRequest']['strUserAgent']);
+							}
+						elseif($arrIndex[0]=='Accept-Language')
+							{
+							$arrRequest['arrRequest']['strAcceptLanguage'] 	= $arrIndex[1];
+							}
+						elseif($arrIndex[0]=='Accept-Encoding')
+							{
+							$arrRequest['arrRequest']['strAcceptEncoding'] 	= $arrIndex[1];
+							}
+						else
+							{
+							$arrRequest[$arrIndex[0]]	= $arrIndex[1];
+							_Report('Unusall position of request string $arrRequest[strRequest]: '.$strRequest);
+							}//Accept-Encoding
+						}
 					}
 				}
-			else
-				{
-				$arrIndex			= explode(":" , $strRequest);
-				}
-			if(isset($arrIndex[0])&&isset($arrIndex[1]))
-				{	
-				if($arrIndex[0]=='Host')
-					{
-					$arrRequest['arrRequest']['strHost'] 		= $arrIndex[1];
-					}
-				elseif($arrIndex[0]=='Connection')
-					{
-					$arrRequest['arrRequest']['strConnection'] 	= $arrIndex[1];
-					}
-				elseif($arrIndex[0]=='User-Agent')
-					{
-					$arrRequest['arrRequest']['strUserAgent'] 	= $arrIndex[1];
-					$arrRequest['arrRequest']['arrPlatform'] 	= arrUserAgent2Platform($arrRequest['arrRequest']['strUserAgent']);
-					}
-				else
-					{
-					$arrRequest[$arrIndex[0]]	= $arrIndex[1];
-					}
-				}
-			//elseif(isset($arrIndex[0])&&!isset($arrIndex[1]))
-			//	{
-			//	$arrRequest['strRequest']	= $arrIndex[0];
-			//	}
-			else
-				{
-				}
-			$int0X++;
 			}
-		$arrRequest['arrRequest']['rRadio']	= $_arrRequest['rRadio'];
 		}
 	if(!isset($arrRequest['arrRequest']['strUserAgent']))
 		{
