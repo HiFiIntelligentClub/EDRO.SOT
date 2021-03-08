@@ -151,7 +151,7 @@ function arrRequest2IndexArray($_arrEvent)
 				{
 				$strIndexLength		= strlen($strIndex);
 
-				$strListenerEvent	= CheckMaSubstr($strIndex,'', $strEvent);
+				$strListenerEvent	= CheckMaSubstr(0 ,$strIndexLength , $strEvent);
 
 				$strListenerParams	= сНачОтСимвола();
 				$strListenerAccept	= str_replace( ':', '', $strIndex);
