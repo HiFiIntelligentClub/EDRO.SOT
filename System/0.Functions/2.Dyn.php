@@ -53,12 +53,12 @@ function bIzDesktop($мPlatform)
 	{
 	$bIz=false;
 	if(
-	!$мPlatform['bIzCheckMaPhone']&&
-	!$мPlatform['bIzAndroid']&&
-	!$мPlatform['bIzAppleMobile']&&
-	!$мPlatform['bIzDesktop']&&
-	!$мPlatform['bIzOther']
-		)
+		!$мPlatform['bIzCheckMaPhone']&&
+		!$мPlatform['bIzAndroid']&&
+		!$мPlatform['bIzAppleMobile']&&
+		!$мPlatform['bIzDesktop']&&
+		!$мPlatform['bIzOther']
+			)
 		{
 		$bIz	= true;
 		}
@@ -130,30 +130,34 @@ function arrRequest2IndexArray($_arrEvent)
 	//
 	//
 	//
-	if(!isset($_arrEvent['rRadio']))
-		{
-		_Report('No radio is not working!!!');
+	if(!isset($_arrEvent['rRadio'])&&empty($_arrEvent['rRadio'])) //It can not happen's but checking, 
+		{					//because system are working  in time
+							_Report('No radio is not working!!!');
 		return $arrEvent['rRadio']		= FALSE;
 		}
-	$arrEvent['rRadio']		= $_arrEvent['rRadio'];
+	$arrReality['rRadio']		= $_arrEvent['rRadio'];
 				    unset($_arrEvent['rRadio']);
-	$arrEvent['strPlatform']	= 'x';
-	$arrEvent['strHost']		= 'x';
-	$arrEvent['Accept-Language']	= 'x';
-	$arrEvent['Accept-Encoding']	= 'x';
+	$arrReality['strPlatform']	= 'x';
+	$arrReality['strHost']		= 'x';
+	$arrReality['strAccept']		= 'x';
+	$arrReality['strAcceptLanguage']	= 'x';
+	$arrReality['strAcceptEncoding']	= 'x';
+	$arrReality['strConnection']	= 'x';
+	$arrReality['strCacheControl']	= 'x';
 	foreach($_arrEvent as $strListenerEvent)
 		{
 		if(($strIndex=сНачДоСимвола($strListenerEvent, ' '))!==FALSE)
 			{
-			$arrEvent['strName']		= $strIndex;
-			$int1ListenerEventLenIndex	= strlen($strIndex);
-			$strListenerProto		= сКонцДоСимвола($strIndex, ' ');
+			$arrEvent['strName']		= trim($strIndex);
+			$int1ListenerLenEventIndex	= strlen($strIndex);
+			$strListenerProto		= trim(сКонцДоСимвола($strIndex, ' '));
 			$int1ListenerLenProto		= strlen($strListenerProto);
 			$arrEvent['strListenerProto']	= $strListenerProto;
 			//$strListenerAccept	= str_replace( ':', '', $strIndex);
 			if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 				{
-				$strListenerEvent		= CheckMaSubstr($strListenerEvent , $int1ListenerEventLenIndex,  -$int1ListenerLenProto);
+				$strListenerEventRequest
+				$strListenerEvent		= trim(CheckMaSubstr($strListenerEvent , $int1ListenerLenEventIndex,  -$int1ListenerLenProto));
 				$strListenerEventName		= сНачДоСимвола($strListenerEvent, "?");
 				$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
 				$arrEvent['strName']		= $strListenerEventName;
@@ -204,8 +208,8 @@ function arrRequest2IndexArray($_arrEvent)
 		}
 	return $arrEvent;
 	}
-/*!*/function arrGetEvent($rRadio)
-/*+4+*/	{//$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);----
+function arrGetEvent($rRadio)
+/*+4+*/	{
 	$rRadio 				= stream_socket_accept($rRadio, -1);
 	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
 	print_r($arrReadRequestFromListenersBrowser);
@@ -213,7 +217,24 @@ function arrRequest2IndexArray($_arrEvent)
 /*+6+*/ return $arrReadRequestFromListenersBrowser;
 /*+7+*/	}
 
+function arrEventParams2Array($_strQuery)
+	{
+	$arrResult	=array();
+	$strQuery	=$_strQuery;
+		   unset($_strQuery);
 
+	$arrQuery=arrPrepare($strQuery);
+	               unset($strQuery);
+
+	foreach($arrQuery as $strQuery)
+		{
+		$arrBeforeValidate		= arrPrepare2($strQuery);
+		$strParamName			= $arrBeforeValidate[0];
+		$strParamValue			= $arrBeforeValidate[1];
+		$arrResult[$strParamName]	= urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
+		}
+	return $arrResult;
+	}
 function arrGetEventSetter($rRadio)
 /*!0!*/	{
 	
@@ -244,24 +265,7 @@ function arrGetEventSetter($rRadio)
 	//exit;
 /*14!*/return $arrEvent;
 /*15!*/	}
-function arrEventParams2Array($_strQuery)
-	{
-	$arrResult	=array();
-	$strQuery	=$_strQuery;
-		   unset($_strQuery);
 
-	$arrQuery=arrPrepare($strQuery);
-	               unset($strQuery);
-
-	foreach($arrQuery as $strQuery)
-		{
-		$arrBeforeValidate		= arrPrepare2($strQuery);
-		$strParamName			= $arrBeforeValidate[0];
-		$strParamValue			= $arrBeforeValidate[1];
-		$arrResult[$strParamName]	= urldecode(urldecode(сПреобразовать($strParamValue, "вСтроку")));
-		}
-	return $arrResult;
-	}
 
 function arrRestrictAndReportEventsAndParametrs($_arrIncome, $_strReplaceName='', $_strReplaceValue='')
 	{
