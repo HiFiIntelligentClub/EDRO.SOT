@@ -144,9 +144,9 @@ function arrRequest2IndexArray($_arrEvent)
 	$arrReality['strAcceptEncoding']	= 'x';
 	$arrReality['strConnection']	= 'x';
 	$arrReality['strCacheControl']	= 'x';
-	foreach($_arrEvent as $strListenerEvent)
+	foreach($_arrEvent as $strListenerReality)
 		{
-		if(($strIndex=сНачДоСимвола($strListenerEvent, ' '))!==FALSE)
+		if(($strListenerRealityName=сНачДоСимвола($strListenerReality, ' '))!==FALSE)
 			{
 			$arrEvent['strName']		= trim($strIndex);
 			$int1ListenerLenEventIndex	= strlen($strIndex);
