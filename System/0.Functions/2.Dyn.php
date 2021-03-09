@@ -148,29 +148,29 @@ function arrRequest2IndexArray($_arrEvent)
 		{
 		if(($strListenerRealityName=сНачДоСимвола($strListenerReality, ' '))!==FALSE)
 			{
-			$arrEvent['strName']		= trim($strIndex);
-			$int1ListenerLenEventIndex	= strlen($strIndex);
-			$strListenerProto		= trim(сКонцДоСимвола($strIndex, ' '));
+			$arrReality['strName']		= trim($strListenerRealityName);
+			$int1ListenerLenEventName	= strlen($strListenerRealityName);
+			$strListenerProto		= trim(сКонцДоСимвола($strListenerRealityName, ' '));
 			$int1ListenerLenProto		= strlen($strListenerProto);
-			$arrEvent['strListenerProto']	= $strListenerProto;
+			$arrReality['strListenerProto']	= $strListenerProto;
 			//$strListenerAccept	= str_replace( ':', '', $strIndex);
-			if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
+			if($strListenerRealityName=="GET"||$strListenerRealityName=="POST"||$strListenerRealityName=="PUT")
 				{
-				$strListenerEventRequest
-				$strListenerEvent		= trim(CheckMaSubstr($strListenerEvent , $int1ListenerLenEventIndex,  -$int1ListenerLenProto));
-				$strListenerEventName		= сНачДоСимвола($strListenerEvent, "?");
-				$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
-				$arrEvent['strName']		= $strListenerEventName;
-				$arrEvent['strParams']		= $strListenerParams;
-    				$strExt				= сКонцДоСимвола($arrEvent['strName'], '.');
-				$arrEvent['strExt']		= $strExt?FALSE:$strExt;
+				
+				$strListenerRealityRequest	= trim(CheckMaSubstr($strListenerEvent , $int1ListenerLenEventIndex,  -$int1ListenerLenProto));
+				$strListenerRealityName		= сНачДоСимвола($strListenerRealityRequest, "?");
+				$strListenerRealityParams	= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
+				$arrReality['strName']		= $strListenerRealityName;
+				$arrReality['strParams']	= $strListenerRealityParams;
+    				$strExt				= сКонцДоСимвола($arrReality['strName'], '.');
+				$arrReality['strExt']		= $strExt?FALSE:$strExt;
 				///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
 				}
-			elseif($strIndex=='Host')
+			/*elseif($strListenerRealityName=='Host')
 				{
 				$arrEvent['strHost'] 		= $strEvent;
 				}
-			elseif($strIndex=='Accept')
+			elseif($strListenerRealityName=='Accept')
 				{
 				$arr=explode(',' ,trim($strEvent));
 				if(is_array($arr))
@@ -203,7 +203,7 @@ function arrRequest2IndexArray($_arrEvent)
 				{
 				$arrEvent[$strIndex]		= $strEvent;
 				_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strIndex.'/'.$strEvent);
-				}
+				}*/
 			}
 		}
 	return $arrEvent;
