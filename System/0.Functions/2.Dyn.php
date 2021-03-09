@@ -105,12 +105,6 @@ function strSafeUsers($_strRequest)
 	{
 	return str_replace(array('%3C','%3E',"<",">",'о20о','о21о', 'U+02C2', 'U+02C3', 'U+003E', 'U+003C'), "_", $_strRequest);
 	}
-/*!*/function arrGetEvent($rRadio)
-/*+4+*/	{//$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);----
-	$rRadio 				= stream_socket_accept($rRadio, -1);
-	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
-/*+6+*/ return $arrReadRequestFromListenersBrowser;
-/*+7+*/	}
 function arrReadRequestFromListenersBrowser($_rRadio)
 	{
 /*!*/	$sListenerRadio		= strSafeUsers(fread($_rRadio, 4096));
@@ -139,82 +133,87 @@ function arrRequest2IndexArray($_arrEvent)
 	if(!isset($_arrEvent['rRadio']))
 		{
 		_Report('No radio is not working!!!');
-		return $arrEvent['rRadio']	=FALSE;
+		return $arrEvent['rRadio']		= FALSE;
 		}
-	$arrEvent['rRadio']	= $_arrEvent['rRadio'];
-			    unset($_arrEvent['rRadio']);
-	$arrEvent['strPlatform']	= 'BOT';
-	$arrEvent['strHost']		= 'BOT';
-	$arrEvent['Accept-Language']	= 'BOT';
-	$arrEvent['Accept-Encoding']	= 'BOT';
-	if(is_array($_arrEvent))
+	$arrEvent['rRadio']		= $_arrEvent['rRadio'];
+				    unset($_arrEvent['rRadio']);
+	$arrEvent['strPlatform']	= 'x';
+	$arrEvent['strHost']		= 'x';
+	$arrEvent['Accept-Language']	= 'x';
+	$arrEvent['Accept-Encoding']	= 'x';
+	foreach($_arrEvent as $strListenerEvent)
 		{
-		foreach($_arrEvent as $strListenerEvent)
+		if(($strIndex=сНачДоСимвола($strListenerEvent, ' '))!==FALSE)
 			{
-			if(($strIndex=сНачДоСимвола($strListenerEvent, ' '))!==FALSE)
+			$arrEvent['strName']		= $strIndex;
+			$int1ListenerEventLenIndex	= strlen($strIndex);
+			$strListenerProto		= сКонцДоСимвола($strIndex, ' ');
+			$int1ListenerLenProto		= strlen($strListenerProto);
+			$arrEvent['strListenerProto']	= $strListenerProto;
+			//$strListenerAccept	= str_replace( ':', '', $strIndex);
+			if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
 				{
-				$arrEvent['strName']		= $strIndex;
-				$int1ListenerEventLenIndex	= strlen($strIndex);
-				$strListenerProto		= сКонцДоСимвола($strIndex, ' ');
-				$int1ListenerLenProto		= strlen($strListenerProto);
-				$arrEvent['strListenerProto']	= $strListenerProto;
-
-				//$strListenerAccept	= str_replace( ':', '', $strIndex);
-
-				if($strIndex=="GET"||$strIndex=="POST"||$strIndex=="PUT")
+				$strListenerEvent		= CheckMaSubstr($strListenerEvent , $int1ListenerEventLenIndex,  -$int1ListenerLenProto);
+				$strListenerEventName		= сНачДоСимвола($strListenerEvent, "?");
+				$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
+				$arrEvent['strName']		= $strListenerEventName;
+				$arrEvent['strParams']		= $strListenerParams;
+    				$strExt				= сКонцДоСимвола($arrEvent['strName'], '.');
+				$arrEvent['strExt']		= $strExt?FALSE:$strExt;
+				///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
+				}
+			elseif($strIndex=='Host')
+				{
+				$arrEvent['strHost'] 		= $strEvent;
+				}
+			elseif($strIndex=='Accept')
+				{
+				$arr=explode(',' ,trim($strEvent));
+				if(is_array($arr))
 					{
-					$strListenerEvent		= CheckMaSubstr($strListenerEvent , $int1ListenerEventLenIndex,  -$int1ListenerLenProto);
-					$strListenerEventName		= сНачДоСимвола($strListenerEvent, "?");
-					$strListenerParams		= сНачОтСимвола($strListenerEvent, "?", 0, 1);
-					$arrEvent['strName']		= $strListenerEventName;
-					$arrEvent['strParams']		= $strListenerParams;
-    					$strExt				= сКонцДоСимвола($arrEvent['strName'], '.');
-					$arrEvent['strExt']		= $strExt?FALSE:$strExt;
-					///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
-					}
-				elseif($strIndex=='Host')
-					{
-					$arrEvent['strHost'] 		= $strEvent;
-					}
-				elseif($strIndex=='Accept')
-					{
-					$arr=explode(',' ,trim($strEvent));
-					if(is_array($arr))
-						{
-						}
-					else
-						{
-						$arr	=array();
-						}
-					$arrEvent['strAccept'] 	= $arr;
-					}
-				elseif($strIndex=='Connection')
-					{
-					$arrEvent['strConnection'] 	= $strEvent;
-					}
-				elseif($strIndex=='User-Agent')
-					{
-					$arrEvent['strPlatform'] 	= $strEvent;
-					$arrEvent['arrPlatform'] 	= arrUserAgent2Platform($arrEvent['strPlatform']);
-					}
-				elseif($strIndex=='Accept-Language')
-					{
-					$arrEvent['strAcceptLanguage'] 	= $strEvent;
-					}
-				elseif($strIndex=='Accept-Encoding')
-					{
-					$arrEvent['strAcceptEncoding'] 	= $strEvent;
 					}
 				else
 					{
-					$arrEvent[$strIndex]	= $strEvent;
-					_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strIndex.'/'.$strEvent);
+					$arr	=array();
 					}
+				$arrEvent['strAccept'] 		= $arr;
+				}
+			elseif($strIndex=='Connection')
+				{
+				$arrEvent['strConnection'] 	= $strEvent;
+				}
+			elseif($strIndex=='User-Agent')
+				{
+				$arrEvent['strPlatform'] 	= $strEvent;
+				$arrEvent['arrPlatform'] 	= arrUserAgent2Platform($arrEvent['strPlatform']);
+				}
+			elseif($strIndex=='Accept-Language')
+				{
+				$arrEvent['strAcceptLanguage'] 	= $strEvent;
+				}
+			elseif($strIndex=='Accept-Encoding')
+				{
+				$arrEvent['strAcceptEncoding'] 	= $strEvent;
+				}
+			else
+				{
+				$arrEvent[$strIndex]		= $strEvent;
+				_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strIndex.'/'.$strEvent);
 				}
 			}
 		}
 	return $arrEvent;
 	}
+/*!*/function arrGetEvent($rRadio)
+/*+4+*/	{//$strRequest= strSafeUsers($_SERVER['REQUEST_URI']);----
+	$rRadio 				= stream_socket_accept($rRadio, -1);
+	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
+	print_r($arrReadRequestFromListenersBrowser);
+	exit;
+/*+6+*/ return $arrReadRequestFromListenersBrowser;
+/*+7+*/	}
+
+
 function arrGetEventSetter($rRadio)
 /*!0!*/	{
 	
