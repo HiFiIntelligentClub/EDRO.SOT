@@ -86,14 +86,14 @@ function arrUserAgent2Platform($_strHTTP_USER_AGENT)
 		{
 		$мPlatform['bIzAppleMobile']	= true;
 		}
-	elseif(bIzDesktop($мPlatform))
+	elseif(bIzDesktop($_strHTTP_USER_AGENT))
 		{
 		$мPlatform['bIzDesktop']	= true;
 		}
 	else
 		{
 		_Report('Unknown platform: '.$_strHTTP_USER_AGENT);
-		$мPlatform		= true;
+		$мPlatform['bIzOther']		= true;
 		}
 	return $мPlatform;
 	}
@@ -136,7 +136,7 @@ function arrRequest2IndexArray($_arrEvent)
 	//$arrEvent['arrListener']['arrPlatform']['bIzDesktop']		= true;
 	//$arrEvent['arrListener']['arrPlatform']['bIzOther']		= true; 
 	//$arrEvent['arrListener']['arrAccept'][1]			= '';
-	//$arrEvent['arrListener']['arrAccept'][1]			= '';
+	//$arrEvent['arrListener']['arrAccept'][2]			= '';
 	//$arrEvent['arrListener']['arrAcceptLanguage']			= '';
 	//$arrEvent['arrListener']['arrAcceptLanguage']			= '';
 	//$arrEvent['arrListener']['arrAcceptEncoding']			= '';
@@ -148,6 +148,7 @@ function arrRequest2IndexArray($_arrEvent)
 	//$arrEvent['arrListener']['strConnection']['strMethod']	= 'POST'
 	//$arrEvent['arrListener']['strConnection']['strProto']		= 'sFTP/0.9'
 	//$arrEvent['arrListener']['strConnection']['strObject']	= '/'
+	//$arrEvent['arrListener']['strConnection']['strObjectType']	= 'audio/wav'
 	//$arrEvent['arrListener']['arrObject'][int0Page]		= 
 	//$arrEvent['arrListener']['arrObject'][int0OnPage]		= 
 	//
