@@ -139,13 +139,13 @@ function arrRequest2IndexArray($_arrEvent)
 		}
 	$arrReality['rRadio']			= $_arrEvent['rRadio'];
 					    unset($_arrEvent['rRadio']);
-	$arrReality['strPlatform']		= 'x';
-	$arrReality['strHost']			= 'x';
-	$arrReality['strAccept']		= 'x';
-	$arrReality['strAcceptLanguage']	= 'x';
-	$arrReality['strAcceptEncoding']	= 'x';
-	$arrReality['strConnection']		= 'x';
-	$arrReality['strCacheControl']		= 'x';
+	$arrReality['arrListener']['strPlatform']		= 'x';
+	$arrReality['arrListener']['strHost']			= 'x';
+	$arrReality['arrListener']['strAccept']			= 'x';
+	$arrReality['arrListener']['strAcceptLanguage']		= 'x';
+	$arrReality['arrListener']['strAcceptEncoding']		= 'x';
+	$arrReality['arrListener']['strConnection']		= 'x';
+	$arrReality['arrListener']['strCacheControl']		= 'x';
 	foreach($_arrEvent as $strListenerReality)
 		{
 		echo $strListenerReality;
@@ -154,37 +154,40 @@ function arrRequest2IndexArray($_arrEvent)
 			{
 			//echo strlen($strListenerRealityName);
 			//echo "\n";
-			$arrReality['strName']		= $strListenerRealityName;
-			$int1ListenerLenEventName	= strlen($arrReality['strName']);
-			$strListenerProto		= сКонцДоСимвола($strListenerReality, ' ');
-			$int1ListenerLenProto		= strlen($strListenerProto);
-			$arrReality['strListenerProto']	= $strListenerProto;
+			$arrReality['arrListener']['strName']		= $strListenerRealityName;
+			$int1ListenerLenEventName			= strlen($arrReality['strName']);
+			$strListenerProto				= сКонцДоСимвола($strListenerReality, ' ');
+			$int1ListenerLenProto				= strlen($strListenerProto);
+			$arrReality['strListenerProto']			= $strListenerProto;
 			//$strListenerAccept	= str_replace( ':', '', $strIndex);
 			if($strListenerRealityName=="GET"||$strListenerRealityName=="POST"||$strListenerRealityName=="PUT")
 				{
 				//echo '<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>qeqeqwe'."\n";
-				echo $strListenerRealityRequest		= trim(CheckMaSubstr($strListenerReality , $int1ListenerLenEventName,  -$int1ListenerLenProto));
+				echo "\n";
+				echo $strListenerRealityRequest			= trim(CheckMaSubstr($strListenerReality , $int1ListenerLenEventName,  -$int1ListenerLenProto));
 				echo "\n";
 				echo '$strListenerRealityRequest';
 				echo "\n";
-				echo $strListenerRealityObject		= сНачДоСимвола($strListenerRealityRequest, "?");
+				echo $strListenerRealityObject			= сНачДоСимвола($strListenerRealityRequest, "?");
 				echo "\n";
 				echo '$strListenerRealityObject';
 				echo "\n";
-				echo $strListenerRealityObjectParams	= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
+				echo $strListenerRealityObjectParams		= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
 				echo "\n";
 				echo '$strListenerRealityObjectParams';
 				echo "\n";
-				echo $arrReality['strObject']		= $strListenerRealityObject;
+				echo $arrReality['arrListener']['strObject']	= $strListenerRealityObject;
 				echo "\n";
 				echo '$arrReality[strObject]';
 				echo "\n";
-				echo $arrReality['strObjectParams']	= arrEventParams2Array($strListenerRealityParams);
+				echo $arrReality['strObjectParams']		= arrEventParams2Array($strListenerRealityParams);
 				echo "\n";
 				echo '$arrReality[strObjectParams]';
 				echo "\n";
-    				echo $strExt				= сКонцДоСимвола($arrReality['strParamName'], '.');
-				echo $arrReality['strExt']		= $strExt?FALSE:$strExt;
+    				echo $strExt					= сКонцДоСимвола($arrReality['strParamName'], '.');
+				echo "\n";
+				echo $arrReality['strExt']			= $strExt?FALSE:$strExt;
+				echo "\n";
 				///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
 				}
 			print_r($arrReality);
