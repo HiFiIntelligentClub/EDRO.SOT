@@ -121,10 +121,12 @@ function arrReadRequestFromListenersBrowser($_rRadio)
 		$arrListenerSetup	= array();
 		}
 	$arrListenerSetup['rRadio']	= $_rRadio;
+	print_r($arrListenerSetup);
 	return $arrListenerSetup;
 	}
 function arrRequest2IndexArray($_arrEvent)
 	{
+	//print_r($_arrEvent);
 	//$arrEvent['rRadio']='False/Resource';
 	//$arrEvent['arr']=
 	//
@@ -135,37 +137,58 @@ function arrRequest2IndexArray($_arrEvent)
 							_Report('No radio is not working!!!');
 		return $arrEvent['rRadio']		= FALSE;
 		}
-	$arrReality['rRadio']		= $_arrEvent['rRadio'];
-				    unset($_arrEvent['rRadio']);
-	$arrReality['strPlatform']	= 'x';
-	$arrReality['strHost']		= 'x';
+	$arrReality['rRadio']			= $_arrEvent['rRadio'];
+					    unset($_arrEvent['rRadio']);
+	$arrReality['strPlatform']		= 'x';
+	$arrReality['strHost']			= 'x';
 	$arrReality['strAccept']		= 'x';
 	$arrReality['strAcceptLanguage']	= 'x';
 	$arrReality['strAcceptEncoding']	= 'x';
-	$arrReality['strConnection']	= 'x';
-	$arrReality['strCacheControl']	= 'x';
+	$arrReality['strConnection']		= 'x';
+	$arrReality['strCacheControl']		= 'x';
 	foreach($_arrEvent as $strListenerReality)
 		{
+		echo $strListenerReality;
+		echo "\n";
 		if(($strListenerRealityName=сНачДоСимвола($strListenerReality, ' '))!==FALSE)
 			{
-			$arrReality['strName']		= trim($strListenerRealityName);
-			$int1ListenerLenEventName	= strlen($strListenerRealityName);
-			$strListenerProto		= trim(сКонцДоСимвола($strListenerRealityName, ' '));
+			//echo strlen($strListenerRealityName);
+			//echo "\n";
+			$arrReality['strName']		= $strListenerRealityName;
+			$int1ListenerLenEventName	= strlen($arrReality['strName']);
+			$strListenerProto		= сКонцДоСимвола($strListenerReality, ' ');
 			$int1ListenerLenProto		= strlen($strListenerProto);
 			$arrReality['strListenerProto']	= $strListenerProto;
 			//$strListenerAccept	= str_replace( ':', '', $strIndex);
 			if($strListenerRealityName=="GET"||$strListenerRealityName=="POST"||$strListenerRealityName=="PUT")
 				{
-				
-				$strListenerRealityRequest	= trim(CheckMaSubstr($strListenerEvent , $int1ListenerLenEventIndex,  -$int1ListenerLenProto));
-				$strListenerRealityName		= сНачДоСимвола($strListenerRealityRequest, "?");
-				$strListenerRealityParams	= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
-				$arrReality['strName']		= $strListenerRealityName;
-				$arrReality['strParams']	= $strListenerRealityParams;
-    				$strExt				= сКонцДоСимвола($arrReality['strName'], '.');
-				$arrReality['strExt']		= $strExt?FALSE:$strExt;
+				//echo '<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>qeqeqwe'."\n";
+				echo $strListenerRealityRequest	= trim(CheckMaSubstr($strListenerReality , $int1ListenerLenEventName,  -$int1ListenerLenProto));
+				echo "\n";
+				echo '$strListenerRealityRequest';
+				echo "\n";
+				echo $strListenerRealityParamName	= сНачДоСимвола($strListenerRealityRequest, "?");
+				echo "\n";
+				echo '$strListenerRealityParamName';
+				echo "\n";
+				echo $strListenerRealityParams	= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
+				echo "\n";
+				echo '$strListenerRealityParams';
+				echo "\n";
+				echo $arrReality['strParamName']	= $strListenerRealityParamName;
+				echo "\n";
+				echo '$arrReality[strParamName]';
+				echo "\n";
+				echo $arrReality['strParams']	= $strListenerRealityParams;
+				echo "\n";
+				echo '$arrReality[strParams]';
+				echo "\n";
+    				echo $strExt				= сКонцДоСимвола($arrReality['strParamName'], '.');
+				echo $arrReality['strExt']		= $strExt?FALSE:$strExt;
 				///_Report('Unusall position of Event string $arrEvent[strEvent]: '.$strEvent);
 				}
+			print_r($arrReality);
+			exit;
 			/*elseif($strListenerRealityName=='Host')
 				{
 				$arrEvent['strHost'] 		= $strEvent;
@@ -212,8 +235,6 @@ function arrGetEvent($rRadio)
 /*+4+*/	{
 	$rRadio 				= stream_socket_accept($rRadio, -1);
 	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
-	print_r($arrReadRequestFromListenersBrowser);
-	exit;
 /*+6+*/ return $arrReadRequestFromListenersBrowser;
 /*+7+*/	}
 
