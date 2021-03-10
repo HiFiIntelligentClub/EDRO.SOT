@@ -129,6 +129,21 @@ function arrRequest2IndexArray($_arrEvent)
 	//print_r($_arrEvent);
 	//$arrEvent['rRadio']='False/Resource';
 	//$arrEvent['arr']=
+	//$arrEvent['arrListener']['arrPlatform']			=array();
+	//$arrEvent['arrListener']['arrAccept']				=array();
+	//$arrEvent['arrListener']['arrAcceptLanguage']			=array();
+	//$arrEvent['arrListener']['arrAcceptEncoding']			=array()
+	//$arrEvent['arrListener']['arrConnection']['strHost']		='www.hui.ru';
+	//$arrEvent['arrListener']['arrConnection']['strType']		='close';
+	//$arrEvent['arrListener']['arrConnection']['strCacheControl']	='no' /-
+	//$arrEvent['arrListener']['strConnection']['strHost']		='/hui.ru'
+	//$arrEvent['arrListener']['strConnection']['strMethod']	='POST'
+	//$arrEvent['arrListener']['strConnection']['strProto']		='sFTP/0.9'
+	//$arrEvent['arrListener']['strConnection']['strObject']	='/'
+	//$arrEvent['arrListener']['arrObject']				=array();
+	//$arrEvent['arrListener']['arrEvent']['strName']		=
+	//$arrEvent['arrListener']['arrEvent']['strProto']		='/hui'
+	//
 	//
 	//
 	//
@@ -139,13 +154,13 @@ function arrRequest2IndexArray($_arrEvent)
 		}
 	$arrReality['rRadio']			= $_arrEvent['rRadio'];
 					    unset($_arrEvent['rRadio']);
-	$arrReality['arrListener']['strPlatform']		= 'x';
-	$arrReality['arrListener']['strHost']			= 'x';
-	$arrReality['arrListener']['strAccept']			= 'x';
-	$arrReality['arrListener']['strAcceptLanguage']		= 'x';
-	$arrReality['arrListener']['strAcceptEncoding']		= 'x';
-	$arrReality['arrListener']['strConnection']		= 'x';
-	$arrReality['arrListener']['strCacheControl']		= 'x';
+	$arrEvent['arrListener']['strPlatform']		= 'x';
+	$arrEvent['arrListener']['strHost']			= 'x';
+	$arrEvent['arrListener']['strAccept']			= 'x';
+	$arrEvent['arrListener']['strAcceptLanguage']		= 'x';
+	$arrEvent['arrListener']['strAcceptEncoding']		= 'x';
+	$arrEvent['arrListener']['strConnection']		= 'x';
+	$arrEvent['arrListener']['strCacheControl']		= 'x';
 	foreach($_arrEvent as $strListenerReality)
 		{
 		echo $strListenerReality;
@@ -171,25 +186,30 @@ function arrRequest2IndexArray($_arrEvent)
 				{
 				//echo '<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>qeqeqwe'."\n";
 				echo "\n";
+				echo '$strListenerRealityRequest:';
 				echo $strListenerRealityRequest			= trim(CheckMaSubstr($strListenerReality , $int1ListenerLenEventName,  -$int1ListenerLenProto));
 				echo "\n";
-				echo '$strListenerRealityRequest';
+
 				echo "\n";
+				echo '$strListenerRealityObject:';
 				echo $strListenerRealityObject			= сНачДоСимвола($strListenerRealityRequest, "?");
 				echo "\n";
-				echo '$strListenerRealityObject';
+
 				echo "\n";
+				echo '$strListenerRealityObjectParams:';
 				echo $strListenerRealityObjectParams		= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
 				echo "\n";
-				echo '$strListenerRealityObjectParams';
+
 				echo "\n";
+				echo '$arrReality[strObject]:';
 				echo $arrReality['arrListener']['strObject']	= $strListenerRealityObject;
 				echo "\n";
-				echo '$arrReality[strObject]';
+
 				echo "\n";
+				echo '$arrReality[strObjectParams]:';
 				echo $arrReality['strObjectParams']		= arrEventParams2Array($strListenerRealityParams);
 				echo "\n";
-				echo '$arrReality[strObjectParams]';
+
 				echo "\n";
     				echo $strExt					= сКонцДоСимвола($arrReality['strParamName'], '.');
 				echo "\n";
