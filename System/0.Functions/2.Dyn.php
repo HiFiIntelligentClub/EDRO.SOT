@@ -249,10 +249,10 @@ function arrRequest2IndexArray($_arrEvent)
 	return $arrEvent;
 	}
 function arrGetEvent($rRadio)
-/*+4+*/	{
-	$rRadio 				= stream_socket_accept($rRadio, -1);
-	$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
-/*+6+*/ return $arrReadRequestFromListenersBrowser;
+/*+4+*/ //{
+	//$rRadio 				= stream_socket_accept($rRadio, -1);
+	//$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
+/*+6+*/ //return $arrReadRequestFromListenersBrowser;
 /*+7+*/	}
 
 function arrEventParams2Array($_strQuery)
@@ -275,30 +275,28 @@ function arrEventParams2Array($_strQuery)
 	}
 function arrGetEventSetter($rRadio)
 /*!0!*/	{
-/*!1!*/	$arrEvent				= array();
+/*!1!*/	//$arrEvent				= array();
 ///+	$arrEvent['rRadio'] 			= '';
-/*!2!*/	$arrEvent['strEvent']			= '';
-/*!3!*/	$arrEvent['arrReality']			= array();
-/*!4!*/	$arrEvent['arrListener'] 		= array();
+/*!2!*/	//$arrEvent['strEvent']			= '';
+/*!3!*/	//$arrEvent['arrReality']			= array();
+/*!4!*/	//$arrEvent['arrListener'] 		= array();
 
-/*!5!*/	$arrListener		= arrGetEvent($rRadio);
+/*!5!*/	//$arrListener		= arrGetEvent($rRadio);
 	//print_r($arrListener);
-/*!6*/	echo $strEvent			= $arrListener['strEvent'];
-	
-
-/*!7*/	$arrEvent			= arrRestrictAndReportEventsAndParametrs(
-					array(
-						'strEvent'	=>urldecode($strEvent), //Why it is encoded? Shall find
-						'arrReality'	=>arrEventParams2Array($strEvent),
-						)
-					);
-	print_r($arrEvent);
+/*!6*/	//echo $strEvent			= $arrListener['strEvent'];
+/*!7*/	//$arrEvent			= arrRestrictAndReportEventsAndParametrs(
+	//				array(
+	//					'strEvent'	=>urldecode($strEvent), //Why it is encoded? Shall find
+	//					'arrReality'	=>arrEventParams2Array($strEvent),
+	//					)
+	//				);
+	//print_r($arrEvent);
 	//$arrEvent['arrListener']	= $arrEvent['arrListener'];
 	//echo '<pre>';
 	//print_r($arrEvent);
 	//echo '</pre>';
 	//exit;
-/*14!*/return $arrEvent;
+/*14!*/	//return $arrEvent;
 /*15!*/	}
 
 
