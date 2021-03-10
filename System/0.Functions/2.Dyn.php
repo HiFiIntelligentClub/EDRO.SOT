@@ -152,13 +152,20 @@ function arrRequest2IndexArray($_arrEvent)
 		echo "\n";
 		if(($strListenerRealityName=сНачДоСимвола($strListenerReality, ' '))!==FALSE)
 			{
+			echo '$strListenerRealityName:'.$strListenerRealityName;
 			//echo strlen($strListenerRealityName);
-			//echo "\n";
+			echo "\n";
 			$arrReality['arrListener']['strName']		= $strListenerRealityName;
+			echo '$arrReality[arrListener][strName]:'.$arrReality['arrListener']['strName'];
+			echo "\n";
 			$int1ListenerLenEventName			= strlen($arrReality['strName']);
 			$strListenerProto				= сКонцДоСимвола($strListenerReality, ' ');
+			echo '$strListenerProto:'.$strListenerProto;
+			echo "\n";
 			$int1ListenerLenProto				= strlen($strListenerProto);
 			$arrReality['strListenerProto']			= $strListenerProto;
+			echo '$arrReality[strListenerProto]:'.$arrReality['strListenerProto'];
+			echo "\n";
 			//$strListenerAccept	= str_replace( ':', '', $strIndex);
 			if($strListenerRealityName=="GET"||$strListenerRealityName=="POST"||$strListenerRealityName=="PUT")
 				{
