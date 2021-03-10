@@ -93,7 +93,7 @@ function arrUserAgent2Platform($_strHTTP_USER_AGENT)
 	else
 		{
 		_Report('Unknown platform: '.$_strHTTP_USER_AGENT);
-		$мPlatform['bIzOther']		= true;
+		$мPlatform		= true;
 		}
 	return $мPlatform;
 	}
@@ -129,20 +129,27 @@ function arrRequest2IndexArray($_arrEvent)
 	//print_r($_arrEvent);
 	//$arrEvent['rRadio']='False/Resource';
 	//$arrEvent['arr']=
-	//$arrEvent['arrListener']['arrPlatform']			=array();
-	//$arrEvent['arrListener']['arrAccept']				=array();
-	//$arrEvent['arrListener']['arrAcceptLanguage']			=array();
-	//$arrEvent['arrListener']['arrAcceptEncoding']			=array()
-	//$arrEvent['arrListener']['arrConnection']['strHost']		='www.hui.ru';
-	//$arrEvent['arrListener']['arrConnection']['strType']		='close';
-	//$arrEvent['arrListener']['arrConnection']['strCacheControl']	='no' /-
-	//$arrEvent['arrListener']['strConnection']['strHost']		='/hui.ru'
-	//$arrEvent['arrListener']['strConnection']['strMethod']	='POST'
-	//$arrEvent['arrListener']['strConnection']['strProto']		='sFTP/0.9'
-	//$arrEvent['arrListener']['strConnection']['strObject']	='/'
-	//$arrEvent['arrListener']['arrObject']				=array();
-	//$arrEvent['arrListener']['arrEvent']['strName']		=
-	//$arrEvent['arrListener']['arrEvent']['strProto']		='/hui'
+	//$arrEvent['arrListener']['arrPlatform']['bIzCheckMaPhone']	= true;
+	//$arrEvent['arrListener']['arrPlatform']['bIzAndroid']		= true;
+	//$arrEvent['arrListener']['arrPlatform']['bIzAppleMobile']	= true;
+	//$arrEvent['arrListener']['arrPlatform']['bIzCheckMaPhone']	= true;
+	//$arrEvent['arrListener']['arrPlatform']['bIzDesktop']		= true;
+	//$arrEvent['arrListener']['arrPlatform']['bIzOther']		= true; 
+	//$arrEvent['arrListener']['arrAccept'][1]			= '';
+	//$arrEvent['arrListener']['arrAccept'][1]			= '';
+	//$arrEvent['arrListener']['arrAcceptLanguage']			= '';
+	//$arrEvent['arrListener']['arrAcceptLanguage']			= '';
+	//$arrEvent['arrListener']['arrAcceptEncoding']			= '';
+	//$arrEvent['arrListener']['arrAcceptEncoding']			= '';
+	//$arrEvent['arrListener']['arrConnection']['strHost']		= 'www.hui.ru';
+	//$arrEvent['arrListener']['arrConnection']['strType']		= 'close';
+	//$arrEvent['arrListener']['arrConnection']['strCacheControl']	= 'no' /-
+	//$arrEvent['arrListener']['strConnection']['strHost']		= '/hui.ru'
+	//$arrEvent['arrListener']['strConnection']['strMethod']	= 'POST'
+	//$arrEvent['arrListener']['strConnection']['strProto']		= 'sFTP/0.9'
+	//$arrEvent['arrListener']['strConnection']['strObject']	= '/'
+	//$arrEvent['arrListener']['arrObject'][int0Page]		= 
+	//$arrEvent['arrListener']['arrObject'][int0OnPage]		= 
 	//
 	//
 	//
@@ -288,15 +295,12 @@ function arrEventParams2Array($_strQuery)
 	}
 function arrGetEventSetter($rRadio)
 /*!0!*/	{
-	
 /*!1!*/	$arrEvent				= array();
 ///+	$arrEvent['rRadio'] 			= '';
 /*!2!*/	$arrEvent['strEvent']			= '';
 /*!3!*/	$arrEvent['arrReality']			= array();
 /*!4!*/	$arrEvent['arrListener'] 		= array();
 
-
-	
 /*!5!*/	$arrListener		= arrGetEvent($rRadio);
 	//print_r($arrListener);
 /*!6*/	echo $strEvent			= $arrListener['strEvent'];
