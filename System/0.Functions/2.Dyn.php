@@ -163,25 +163,25 @@ function arrRequest2IndexArray($_arrEvent)
 			if($strListenerRealityName=="GET"||$strListenerRealityName=="POST"||$strListenerRealityName=="PUT")
 				{
 				//echo '<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>qeqeqwe'."\n";
-				echo $strListenerRealityRequest	= trim(CheckMaSubstr($strListenerReality , $int1ListenerLenEventName,  -$int1ListenerLenProto));
+				echo $strListenerRealityRequest		= trim(CheckMaSubstr($strListenerReality , $int1ListenerLenEventName,  -$int1ListenerLenProto));
 				echo "\n";
 				echo '$strListenerRealityRequest';
 				echo "\n";
-				echo $strListenerRealityParamName	= сНачДоСимвола($strListenerRealityRequest, "?");
+				echo $strListenerRealityObject		= сНачДоСимвола($strListenerRealityRequest, "?");
 				echo "\n";
-				echo '$strListenerRealityParamName';
+				echo '$strListenerRealityObject';
 				echo "\n";
-				echo $strListenerRealityParams	= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
+				echo $strListenerRealityObjectParams	= сНачОтСимвола($strListenerRealityRequest, "?", 0, 1);
 				echo "\n";
-				echo '$strListenerRealityParams';
+				echo '$strListenerRealityObjectParams';
 				echo "\n";
-				echo $arrReality['strParamName']	= $strListenerRealityParamName;
+				echo $arrReality['strObject']		= $strListenerRealityObject;
 				echo "\n";
-				echo '$arrReality[strParamName]';
+				echo '$arrReality[strObject]';
 				echo "\n";
-				echo $arrReality['strParams']	= $strListenerRealityParams;
+				echo $arrReality['strObjectParams']	= arrEventParams2Array($strListenerRealityParams);
 				echo "\n";
-				echo '$arrReality[strParams]';
+				echo '$arrReality[strObjectParams]';
 				echo "\n";
     				echo $strExt				= сКонцДоСимвола($arrReality['strParamName'], '.');
 				echo $arrReality['strExt']		= $strExt?FALSE:$strExt;
