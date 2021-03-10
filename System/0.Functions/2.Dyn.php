@@ -129,28 +129,7 @@ function arrRequest2IndexArray($_arrEvent)
 	//print_r($_arrEvent);
 	//$arrEvent['rRadio']='False/Resource';
 	//$arrEvent['arr']=
-	//$arrEvent['arrListener']['arrPlatform']['bIzCheckMaPhone']	= true;
-	//$arrEvent['arrListener']['arrPlatform']['bIzAndroid']		= true;
-	//$arrEvent['arrListener']['arrPlatform']['bIzAppleMobile']	= true;
-	//$arrEvent['arrListener']['arrPlatform']['bIzCheckMaPhone']	= true;
-	//$arrEvent['arrListener']['arrPlatform']['bIzDesktop']		= true;
-	//$arrEvent['arrListener']['arrPlatform']['bIzOther']		= true; 
-	//$arrEvent['arrListener']['arrAccept'][1]			= '';
-	//$arrEvent['arrListener']['arrAccept'][2]			= '';
-	//$arrEvent['arrListener']['arrAcceptLanguage']			= '';
-	//$arrEvent['arrListener']['arrAcceptLanguage']			= '';
-	//$arrEvent['arrListener']['arrAcceptEncoding']			= '';
-	//$arrEvent['arrListener']['arrAcceptEncoding']			= '';
-	//$arrEvent['arrListener']['arrConnection']['strHost']		= 'www.hui.ru';
-	//$arrEvent['arrListener']['arrConnection']['strType']		= 'close';
-	//$arrEvent['arrListener']['arrConnection']['strCacheControl']	= 'no' /-
-	//$arrEvent['arrListener']['strConnection']['strHost']		= '/hui.ru'
-	//$arrEvent['arrListener']['strConnection']['strMethod']	= 'POST'
-	//$arrEvent['arrListener']['strConnection']['strProto']		= 'sFTP/0.9'
-	//$arrEvent['arrListener']['strConnection']['strObject']	= '/'
-	//$arrEvent['arrListener']['strConnection']['strObjectType']	= 'audio/wav'
-	//$arrEvent['arrListener']['arrObject'][int0Page]		= 
-	//$arrEvent['arrListener']['arrObject'][int0OnPage]		= 
+
 	//
 	//
 	//
