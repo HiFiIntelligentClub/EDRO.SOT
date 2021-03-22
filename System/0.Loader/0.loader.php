@@ -1,99 +1,100 @@
 <?php
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
 
-$оКИМ->сИмяФайла	= '0.Loader.php';
-			$оКИМ->_Нач();
-
 
 //while($мЗагрузка=фКИМ($мЗагрузка))
 //	{
-$оКИМ->сИмяФайла	= '1.Reporter/0.ReportError.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '1.Reporter/1.Report.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '1.Reporter/2.ReportComplain_Violation_CitizenCountry1_Country2_.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_CitizenCountry1_Country2_.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_CitizenCountry1_Country2_.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '1.Reporter/2.ReportComplain_Violation_УКРФ.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_УКРФ.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_УКРФ.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '1.Reporter/2.ReportViloationLaw_ResidenceCountry.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViloationLaw_ResidenceCountry.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViloationLaw_ResidenceCountry.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '1.Reporter/2.ReportViolation_ResourceRules.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViolation_ResourceRules.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViolation_ResourceRules.php'); //+
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '0.Loader.php';
+/*
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SendMail/';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SendMail/');
+			//require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '0.Loader.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Complains';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Complains');
+			//require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '0.Loader.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResidenceCountryLaw';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResidenceCountryLaw');
+			//require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '0.Loader.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResurceRules';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResurceRules');
+			//require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '0.Loader.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/Rights_ResidentCounttry1_residentCountry2';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/Rights_ResidentCounttry1_residentCountry2');
+			//require($оКИМ->сИмяФайла);
+*/
 
-$оКИМ->сИмяФайла	= '2.Functions/0.key.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/0.key.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/0.key.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '2.Functions/1.FunctionsSetup.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/1.FunctionsSetup.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/1.FunctionsSetup.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '2.Functions/2.Platforms.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/2.Platforms.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/2.Platforms.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '2.Functions/3.Functions.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/3.Functions.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/3.Functions.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '2.Functions/4.Фразы.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/4.Фразы.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/4.Фразы.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '2.Functions/5.Dyn.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/5.Dyn.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/5.Dyn.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '2.Functions/6.StringFunctions.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/2.Functions/6.StringFunctions.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/2.Functions/6.StringFunctions.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '3.VectorKIIM/0.KIIM.php';
+/*
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/3.VectorKIIM/0.KIIM.php';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/3.VectorKIIM/0.KIIM.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '3.VectorKIIM/1.objKIIM.activation.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/3.VectorKIIM/1.objKIIM.activation.php';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/3.VectorKIIM/1.objKIIM.activation.php');
+			require($оКИМ->сИмяФайла);
 
-$оКИМ->сИмяФайла	= '3.VectorKIIM_Helper/1.objKIIM.activation.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/3.VectorKIIM_Helper/1.objKIIM.activation.php';
 			$оКИМ->_Нач();
-			//require('/home/EDRO.SetOfTools/System/3.VectorKIIM_Helper/1.objKIIM.activation.php');
+			require($оКИМ->сИмяФайла);
+*/
 
-$оКИМ->сИмяФайла	= '4.RAMBuffer/0.EDRO_Objects.php';
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/4.RAMBuffer/0.EDRO_Objects.php';
 			$оКИМ->_Нач();
-			require('/home/EDRO.SetOfTools/System/4.RAMBuffer/0.EDRO_Objects.php');
+			require($оКИМ->сИмяФайла);
 	
 	//$ч0Шаг++;
 //	}
