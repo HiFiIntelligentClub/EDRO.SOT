@@ -7,30 +7,93 @@ $оКИМ->сИмяФайла	= '0.Loader.php';
 
 //while($мЗагрузка=фКИМ($мЗагрузка))
 //	{
-	$мЗагрузка		= мКИМ($ч0Шаг ,$мЗагрузка);
-	require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
-	require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
-	require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_CitizenCountry1_Country2_.php');
-	require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_УКРФ.php');
-	require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViloationLaw_ResidenceCountry.php');
-	require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViolation_ResourceRules.php'); //+
-	//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SendMail/');
-	//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Complains');
-	//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResidenceCountryLaw');
-	//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResurceRules');
-	//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/Rights_ResidentCounttry1_residentCountry2');
-	require('/home/EDRO.SetOfTools/System/2.Functions/0.key.php');
-	require('/home/EDRO.SetOfTools/System/2.Functions/1.FunctionsSetup.php');
-	require('/home/EDRO.SetOfTools/System/2.Functions/2.Platforms.php');
-	require('/home/EDRO.SetOfTools/System/2.Functions/3.Functions.php');
-	require('/home/EDRO.SetOfTools/System/2.Functions/4.Фразы.php');
-	require('/home/EDRO.SetOfTools/System/2.Functions/5.Dyn.php');
-	require('/home/EDRO.SetOfTools/System/2.Functions/6.StringFunctions.php');
+$оКИМ->сИмяФайла	= '1.Reporter/0.ReportError.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
 
-	//require('/home/EDRO.SetOfTools/System/3.VectorKIIM/0.KIIM.php');
-	//require('/home/EDRO.SetOfTools/System/3.VectorKIIM/1.objKIIM.activation.php');
-	//require('/home/EDRO.SetOfTools/System/3.VectorKIIM_Helper/1.objKIIM.activation.php');
-	require('/home/EDRO.SetOfTools/System/4.RAMBuffer/0.EDRO_Objects.php');
+$оКИМ->сИмяФайла	= '1.Reporter/1.Report.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
+
+$оКИМ->сИмяФайла	= '1.Reporter/2.ReportComplain_Violation_CitizenCountry1_Country2_.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_CitizenCountry1_Country2_.php');
+
+$оКИМ->сИмяФайла	= '1.Reporter/2.ReportComplain_Violation_УКРФ.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportComplain_Violation_УКРФ.php');
+
+$оКИМ->сИмяФайла	= '1.Reporter/2.ReportViloationLaw_ResidenceCountry.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViloationLaw_ResidenceCountry.php');
+
+$оКИМ->сИмяФайла	= '1.Reporter/2.ReportViolation_ResourceRules.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/1.Reporter/2.ReportViolation_ResourceRules.php'); //+
+
+$оКИМ->сИмяФайла	= '0.Loader.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SendMail/');
+
+$оКИМ->сИмяФайла	= '0.Loader.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Complains');
+
+$оКИМ->сИмяФайла	= '0.Loader.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResidenceCountryLaw');
+
+$оКИМ->сИмяФайла	= '0.Loader.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/ResurceRules');
+
+$оКИМ->сИмяФайла	= '0.Loader.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/1.Оповещение/0.ОтправкаПисьмаАдминистраторуСистемы/ПочтовыйРобот/SuspectKeys/Violation/Rights_ResidentCounttry1_residentCountry2');
+
+$оКИМ->сИмяФайла	= '2.Functions/0.key.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/0.key.php');
+
+$оКИМ->сИмяФайла	= '2.Functions/1.FunctionsSetup.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/1.FunctionsSetup.php');
+
+$оКИМ->сИмяФайла	= '2.Functions/2.Platforms.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/2.Platforms.php');
+
+$оКИМ->сИмяФайла	= '2.Functions/3.Functions.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/3.Functions.php');
+
+$оКИМ->сИмяФайла	= '2.Functions/4.Фразы.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/4.Фразы.php');
+
+$оКИМ->сИмяФайла	= '2.Functions/5.Dyn.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/5.Dyn.php');
+
+$оКИМ->сИмяФайла	= '2.Functions/6.StringFunctions.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/2.Functions/6.StringFunctions.php');
+
+$оКИМ->сИмяФайла	= '3.VectorKIIM/0.KIIM.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/3.VectorKIIM/0.KIIM.php');
+
+$оКИМ->сИмяФайла	= '3.VectorKIIM/1.objKIIM.activation.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/3.VectorKIIM/1.objKIIM.activation.php');
+
+$оКИМ->сИмяФайла	= '3.VectorKIIM_Helper/1.objKIIM.activation.php';
+			$оКИМ->_Нач();
+			//require('/home/EDRO.SetOfTools/System/3.VectorKIIM_Helper/1.objKIIM.activation.php');
+
+$оКИМ->сИмяФайла	= '4.RAMBuffer/0.EDRO_Objects.php';
+			$оКИМ->_Нач();
+			require('/home/EDRO.SetOfTools/System/4.RAMBuffer/0.EDRO_Objects.php');
 	
 	//$ч0Шаг++;
 //	}
