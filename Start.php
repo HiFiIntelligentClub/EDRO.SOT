@@ -26,14 +26,17 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 
 function сВремя(){return round(microtime(true), 4);}
 
-function _Журнал()
+function _Журнал($фДебаг=TRUE)
 	{
-	$сРасположениеСчётчикВход	='/home/ЕДРО:SetOfTools/3.Reports/0.CountUp/Вход.plmr';
-	$сРасположениеСчётчикВходИстор	='/home/ЕДРО:SetOfTools/3.Reports/1.CountUpHistory/Вход.plmr';
+	$сРасположениеСчётчикВход	='/home/EDRO.SetOfTools/3.Reports/0.CountUp/Вход.plmr';
+	$сРасположениеСчётчикВходИстор	='/home/EDRO.SetOfTools/3.Reports/1.CountUpHistory/Вход.plmr';
 	//echo $сРасположениеСчётчикВход;
 	$ч0СчётчикВход			=file_get_contents($сРасположениеСчётчикВход);
 					file_put_contents($сРасположениеСчётчикВход, ($ч0СчётчикВход+1));
-					 /*DEBUG*/ file_put_contents($сРасположениеСчётчикВходИстор,"\n=====\n".'	Start:		'.date("Y-m-d H:i:s").сТекущееВремяСтемп()."\n", FILE_APPEND);
+	if($фДебаг)
+		{
+		 /*DEBUG*/ file_put_contents($сРасположениеСчётчикВходИстор,"\n=====\n".'	Start:		'.date("Y-m-d H:i:s").сВремя()."\n", FILE_APPEND);
+		}
 	}
 $сКиМ		="/home/EDRO.SetOfTools/0.Система/0.ErrorReporter/0._Report.php";
 		if(file_get_contents($сКиМ)===FALSE)	{exit;}
