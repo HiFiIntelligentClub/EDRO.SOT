@@ -1,6 +1,6 @@
 <?php
 //© A.A.CheckMaRev assminog@gmail.com tubmulur@yandex.ru
-//$оСекундомер = new Секундомер::д4();
+//$оСекундомер = new Секундомер::о();
 //$оСекундомер->_Стоп();
 //print_r($оСекундомер);
 class Секундомер
@@ -40,7 +40,11 @@ class Секундомер
 		//$this->оOценка				= new Oценка($this->д4Старт);
 		//  Значения производительности для хостинга и тарифа, для оценки производительности на платформе, до того, как всё повисло.
 		}
-	public static function д4()
+	//public static function д4()
+	//	{
+		//return new Секундомер();
+	//	}
+	public static function о()
 		{
 		return new Секундомер();
 		}
