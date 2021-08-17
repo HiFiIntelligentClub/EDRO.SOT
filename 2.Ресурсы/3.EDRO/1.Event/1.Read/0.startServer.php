@@ -70,6 +70,8 @@ class Read
 			{
 			$this->_ЧтениеЗапроса();      //+
 			$this->_ОбработкаЗапроса();   //
+			print_r($this);
+			exit;
 			$this->_ФормированиеОтвета(); //
 			$this->_ЗаписьОтвета();       //
 			$this->_СбросEventЖурнала();  //
@@ -120,8 +122,7 @@ class Read
 		if($this->R['bizReadedBlock']===TRUE)
 			{
 			$this->R['мЗаголовки']			= explode("\n", $this->R['strReadedBlock']);
-			print_r($this);
-			exit;
+
 			if(isset($this->R['мЗаголовки'][0]))
 				{
 				if(is_file($this->R['мЗаголовки'][0]))
