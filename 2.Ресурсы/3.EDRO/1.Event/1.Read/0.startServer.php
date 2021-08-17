@@ -36,6 +36,7 @@ class Read
 				'intPort'		=> 75,
 				'intReadBlockSize'	=> 512,
 				'сРасположение'		=> '',
+				'дТаймаут'		=> -1,
 			);
 	private $R	= array(
 				'мКИМ'			=>
@@ -48,6 +49,8 @@ class Read
 				'intWritedBytes'	=> 0,
 				'мЗаголовки'		=> array(),
 				'strReadedBlock'	=> '',
+				'strErrorNo'		=>
+				'strError'		=>
 			);
 	public $O	= array(
 			);
@@ -61,8 +64,10 @@ class Read
 		$this->_memoryPrepare();
 		while($this->ifGgetRead())
 			{
-			$this->_ЧтениеЗапросаИзБраузераСлушателя();
-			$this->_ЗаписьОтветаВБраузерСлушателя();
+			$this->_ЧтениеЗапроса();
+			$this->_ОбработкаЗапроса();
+			$this->_ФормированиеОтвета();
+			$this->_ЗаписьОтвета();
 			$this->_СбросEventЖурнала();
 			//exit();
 			}
@@ -80,57 +85,72 @@ class Read
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
-		$this->R['рПередача'] 			= stream_socket_accept($this->R['рПриёмник'], -1);
+		$this->R['рПередача'] 			= stream_socket_accept($this->R['рПриёмник'], $this->D['дТаймаут']);
 		
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		
 		return $this->R['рПередача'];
 		}
-	private function _ЧтениеЗапросаИзБраузераСлушателя()
+	private function _ЧтениеЗапроса()
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
 		$this->R['strReadedBlock']		= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
-		if(!empty($this->R['strReadedBlock']))
+		if(empty($this->R['strReadedBlock']))
 			{
-			$this->R['мЗаголовки']				= explode("\n", $this->R['strReadedBlock']);
+			$this->R['strReadedBlock']		= 'Пустой запрос';
+			$this->E[]				= array('!'.__CLASS__.'/'.__FUNCTION__ => 'fread($_рПередача'.$this->D['intReadBlockSize'].') empty.');
 			}
-		else
-			{
-			$this->E[]					= array('!'.__CLASS__.'/'.__FUNCTION__ => 'fread($_рПередача'.$this->D['intReadBlockSize'].') empty.');
-			$this->R['мЗаголовки']				= array();
-			}
+		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		}
+	private function _ОбработкаЗапроса()
+		{
+		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
+		
+		//$this->R['мЗаголовки']			= explode("\n", $this->R['strReadedBlock']);
+		
+		//$this->R['мЗаголовки']			= array();x
+		
 		if(isset($this->R['мЗаголовки'][0]))
 			{
 			if(is_file($this->R['мЗаголовки'][0]))
 				{
-				$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
+				//$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
 				}
 			else
 				{
-			
+				
 				}
 			}
+		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		}
+	private function _ФормированиеОтвета()
+		{
+		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
+		
+		$this->R['мЗаголовки'];
 		
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
-	private function _ЗаписьОтветаВБраузерСлушателя()
+	private function _ЗаписьОтвета()
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
 		fwrite($this->R['рПередача'], $this->R['strReadedBlock'], strlen($this->R['strReadedBlock']));
+		
 		fclose($this->R['рПередача']);
 		
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _СбросEventЖурнала()
 		{
-		print_r($this);
+		//print_r($this);
 		//$this->E = array();
 		}
 	public function _СтартЖурнала()
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
-
+		
 		//$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => '');$intStartTime = сВремя();
 		//$this->_КИМ('Start');
 		//$сРасположениеСчётчикВход	=$this->сЖурналРасположение.'/CountUp/Вход.plmr';
@@ -151,10 +171,10 @@ class Read
 		$this->O['strFaviconBin']		= file_get_contents('/home/HiFiIntelligentClub.Ru/favicon.png');
 		$this->O['strJPGLogo']			= file_get_contents('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
 		$this->O['strRobotsTxt']		= file_get_contents('/home/HiFiIntelligentClub.Ru/robots.txt');
-
+		
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
-/*	
+/*
 	private function _КИМ($strDirection='Start', $strClass, $strFunction)
 		{
 		//
@@ -177,7 +197,6 @@ class Read
 			}
 		}
 */
-
 	public static function VoId()
 		{
 		while(TRUE)
