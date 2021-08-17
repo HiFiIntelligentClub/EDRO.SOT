@@ -17,25 +17,31 @@
 //																	
 //																	
 set_time_limit(0);
-
+require'/home/ЕДРО:ПОЛИМЕР/0.Настройки/1.Define.php';
 require'/home/EDRO.SetOfTools/2.Ресурсы/1.Functions/01.СколькоВремя.php';
-require'/home/EDRO.SetOfTools/2.Ресурсы/1.Functions/02.Секундомер.php';
 
+require'/home/EDRO.SetOfTools/2.Ресурсы/1.Functions/02.Секундомер.php';
+require'/home/EDRO.SetOfTools/2.Ресурсы/1.Functions/10.StringFunctions.php';
+
+//echo сНачОтСимвола('12334445667', '6');
+
+//exit;
 Read::VoId();
 
 class Read
 	{
 	private $E	= array(
-				'мСекундомер'		=> 
-							array(
-							''
-							),
+				'strListenerBlock'	=> '',
+				'strReadedBlock'	=> '',
+				'сСлушатель'		=> '',
+				'мЗаголовки'		=> array(),
+				'strError'		=> '',
+				'strErrorNo'		=> 0,
 			);
 	private $D	= array(
 				'strAddr'		=> '127.0.0.1',
 				'intPort'		=> 75,
 				'intReadBlockSize'	=> 512,
-				'сРасположение'		=> '',
 				'дТаймаут'		=> -1,
 			);
 	private $R	= array(
@@ -43,16 +49,12 @@ class Read
 							array(
 							''
 							),
-				'сРасположение'		=> '/home/EDRO.о2о/Listener/',
 				'ч1Слушатель'		=> 0,
-				'cЗапись'		=> '/0.О20',
+				'сДоступ'		=> '/Listener',
 				'рПриёмник'		=> '',
-				'strError'		=> '',
-				'strErrorNo'		=> ,
 				'рПередача'		=> '',
 				'bIzSocket'		=> FALSE,
 				'intWritedBytes'	=> 0,
-				'strReadedBlock'	=> '',
 				'bizReadedBlock'	=> FALSE,
 				'мЗаголовки'		=> array(),
 			);
@@ -77,15 +79,15 @@ class Read
 			$this->_СбросEventЖурнала();  //
 			//exit();
 			}
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _memoryPrepare()
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
-		$this->R['рПриёмник']			= stream_socket_server('tcp://'.$this->D['strAddr'].':'.$this->D['intPort'], $this->R['strErrorNo'], $this->R['strError']);
+		$this->R['рПриёмник']			= stream_socket_server('tcp://'.$this->D['strAddr'].':'.$this->D['intPort'], $this->E['strErrorNo'], $this->E['strError']);
 		
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function ifGgetRead()
 		{
@@ -93,7 +95,7 @@ class Read
 		
 		$this->R['рПередача'] 			= stream_socket_accept($this->R['рПриёмник'], $this->D['дТаймаут']);
 		
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		
 		return $this->R['рПередача'];
 		}
@@ -104,16 +106,16 @@ class Read
 		$strReadedBlock				= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
 		if(empty($strReadedBlock))
 			{
-			$this->R['strReadedBlock']		= '';
+			$this->E['strReadedBlock']		= '';
 			$this->R['bizReadedBlock']		= FALSE;
 			$this->E[]				= array('!'.__CLASS__.'/'.__FUNCTION__ => 'fread($_рПередача'.$this->D['intReadBlockSize'].') empty.');
 			}
 		else
 			{
-			$this->R['strReadedBlock']		= $strReadedBlock;
+			$this->E['strReadedBlock']		= $strReadedBlock;
 			$this->R['bizReadedBlock']		= TRUE;
 			}
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _ОбработкаЗапроса()
 		{
@@ -121,13 +123,20 @@ class Read
 		
 		if($this->R['bizReadedBlock']===TRUE)
 			{
-			$this->R['мЗаголовки']			= explode("\n", $this->R['strReadedBlock']);
-
-			if(isset($this->R['мЗаголовки'][0]))
+			$this->E['мЗаголовки']			= explode("\n", $this->E['strReadedBlock']);
+			foreach($this->E['мЗаголовки'] as $сЗапрос)
 				{
-				if(is_file($this->R['мЗаголовки'][0]))
+				if(strpos($сЗапрос, ': ')!==FALSE)
 					{
-					//$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
+					$this->R['мЗаголовки'][сНачДоСимвола($сЗапрос, ':')]	= сНачОтСимвола($сЗапрос, ' ');
+					}
+				}
+			if(isset($this->R['мЗаголовки']['ч1Слушатель']))
+				{
+				$this->R['ч1Слушатель']			= $this->R['мЗаголовки']['ч1Слушатель'];
+				if(is_file($this->E['сСлушатель'] 	= сРасположениеО2о.$this->R['сДоступ'].'/'.$this->R['ч1Слушатель'].cЗаписьО2о))
+					{
+					$this->E['strListenerBlock']		= file_get_contents($this->E['сСлушатель']);
 					}
 				else
 					{
@@ -140,7 +149,7 @@ class Read
 			$this->R['мЗаголовки']			= array();
 			}
 
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _ФормированиеОтвета()
 		{
@@ -148,17 +157,17 @@ class Read
 		
 		$this->R['мЗаголовки'];
 		
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _ЗаписьОтвета()
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
-		fwrite($this->R['рПередача'], $this->R['strReadedBlock'], strlen($this->R['strReadedBlock']));
+		fwrite($this->R['рПередача'], $this->E['strReadedBlock'], strlen($this->E['strReadedBlock']));
 		
 		fclose($this->R['рПередача']);
 		
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _СбросEventЖурнала()
 		{
@@ -180,7 +189,7 @@ class Read
 		//$this->_КИМ('End');
 		//$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => (сВремя() - $intStartTime));
 
-		$this->E['мСекундомер'][]		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][]		= $оСекундомер->_Стоп();
 		}
 	private function _Буфферизация()
 		{
@@ -190,7 +199,7 @@ class Read
 		$this->O['strJPGLogo']			= file_get_contents('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
 		$this->O['strRobotsTxt']		= file_get_contents('/home/HiFiIntelligentClub.Ru/robots.txt');
 		
-		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
+		$this->O['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 /*
 	private function _КИМ($strDirection='Start', $strClass, $strFunction)
