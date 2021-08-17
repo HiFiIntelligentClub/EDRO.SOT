@@ -43,14 +43,14 @@ class Read
 							array(
 							''
 							),
+				'strError'		=> ,
+				'strErrorNo'		=> ,
 				'рПриёмник'		=> '',
 				'рПередача'		=> '',
 				'bIzSocket'		=> FALSE,
 				'intWritedBytes'	=> 0,
 				'мЗаголовки'		=> array(),
 				'strReadedBlock'	=> '',
-				'strErrorNo'		=>
-				'strError'		=>
 			);
 	public $O	= array(
 			);
@@ -77,7 +77,7 @@ class Read
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
-		$this->R['рПриёмник']			= stream_socket_server('tcp://'.$this->D['strAddr'].':'.$this->D['intPort'], $errno, $errstr);
+		$this->R['рПриёмник']			= stream_socket_server('tcp://'.$this->D['strAddr'].':'.$this->D['intPort'], $this->R['strErrorNo'], $this->R['strError']);
 		
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
