@@ -43,14 +43,18 @@ class Read
 							array(
 							''
 							),
-				'strError'		=> ,
-				'strErrorNo'		=> ,
+				'сРасположение'		=> '/home/EDRO.о2о/Listener/',
+				'ч1Слушатель'		=> 0,
+				'cЗапись'		=> '/0.О20',
 				'рПриёмник'		=> '',
+				'strError'		=> '',
+				'strErrorNo'		=> ,
 				'рПередача'		=> '',
 				'bIzSocket'		=> FALSE,
 				'intWritedBytes'	=> 0,
-				'мЗаголовки'		=> array(),
 				'strReadedBlock'	=> '',
+				'bizReadedBlock'	=> FALSE,
+				'мЗаголовки'		=> array(),
 			);
 	public $O	= array(
 			);
@@ -64,11 +68,11 @@ class Read
 		$this->_memoryPrepare();
 		while($this->ifGgetRead())
 			{
-			$this->_ЧтениеЗапроса();
-			$this->_ОбработкаЗапроса();
-			$this->_ФормированиеОтвета();
-			$this->_ЗаписьОтвета();
-			$this->_СбросEventЖурнала();
+			$this->_ЧтениеЗапроса();      //+
+			$this->_ОбработкаЗапроса();   //
+			$this->_ФормированиеОтвета(); //
+			$this->_ЗаписьОтвета();       //
+			$this->_СбросEventЖурнала();  //
 			//exit();
 			}
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
@@ -95,11 +99,17 @@ class Read
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
-		$this->R['strReadedBlock']		= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
-		if(empty($this->R['strReadedBlock']))
+		$strReadedBlock				= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
+		if(empty($strReadedBlock))
 			{
-			$this->R['strReadedBlock']		= 'Пустой запрос';
+			$this->R['strReadedBlock']		= '';
+			$this->R['bizReadedBlock']		= FALSE;
 			$this->E[]				= array('!'.__CLASS__.'/'.__FUNCTION__ => 'fread($_рПередача'.$this->D['intReadBlockSize'].') empty.');
+			}
+		else
+			{
+			$this->R['strReadedBlock']		= $strReadedBlock;
+			$this->R['bizReadedBlock']		= TRUE;
 			}
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
@@ -107,21 +117,28 @@ class Read
 		{
 		$оСекундомер 				= new Секундомер(__CLASS__, __FUNCTION__);
 		
-		//$this->R['мЗаголовки']			= explode("\n", $this->R['strReadedBlock']);
-		
-		//$this->R['мЗаголовки']			= array();x
-		
-		if(isset($this->R['мЗаголовки'][0]))
+		if($this->R['bizReadedBlock']===TRUE)
 			{
-			if(is_file($this->R['мЗаголовки'][0]))
+			$this->R['мЗаголовки']			= explode("\n", $this->R['strReadedBlock']);
+			print_r($this);
+			exit;
+			if(isset($this->R['мЗаголовки'][0]))
 				{
-				//$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
-				}
-			else
-				{
-				
+				if(is_file($this->R['мЗаголовки'][0]))
+					{
+					//$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
+					}
+				else
+					{
+					$this->E[]				= array('!'.__CLASS__.'/'.__FUNCTION__ => 'fread($_рПередача'.$this->D['intReadBlockSize'].') empty.');
+					}
 				}
 			}
+		else
+			{
+			$this->R['мЗаголовки']			= array();
+			}
+
 		$this->E['мСекундомер'][] 		= $оСекундомер->_Стоп();
 		}
 	private function _ФормированиеОтвета()
